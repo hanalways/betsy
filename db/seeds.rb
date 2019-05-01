@@ -21,3 +21,23 @@ merchant_list.each do |username, email|
     email: email,
   )
 end
+product_failures = []
+
+25.times do
+  product = Product.new(
+    name: "#{Faker::Games::ElderScrolls.race} #{Faker::Games::ElderScrolls.creature}",
+    price: rand(10000).to_f / 100,
+    quantity: rand(10),
+    image_url: "https://placekitten.com/200/140",
+  )
+  success = product.save
+  if !success
+    product_failures << product
+    puts "Failed to save product #{product.inspect}"
+  else
+    puts "Created product #{product.inspect}"
+  end
+
+  puts "Added #{Product.count} product records"
+  puts "#{product_failures.length} products failed to save"
+end
