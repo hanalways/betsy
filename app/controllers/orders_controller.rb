@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     if @order.save
       flash[:status] = :success
       flash[:message] = "Successfully created order #{@order.id}"
-      redirect_back fallback_location: root_path
+      redirect_to root_path
     end
   end
 

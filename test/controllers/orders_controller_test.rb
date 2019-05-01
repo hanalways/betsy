@@ -19,6 +19,8 @@ describe OrdersController do
       expect {
         post orders_path(order_data)
       }.must_change "Order.count", 1
+
+      must_redirect_to root_path
     end
   end
 end
