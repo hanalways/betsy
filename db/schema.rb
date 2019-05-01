@@ -20,6 +20,8 @@ ActiveRecord::Schema.define(version: 2019_05_01_212339) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "email"
+    t.integer "uid"
+    t.string "provider"
   end
 
   create_table "order_products", force: :cascade do |t|
@@ -54,5 +56,4 @@ ActiveRecord::Schema.define(version: 2019_05_01_212339) do
     t.string "image_url"
     t.boolean "retired", default: false
   end
-
 end
