@@ -21,4 +21,8 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
   # Add more helper methods to be used by all tests here...
+  def check_flash(expected_status = :success)
+    expect(flash[:status]).must_equal(expected_status)
+    expect(flash[:message]).wont_be_nil
+  end
 end

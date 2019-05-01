@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       flash[:status] = :success
       flash[:message] = "Succesfully updated order #{@order.id}"
-      redirect_to :show
+      redirect_to order_path(@order)
     else
       flash.now[:status] = :warning
       flash.now[:message] = "Could not update order #{@order.id}"
@@ -47,6 +47,6 @@ class OrdersController < ApplicationController
   end
 
   def find_order
-    @order = Order.find_by(params[:id])
+    @order = Order.find_by(id: params[:id])
   end
 end
