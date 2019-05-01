@@ -28,4 +28,12 @@ ActiveRecord::Schema.define(version: 2019_04_30_235754) do
     t.string "expiration"
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.float "price"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
