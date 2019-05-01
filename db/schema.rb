@@ -15,13 +15,13 @@ ActiveRecord::Schema.define(version: 2019_04_30_235754) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
   create_table "merchants", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "email"
-=======
+  end
+
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 2019_04_30_235754) do
     t.integer "zip"
     t.integer "last_four_cc"
     t.string "expiration"
->>>>>>> 5bd456af2d94bd9ac4a8ba175dc1b00d9e6a7d80
   end
 
   create_table "products", force: :cascade do |t|
