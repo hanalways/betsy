@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-<<<<<<< HEAD
 product_failures = []
 
 25.times do
@@ -27,7 +26,6 @@ product_failures = []
   puts "Added #{Product.count} product records"
   puts "#{product_failures.length} products failed to save"
 end
-=======
 Order.create!(status: "shipped",
               email: "a@aol.com",
               address1: "123 Main St",
@@ -54,4 +52,3 @@ Order.create!(status: "shipped",
               zip: 93110,
               last_four_cc: 4890,
               expiration: "04/21")
->>>>>>> orders
