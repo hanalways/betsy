@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products.all
+    @products = Product.all
   end
 
   def update
