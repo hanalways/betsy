@@ -45,5 +45,13 @@ describe MerchantsController do
       expect(session[:user_id]).must_equal user.id
       must_redirect_to merchants_path
     end
+
+    it "creates an account for a new user and redirects to the root route" do
+
+    end
+
+    it "redirects to the login route if given invalid user data" do
+
+    end
   end
 end
