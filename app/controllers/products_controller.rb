@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :find_product, only: [:show, :edit, :update, :toggle_retire]
+
   def new
     @product = Product.new
   end
@@ -17,21 +19,13 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find_by(id: params[:id])
-    if !@product
-      head :not_found
-    end
   end
 
   def index
-    @products.all
+    @products = Product.all
   end
 
   def update
-    @product = Product.find_by(id: params[:id])
-    if !@product
-      head :not_found
-    end
     if @product.update product_params
       redirect_to product_path(@product.id)
       flash[:status] = :sucess
@@ -44,13 +38,17 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find_by(id: params[:id])
-    if !@product
-      head :not_found
-    end
   end
 
   def toggle_retire
+    @product.retired = !@product.retired
+  end
+
+  def product_params
+    return params.require(:product).permit(:image_url, :retired, :name, :price, :quantity, :merchant_id)
+  end
+
+  def find_product
     @product = Product.find_by(id: params[:id])
     if !@product
       head :not_found
