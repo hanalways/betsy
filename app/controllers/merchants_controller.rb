@@ -14,7 +14,7 @@ class MerchantsController < ApplicationController
   def create
     auth_hash = request.env["omniauth.auth"]
     
-    merchant = Merchant.find_by(iud: auth_hash[:iud], provider: "github")
+    merchant = Merchant.find_by(uid: auth_hash[:uid], provider: "github")
     if merchant 
       flash[:status] = :success
       flash[:message] = "Logged in as returning user #{merchant.username}"
@@ -26,12 +26,12 @@ class MerchantsController < ApplicationController
         flash[:message] = "Logged in as new user #{merchant.username}"
       else
         flash[:error] = "Could not create new user account: #{merchant.errors.messages}"
-        return redirect_to root_path
+        return redirect_to merchants_path
       end
     end
 
     session[:user_id] = merchant.id 
-    return redirect_to root_path
+    return redirect_to merchants_path
   end
 
   def destroy 
@@ -39,6 +39,6 @@ class MerchantsController < ApplicationController
     flash[:status] = :success 
     flash[:message] = "Successfully logged out!"
 
-    redirect_to root_path
+    redirect_to merchants_path
   end
 end
