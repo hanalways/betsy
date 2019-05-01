@@ -71,4 +71,13 @@ describe OrdersController do
       check_flash
     end
   end
+
+  describe "destroy" do
+    it "removes the order from the db" do
+      expect {
+        delete order_path(Order.first)
+      }.must_change "Order.count", -1
+      check_flash
+    end
+  end
 end

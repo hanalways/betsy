@@ -41,6 +41,10 @@ class OrdersController < ApplicationController
   end
 
   def destroy
+    @order.destroy
+
+    flash[:status] = :success
+    flash[:message] = "Successfully deleted order #{@order.id}"
   end
 
   private
