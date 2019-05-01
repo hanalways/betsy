@@ -2,10 +2,21 @@ require "test_helper"
 
 describe MerchantsController do
   describe "index" do 
-    it "" do
+    it "can get the index page" do
+      get merchants_path
 
+      must_respond_with :success
     end
   end
+
+  describe "show" do 
+    it "can get the show page" do 
+      merchant = merchants(:ada)
+      get merchant_path(merchant)
+
+      must_respond_with :success
+    end 
+  end 
 
   describe "auth callback" do 
     it "can log in an existing user" do 
