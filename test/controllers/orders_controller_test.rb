@@ -70,7 +70,5 @@ describe OrdersController do
       must_redirect_to order_path(Order.first)
       check_flash
     end
-
-    it "renders"
   end
 end
