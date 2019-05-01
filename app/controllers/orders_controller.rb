@@ -7,6 +7,10 @@ class OrdersController < ApplicationController
       flash[:status] = :success
       flash[:message] = "Successfully created order #{@order.id}"
       redirect_to root_path
+    else
+      flash[:status] = :warning
+      flash[:message] = "Could not create order"
+      redirect_to root_path
     end
   end
 
