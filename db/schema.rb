@@ -10,18 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_182133) do
+ActiveRecord::Schema.define(version: 2019_05_01_212339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
   create_table "merchants", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "email"
-=======
+  end
+
+  create_table "order_products", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.integer "quantity"
+    t.index ["order_id"], name: "index_order_products_on_order_id"
+    t.index ["product_id"], name: "index_order_products_on_product_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -33,7 +43,6 @@ ActiveRecord::Schema.define(version: 2019_05_01_182133) do
     t.integer "zip"
     t.integer "last_four_cc"
     t.string "expiration"
->>>>>>> 5bd456af2d94bd9ac4a8ba175dc1b00d9e6a7d80
   end
 
   create_table "products", force: :cascade do |t|
