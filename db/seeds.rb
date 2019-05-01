@@ -44,7 +44,6 @@ product_failures = []
   puts "Added #{Product.count} product records"
   puts "#{product_failures.length} products failed to save"
 end
-
 Order.create!(status: "shipped",
               email: "a@aol.com",
               address1: "123 Main St",
@@ -71,3 +70,23 @@ Order.create!(status: "shipped",
               zip: 93110,
               last_four_cc: 4890,
               expiration: "04/21")
+
+OrderProduct.create!(order_id: 1,
+                     product_id: 3,
+                     quantity: 5)
+
+OrderProduct.create!(order_id: 2,
+                     product_id: 12,
+                     quantity: 1)
+
+OrderProduct.create!(order_id: 2,
+                     product_id: 20,
+                     quantity: 1)
+
+OrderProduct.create!(order_id: 3,
+                     product_id: 5,
+                     quantity: 12)
+
+OrderProduct.create!(order_id: 1,
+                     product_id: 13,
+                     quantity: 5)

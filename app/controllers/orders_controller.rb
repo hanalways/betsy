@@ -6,7 +6,11 @@ class OrdersController < ApplicationController
     if @order.save
       flash[:status] = :success
       flash[:message] = "Successfully created order #{@order.id}"
-      redirect_back fallback_location: root_path
+      redirect_to root_path
+    else
+      flash[:status] = :warning
+      flash[:message] = "Could not create order"
+      redirect_to root_path
     end
   end
 
@@ -28,12 +32,19 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       flash[:status] = :success
       flash[:message] = "Succesfully updated order #{@order.id}"
-      redirect_to :show
+      redirect_to order_path(@order)
     else
       flash.now[:status] = :warning
       flash.now[:message] = "Could not update order #{@order.id}"
       render :edit
     end
+  end
+
+  def destroy
+    @order.destroy
+
+    flash[:status] = :success
+    flash[:message] = "Successfully deleted order #{@order.id}"
   end
 
   private
@@ -43,6 +54,6 @@ class OrdersController < ApplicationController
   end
 
   def find_order
-    @order = Order.find_by(params[:id])
+    @order = Order.find_by(id: params[:id])
   end
 end
