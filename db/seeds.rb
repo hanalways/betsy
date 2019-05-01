@@ -12,7 +12,7 @@ merchant_list = [
   ["Bill Gates", "billgates@gagoglezillionare.com"],
   ["Melinda Gates", "melindagates@gagogle"],
   ["Mark Zuckerberg", "markzuckerberg@robotalien.net"],
-  ["Jeff Bezos", "jeffbezos@pureinsanity.com"]
+  ["Jeff Bezos", "jeffbezos@pureinsanity.com"],
 ]
 
 merchant_list.each do |username, email|
@@ -29,7 +29,9 @@ product_failures = []
     name: "#{Faker::Games::ElderScrolls.race} #{Faker::Games::ElderScrolls.creature}",
     price: rand(10000).to_f / 100,
     quantity: rand(10),
+    description: Faker::Movies::VForVendetta.quote,
     image_url: "https://placekitten.com/200/140",
+    merchant_id: rand(1..6),
   )
   success = product.save
   if !success

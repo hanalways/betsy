@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_182133) do
+ActiveRecord::Schema.define(version: 2019_05_01_234024) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,10 @@ ActiveRecord::Schema.define(version: 2019_05_01_182133) do
     t.datetime "updated_at", null: false
     t.string "image_url"
     t.boolean "retired", default: false
+    t.string "description"
+    t.bigint "merchant_id"
+    t.index ["merchant_id"], name: "index_products_on_merchant_id"
   end
 
+  add_foreign_key "products", "merchants"
 end
