@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2019_05_01_212339) do
-=======
 ActiveRecord::Schema.define(version: 2019_05_01_182133) do
->>>>>>> 345a2cd3ede9bde3fce3d112fb6a903139601e7a
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +24,6 @@ ActiveRecord::Schema.define(version: 2019_05_01_182133) do
     t.string "provider"
   end
 
-<<<<<<< HEAD
   create_table "order_products", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -39,8 +34,6 @@ ActiveRecord::Schema.define(version: 2019_05_01_182133) do
     t.index ["product_id"], name: "index_order_products_on_product_id"
   end
 
-=======
->>>>>>> 345a2cd3ede9bde3fce3d112fb6a903139601e7a
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,5 +56,4 @@ ActiveRecord::Schema.define(version: 2019_05_01_182133) do
     t.string "image_url"
     t.boolean "retired", default: false
   end
-
 end
