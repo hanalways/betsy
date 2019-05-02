@@ -1,0 +1,19 @@
+<h1><%= @product.name%></h1>
+
+<img src=<%=@product.image_url%> alt="image of <%=@product.name%>">
+
+<section class = "product-details">
+    <h3>Description</h3>
+    <p> <%=@product.description%> </p>
+    <p> <%=@product.quantity%> in stock</p>
+    <h3><%=@product.price%>
+</section>
+<% order = Order.find(session[:id]) %>
+<% order_item = OrderProduct.new%>
+<%= form_with model: order_product, url: order_product_path, method: :post do |f|%>
+    <%= f.label :quantity%>
+    <%= f.number_field :quantity, in 1..20, step: 1 %>
+    <% f.hidden_field :product_id%>
+    <% f.hidden_field :order_id%>
+    <% f.submit "Add to cart"%>
+<% end %>

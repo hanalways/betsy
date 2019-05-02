@@ -10,7 +10,7 @@ merchant_list = [
   ["Ada Lovelace", "adalovelace@codinggod.com"],
   ["Steve Jobs", "stevejobs@dead.com"],
   ["Bill Gates", "billgates@gagoglezillionare.com"],
-  ["Melinda Gates", "melindagates@gagogle"],
+  ["Melinda Gates", "melindagates@gagoglezillionare.com"],
   ["Mark Zuckerberg", "markzuckerberg@robotalien.net"],
   ["Jeff Bezos", "jeffbezos@pureinsanity.com"],
 ]
@@ -29,7 +29,9 @@ product_failures = []
     name: "#{Faker::Games::ElderScrolls.race} #{Faker::Games::ElderScrolls.creature}",
     price: rand(10000).to_f / 100,
     quantity: rand(10),
+    description: Faker::Movies::VForVendetta.quote,
     image_url: "https://placekitten.com/200/140",
+    merchant_id: rand(1..6),
   )
   success = product.save
   if !success
