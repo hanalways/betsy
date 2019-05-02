@@ -16,9 +16,10 @@ describe OrdersController do
       }
     }
     it "adds a record to the db" do
+      # every test adds an extra Order to the db because of the set_cart controller filter in ApplicationController
       expect {
         post orders_path(order_data)
-      }.must_change "Order.count", 1
+      }.must_change "Order.count", 2
 
       must_redirect_to root_path
     end
@@ -38,12 +39,14 @@ describe OrdersController do
 
   describe "edit" do
     it "shows the page" do
-      get edit_order_path(Order.first.id)
+      op = OrderProduct.first
+      order = op.order
+      get edit_order_path(order)
       must_respond_with :success
     end
 
     it "404 if order is invalid" do
-      get edit_order_path(Order.last.id + 1)
+      get edit_order_path(Order.last.id + 4)
       must_respond_with :not_found
     end
   end
@@ -74,9 +77,10 @@ describe OrdersController do
 
   describe "destroy" do
     it "removes the order from the db" do
-      expect {
-        delete order_path(Order.first)
-      }.must_change "Order.count", -1
+      old_number = Order.count
+      delete order_path(Order.first)
+      # every test adds an extra Order to the db because of the set_cart controller filter in ApplicationController
+      expect(Order.count).must_equal old_number
       check_flash
     end
   end

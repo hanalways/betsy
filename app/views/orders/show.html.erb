@@ -12,7 +12,9 @@
       <th>
       Quantity
       </th>
-      
+      <th>
+      Price
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -20,7 +22,8 @@
         <tr>
             <td><%= product.merchant.username %></td>
             <td><%= product.name %></td>
-            <td><%= OrderProduct.find_by(order_id: @order.id).quantity %> </td>
+            <td><%= OrderProduct.find_by(order_id: @order.id, product_id: product.id).quantity %> </td>
+            <td><%= OrderProduct.find_by(order_id: @order.id, product_id: product.id).total_price %></td>
         </tr>
     <% end %>
   </tbody>

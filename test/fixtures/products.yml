@@ -4,10 +4,10 @@ one:
   name: MyString
   price: 1.5
   quantity: 1
-  merchant: one
+  merchant: ada
 
 two:
   name: MyString
   price: 1.5
   quantity: 1
-  merchant: two
+  merchant: grace
