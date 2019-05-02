@@ -24,5 +24,32 @@ class ActiveSupport::TestCase
   def check_flash(expected_status = :success)
     expect(flash[:status]).must_equal(expected_status)
     expect(flash[:message]).wont_be_nil
+  end 
+  
+  def setup
+    # Once you have enabled test mode, all requests
+    # to OmniAuth will be short circuited to use the mock authentication hash.
+    # A request to /auth/provider will redirect immediately to /auth/provider/callback.
+    OmniAuth.config.test_mode = true
+  end
+  
+  def mock_auth_hash(merchant)
+    return {
+      provider: merchant.provider,
+      uid: merchant.uid,
+      info: {
+        email: merchant.email,
+        nickname: merchant.username
+      }
+    }
+  end
+
+  def perform_login(merchant = nil)
+    merchant ||= Merchant.first 
+
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(mock_auth_hash(merchant))
+    get auth_callback_path(:github)
+
+    return merchant
   end
 end

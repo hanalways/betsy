@@ -10,7 +10,7 @@ merchant_list = [
   ["Ada Lovelace", "adalovelace@codinggod.com"],
   ["Steve Jobs", "stevejobs@dead.com"],
   ["Bill Gates", "billgates@gagoglezillionare.com"],
-  ["Melinda Gates", "melindagates@gagogle"],
+  ["Melinda Gates", "melindagates@gagoglezillionare.com"],
   ["Mark Zuckerberg", "markzuckerberg@robotalien.net"],
   ["Jeff Bezos", "jeffbezos@pureinsanity.com"],
 ]

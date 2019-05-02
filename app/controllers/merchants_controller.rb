@@ -26,12 +26,12 @@ class MerchantsController < ApplicationController
         flash[:message] = "Logged in as new user #{merchant.username}"
       else
         flash[:error] = "Could not create new user account: #{merchant.errors.messages}"
-        return redirect_to merchants_path
+        return redirect_to root_path
       end
     end
 
     session[:user_id] = merchant.id 
-    return redirect_to merchants_path
+    return redirect_to root_path
   end
 
   def destroy 
