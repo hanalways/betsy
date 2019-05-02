@@ -10,6 +10,7 @@ class OrderProductsController < ApplicationController
     else
       flash[:status] = :warning
       flash[:message] = "Could not add product to order"
+      flash[:errors] = @order_product.errors
     end
   end
 
@@ -21,6 +22,7 @@ class OrderProductsController < ApplicationController
     else
       flash[:status] = :error
       flash[:message] = "Failed to remove product from order"
+      flash[:errors] = @order_product.errors
       redirect_back(fallback_location: root_path)
     end
   end
