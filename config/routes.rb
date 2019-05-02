@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
-  root "merchants#index"
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "products#index"
 
   resources :merchants, only: [:index, :show]
   resources :orders, except: [:new]
-  resources :products, except: [:destroy]
+  resources :products
 
   resources :order_products, only: [:create, :destroy]
 
