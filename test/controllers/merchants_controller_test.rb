@@ -39,12 +39,9 @@ describe MerchantsController do
         email: "new123@merchant.com"
       )
 
-      # binding.pry
-
       perform_login(merchant)
       must_redirect_to root_path
 
-      # Not working, why?
       Merchant.count.must_equal start_count + 1
 
       session[:user_id].must_equal Merchant.last.id
