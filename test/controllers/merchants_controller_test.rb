@@ -39,13 +39,15 @@ describe MerchantsController do
         email: "new123@merchant.com"
       )
 
+      # binding.pry
+
       perform_login(merchant)
       must_redirect_to root_path
 
       # Not working, why?
-      # Merchant.count.must_equal start_count + 1
+      Merchant.count.must_equal start_count + 1
 
-      # session[:merchant_id].must_equal Merchant.last.id
+      session[:user_id].must_equal Merchant.last.id
     end
 
     it "redirects to the login route if given invalid user data" do
