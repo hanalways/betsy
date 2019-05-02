@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :orders, except: [:new]
   resources :products, except: [:destroy]
 
+  resources :order_products, only: [:create, :destroy]
+
   post "product/:id/toggle_retire", to: "products#toggle_retire", as: "toggle_retire_product"
 
   get "/auth/:provider/callback", to: "merchants#create", as: "auth_callback"
