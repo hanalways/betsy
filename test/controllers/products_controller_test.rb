@@ -58,7 +58,6 @@ describe ProductsController do
     it "will redirect for an invalid product" do
       get product_path(-1)
       must_respond_with :not_found
-      expect(flash[:status]).must_equal :error
     end
   end
 
