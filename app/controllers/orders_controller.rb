@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
     else
       flash[:status] = :warning
       flash[:message] = "Could not create order"
+      flash[:errors] = @order.errors
       redirect_to root_path
     end
   end
@@ -36,6 +37,7 @@ class OrdersController < ApplicationController
     else
       flash.now[:status] = :warning
       flash.now[:message] = "Could not update order #{@order.id}"
+      flash[:errors] = @order.errors
       render :edit
     end
   end

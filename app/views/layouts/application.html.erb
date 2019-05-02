@@ -24,6 +24,25 @@
   </header>
 
   <section>
+ 
+  <%if flash[:status]%>
+<%binding.pry%>
+    <section>
+      <% if flash[:status] == "success" %>
+        <div class="alert alert-success">
+        
+          <p> <%= flash[:message] %></p> 
+        </div>
+      <%end%>
+        <% if flash[:status] == :error%>
+          <div class="alert alert-warning">
+            <span><%= flash[:message] %></span>
+
+            <%= error_list(flash[:errors]) if flash[:errors]%>
+          </div> 
+        <%end%>
+      </section>
+    <%end%>
     <%= yield %>
   </section>
   
