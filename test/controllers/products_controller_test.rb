@@ -18,7 +18,7 @@ describe ProductsController do
       image_url: "http://www.fake.com/haksy.png",
       retired: false,
       description: "anything",
-      merchant_id: merchant.id,
+      merchant_id: merchants(:two).id,
     )
   }
 
@@ -32,7 +32,7 @@ describe ProductsController do
         image_url: "http://www.fake.com/haksy2.png",
         retired: true,
         description: "everything",
-        merchant_id: 2,
+        merchant_id: merchant.id,
       },
     }
   }
