@@ -15,4 +15,13 @@
       
     </tr>
   </thead>
+  <tbody>
+    <% @order.products.each do |product| %>
+        <tr>
+            <td><%= product.merchant.username %></td>
+            <td><%= product.name %></td>
+            <td><%= OrderProduct.find_by(order_id: @order.id).quantity %> </td>
+        </tr>
+    <% end %>
+  </tbody>
 </table>
