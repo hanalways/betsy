@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :find_product, only: [:show, :edit, :update, :toggle_retire]
+  before_action :find_product, only: [:show, :edit, :update, :toggle_retire, :destroy]
 
   def new
     @product = Product.new
@@ -28,7 +28,7 @@ class ProductsController < ApplicationController
   def update
     if @product.update product_params
       redirect_to product_path(@product.id)
-      flash[:status] = :sucess
+      flash[:status] = :success
       flash[:message] = "sucessfully updated product"
     else
       render :edit
@@ -38,6 +38,17 @@ class ProductsController < ApplicationController
   end
 
   def edit
+  end
+
+  def destroy
+    if @product.destroy
+      flash[:status] = :success
+      flash[:message] = "sucessfully removed product from database"
+    else
+      redirect_to(product_path(@product.id))
+      flash[:status] = :error
+      flash[:message] = "Failed to remove product from database"
+    end
   end
 
   def toggle_retire
