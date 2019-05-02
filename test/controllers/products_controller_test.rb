@@ -89,6 +89,9 @@ describe ProductsController do
 
   describe "update" do
     it "can update an existing product" do
+      product_hash[:product][:name] = "updated product"
+      patch product_path(product.id), params: product_hash
+      must_respond_with :success
     end
 
     it "will redirect to the root page if given an invalid id" do
