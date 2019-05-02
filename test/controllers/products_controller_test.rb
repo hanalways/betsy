@@ -18,7 +18,7 @@ describe ProductsController do
       image_url: "http://www.fake.com/haksy.png",
       retired: false,
       description: "anything",
-      merchant_id: merchant.id,
+      merchant_id: merchants(:grace).id,
     )
   }
 
@@ -32,7 +32,7 @@ describe ProductsController do
         image_url: "http://www.fake.com/haksy2.png",
         retired: true,
         description: "everything",
-        merchant_id: 2,
+        merchant_id: merchant.id,
       },
     }
   }
@@ -49,18 +49,17 @@ describe ProductsController do
     end
   end
 
-  # describe "show" do
-  #   it "can get a valid product" do
-  #     get product_path(product.id)
-  #     must_respond_with :success
-  #   end
+  describe "show" do
+    it "can get a valid product" do
+      get product_path(product.id)
+      must_respond_with :success
+    end
 
-  #   it "will redirect for an invalid product" do
-  #     get product_path(-1)
-  #     must_respond_with :redirect
-  #     expect(flash[:error]).must_equal "Could not find product with id: -1"
-  #   end
-  # end
+    it "will redirect for an invalid product" do
+      get product_path(-1)
+      must_respond_with :not_found
+    end
+  end
 
   describe "create" do
     it "can create a new product" do
@@ -69,9 +68,8 @@ describe ProductsController do
       new_product = Product.find_by(merchant_id: product_hash[:product][:merchant_id])
       expect(new_product.name).must_equal product_hash[:product][:name]
 
-      # must_respond_with :redirect
-      # must_redirect_to products_path
-      # Where should we direct this?
+      must_respond_with :redirect
+      must_redirect_to product_path(new_product.id)
     end
   end
 
@@ -91,6 +89,9 @@ describe ProductsController do
 
   describe "update" do
     it "can update an existing product" do
+      product_hash[:product][:name] = "updated product"
+      patch product_path(product.id), params: product_hash
+      must_respond_with :success
     end
 
     it "will redirect to the root page if given an invalid id" do
