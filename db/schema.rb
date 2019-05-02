@@ -59,4 +59,6 @@ ActiveRecord::Schema.define(version: 2019_05_01_234024) do
     t.bigint "merchant_id"
     t.index ["merchant_id"], name: "index_products_on_merchant_id"
   end
+
+  add_foreign_key "products", "merchants"
 end
