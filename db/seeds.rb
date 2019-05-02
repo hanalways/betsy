@@ -22,6 +22,20 @@ merchant_list.each do |username, email|
   )
 end
 
+category_failures = []
+10.times do
+  category = Category.new(name: Faker::Hacker.unique.adjective)
+  success = category.save
+  if !success
+    category_failures << category
+    puts "Failed to save category #{category.inspect}"
+  else
+    puts "Created category #{category.inspect}"
+  end
+end
+puts "Added #{Category.count} category records"
+puts "#{category_failures.length} categories failed to save"
+
 product_failures = []
 
 25.times do
@@ -32,6 +46,8 @@ product_failures = []
     description: Faker::Movies::VForVendetta.quote,
     image_url: "https://placekitten.com/200/140",
     merchant_id: rand(1..6),
+    category_ids: (1..10).to_a.sample(3),
+
   )
   success = product.save
   if !success
