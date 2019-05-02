@@ -12,8 +12,11 @@ class ProductsController < ApplicationController
       flash[:status] = :success
       flash[:message] = "You sucessfully created a new product"
     else
-      render :new,
-             flash.now[:status] = :error
+      @product.errors.each do |column, message|
+        puts column, message
+      end
+      render :new
+      flash.now[:status] = :error
       flash.now[:message] = "Failed to add product to database"
     end
   end
@@ -56,7 +59,15 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    return params.require(:product).permit(:image_url, :retired, :name, :price, :quantity, :description, :merchant_id)
+    return params.require(:product).permit(
+             :image_url,
+             :retired,
+             :name,
+             :price,
+             :quantity,
+             :description,
+             :merchant_id
+           )
   end
 
   def find_product
