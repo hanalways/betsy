@@ -14,5 +14,5 @@
     <%= f.number_field :quantity, in: 1..20, step: 1 %>
     <% f.hidden_field :product_id, value: @product.id%>
     <% f.hidden_field :order_id, value: @current_order.id%>
-    <% f.submit "Add to cart"%>
+    <%= f.submit "Add to cart"%>
 <% end %>
