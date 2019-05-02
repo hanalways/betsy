@@ -9,7 +9,7 @@ describe Product do
       image_url: "http://www.fake.com/haksy.png",
       retired: false,
       description: "anything",
-      merchant_id: merchants(:two).id,
+      merchant_id: merchants(:grace).id,
     )
   }
 
