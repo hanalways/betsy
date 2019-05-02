@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :set_cart
 
+  private
+
   def set_cart
     @current_order = Order.find_by(id: session[:order_id])
     if !@current_order
