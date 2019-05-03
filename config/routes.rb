@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+<<<<<<< HEAD
   root "products#homepage"
   
   resources :orders, except: [:new, :show]
@@ -10,6 +11,17 @@ Rails.application.routes.draw do
   resources :products, only [:index, :show] do
     resources :reviews, only [:create]
   end
+=======
+  root "products#index"
+
+  resources :merchants, only: [:index, :show]
+  resources :orders, except: [:new]
+  resources :products
+  resources :categories, only: [:new, :create]
+
+  resources :order_products, only: [:create, :destroy]
+
+>>>>>>> c67b89d027ea5f26bd05bbec3560e17431848410
   post "product/:id/toggle_retire", to: "products#toggle_retire", as: "toggle_retire_product"
   
   resources :categories do
