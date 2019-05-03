@@ -183,9 +183,10 @@ describe ProductsController do
             description: "test desc",
             merchant_id: 1,
             retired: false,
-          }
+          },
         }
 
+        binding.pry
         expect {
           post products_path, params: product_data 
         }.must_change "Product.count", +1
@@ -195,6 +196,7 @@ describe ProductsController do
         product_data = {
           
         }
+      end
     end
   end
 
