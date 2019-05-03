@@ -60,6 +60,12 @@ class ProductsController < ApplicationController
     @product.save
   end
 
+  def homepage
+    @products = Product.all.first(10)
+  end
+
+  private
+
   def product_params
     return params.require(:product).permit(
              :image_url,
