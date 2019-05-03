@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   post "/cart", to: "orders#checkout", as: "checkout"
   get "/order-confirmation", to: "orders#confirmation", as: "order_confirmation"
   
-  resources :products, only [:index, :show] do
-    resources :reviews, only [:create]
+  resources :products, only: [:index, :show] do
+    resources :reviews, only: [:create]
   end
   post "product/:id/toggle_retire", to: "products#toggle_retire", as: "toggle_retire_product"
   

@@ -186,7 +186,7 @@ describe ProductsController do
           },
         }
 
-        binding.pry
+        
         expect {
           post products_path, params: product_data 
         }.must_change "Product.count", +1
