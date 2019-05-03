@@ -57,6 +57,7 @@ class ProductsController < ApplicationController
 
   def toggle_retire
     @product.retired = !@product.retired
+    @product.save
   end
 
   def product_params
