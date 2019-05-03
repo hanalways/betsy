@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "products#index" # root "homepages#index"
  
-  resources :orders, except: [:new, show]
+  resources :orders, except: [:new, :show]
   get "/cart", to: "orders#current", as: "current_order"
   post "/cart", to: "orders#checkout", as: "checkout"
   get "/order-confirmation", to: "orders#confirmation", as: "order_confirmation"
