@@ -67,7 +67,7 @@ describe ProductsController do
       post products_path, params: product_hash
 
       new_product = Product.find_by(merchant_id: product_hash[:product][:merchant_id])
-      expect(new_product.name).must_equal product_hash[:product][:name]
+      expect(new_product.name).must_equal product_hash[:product][:username]
 
       # must_respond_with :redirect
       # must_redirect_to products_path
@@ -114,5 +114,67 @@ describe ProductsController do
     #   must_respond_with :redirect
     #   expect(flash[:error]).must_equal "Could not find product with id: -1"
     # end
+  end
+
+  describe "Logged in merchants" do 
+    before do 
+      perform_login(merchants(:grace))
+    end
+
+    describe "all access for merchants" do 
+      it "can access homepage" do 
+        get root_path 
+        must_respond_with :success 
+      end
+
+      it "can access all products index page" do 
+        products = Product.all
+        get products_path 
+        must_respond_with :success 
+      end
+
+      it "can access the show page for each product" do 
+        product_id = Product.first.id 
+        get product_path(product_id)
+        must_respond_with :success
+      end
+
+      it "cannot access the show page for a product that doesn't exist" do 
+        product_id = Product.last.id + 1
+
+        get product_path(product_id)
+        must_respond_with :not_found
+      end
+
+      it "can access the new product form" do 
+        perform_login(merchants(:grace))
+        get new_product_path
+        must_respond_with :success
+      end
+    end
+
+    describe "update for logged in merchants" do 
+      it "can create product with valid data" do 
+        product_data = {
+          product: {
+            name: "test product",
+            price: 50.75,
+            quantity: 1,
+            image_url: "http://placekitten.com/150/150",
+            description: "test desc",
+            merchant_id: 1,
+            retired: false,
+          }
+        }
+
+        expect {
+          post products_path, params: product_data 
+        }.must_change "Product.count", +1
+      end
+    end
+  end
+
+  describe "Guest users" do 
+
   end
 end

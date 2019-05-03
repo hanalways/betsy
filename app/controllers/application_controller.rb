@@ -9,4 +9,13 @@ class ApplicationController < ActionController::Base
       session[:order_id] = @current_order.id
     end
   end
+
+  def require_login
+    @current_merchant = Merchant.find_by(id: session[:user_id])
+    unless @current_merchant 
+      flash[:status] = :error
+      flash[:message] = "You must be logged in to access this section"
+      redirect_to root_path
+    end
+  end
 end
