@@ -171,6 +171,11 @@ describe ProductsController do
           post products_path, params: product_data 
         }.must_change "Product.count", +1
       end
+
+      it "won't create a new product given incomplete data" do 
+        product_data = {
+          
+        }
     end
   end
 
