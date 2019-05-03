@@ -97,7 +97,7 @@ OrderProduct.create!(order_id: 2,
 
 OrderProduct.create!(order_id: 2,
                      product_id: 20,
-                     quantity: 1)
+                     quantity: 3)
 
 OrderProduct.create!(order_id: 3,
                      product_id: 5,
@@ -105,4 +105,4 @@ OrderProduct.create!(order_id: 3,
 
 OrderProduct.create!(order_id: 1,
                      product_id: 13,
-                     quantity: 5)
+                     quantity: 4)
