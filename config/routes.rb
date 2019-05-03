@@ -17,18 +17,12 @@ Rails.application.routes.draw do
   end
   
   resources :categories, only: [:new, :create]
-  
-  resources :order_products, only: [:create, :update, :destroy]
-  
-  resources :merchants, only: [:index, :show] do
-    resources :products
-  end
-  get "/merchant_dashboard", to: "merchants#current", as: "dashboard"
-  get "/merchant_orders", to: "merchants#orders", as: "merchant_orders"
-  
+
+  resources :order_products, only: [:create, :destroy]
+
+  post "product/:id/toggle_retire", to: "products#toggle_retire", as: "toggle_retire_product"
+
   get "/auth/:provider/callback", to: "merchants#create", as: "auth_callback"
   get "/auth/github", as: "github_login"
   delete "/logout", to: "merchants#destroy", as: "logout"
- 
- end
- 
+end

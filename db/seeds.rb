@@ -106,3 +106,20 @@ OrderProduct.create!(order_id: 3,
 OrderProduct.create!(order_id: 1,
                      product_id: 13,
                      quantity: 4)
+
+25.times do
+  category = Category.new(
+    name: "#{Faker::Company.buzzword}",
+
+  )
+  success = category.save
+  if !success
+    category_failures << category
+    puts "Failed to save category #{category.inspect}"
+  else
+    puts "Created category #{category.inspect}"
+  end
+
+  puts "Added #{Category.count} category records"
+  puts "#{category_failures.length} categories failed to save"
+end
