@@ -10,6 +10,41 @@
   </head>
 
   <body>
+  <header>
+    <h1>HaCKSy</h1>
+    <sub>Cute tagline here</sub>
+
+    <nav>
+      <ul>
+        <% if session[:user_id] %>
+        <li><%= link_to "Log Out", logout_path, method: "delete" %>
+        <% else %>
+        <li><%= link_to "Login with Github", github_login_path %>
+        <% end %>
+  </header>
+
+  <section>
+ 
+  <%if flash[:status]%>
+
+    <section>
+      <% if flash[:status] == "success" %>
+        <div class="alert alert-success">
+        
+          <p> <%= flash[:message] %></p> 
+        </div>
+      <%end%>
+        <% if flash[:status] == :error%>
+          <div class="alert alert-warning">
+            <span><%= flash[:message] %></span>
+
+            <%= error_list(flash[:errors]) if flash[:errors]%>
+          </div> 
+        <%end%>
+      </section>
+    <%end%>
     <%= yield %>
+  </section>
+  
   </body>
 </html>
