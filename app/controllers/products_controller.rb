@@ -8,20 +8,19 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new product_params
     if @product.save
-      redirect_to product_path(@product.id)
       flash[:status] = :success
       flash[:message] = "You sucessfully created a new product"
+      redirect_to product_path(@product.id)
     else
-      @product.errors.each do |column, message|
-        puts column, message
-      end
-      render :new
       flash.now[:status] = :error
       flash.now[:message] = "Failed to add product to database"
+      flash.now[:errors] = @product.errors.messages
+      render :new
     end
   end
 
   def show
+    @order_product = OrderProduct.new
   end
 
   def index
@@ -30,13 +29,14 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update product_params
-      redirect_to product_path(@product.id)
       flash[:status] = :success
-      flash[:message] = "sucessfully updated product"
+      flash[:message] = "Sucessfully updated product"
+      redirect_to product_path(@product.id)
     else
-      render :edit
       flash.now[:status] = :error
       flash.now[:message] = "Failed to update product"
+      flash.now[:errors] = @product.errors.messages
+      render :edit
     end
   end
 
@@ -48,14 +48,16 @@ class ProductsController < ApplicationController
       flash[:status] = :success
       flash[:message] = "sucessfully removed product from database"
     else
-      redirect_to(product_path(@product.id))
       flash[:status] = :error
       flash[:message] = "Failed to remove product from database"
+      flash[:errors] = @product.errors.messages
+      redirect_to(product_path(@product.id))
     end
   end
 
   def toggle_retire
     @product.retired = !@product.retired
+    @product.save
   end
 
   def product_params

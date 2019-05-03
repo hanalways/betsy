@@ -1,0 +1,32 @@
+<%= form_with model: @product do |f| %>
+
+<section class="field">
+    <%= f.label :name%>
+    <%= f.text_field :name%>
+</section>
+
+<section class="field">
+    <%= f.label :price%>
+    <%= f.number_field :price,  step: 0.05 %>
+</section>
+
+<section class="field">
+    <%= f.label :quantity%>
+    <%= f.number_field :quantity,  step: 1%>
+</section>
+
+<section class="field">
+    <%= f.label :quantity%>
+    <%= f.text_area :description%>
+</section>
+
+<section class="field">
+    <%= f.label "Link to image", :image_url%>
+    <%= f.text_field :image_url%>
+</section>
+
+<div class = "action">
+    <%= f.submit locals[:button_text]%>
+</div>
+
+<%end%>

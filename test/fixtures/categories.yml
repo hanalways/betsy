@@ -2,12 +2,6 @@
 
 one:
   name: MyString
-  price: 1.5
-  quantity: 1
-  merchant: ada
 
 two:
   name: MyString
-  price: 1.5
-  quantity: 1
-  merchant: grace
