@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root "products#homepage"
 
-  resources :orders, except: [:new, :show]
+  resources :orders, except: [:new]
   get "/cart", to: "orders#current", as: "current_order"
   post "/cart", to: "orders#checkout", as: "checkout"
   get "/order-confirmation", to: "orders#confirmation", as: "order_confirmation"
