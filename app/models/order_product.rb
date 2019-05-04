@@ -7,9 +7,17 @@ class OrderProduct < ApplicationRecord
   validates :quantity, presence: true
   validates :quantity, numericality: { greater_than: 0 }
 
+  validates :availability
+
   def total_price
     total = self.product.price * self.quantity
 
     return format("$%.2f", total)
+  end
+
+  def availability
+    if quantity > Product.find(product_id).quantity
+      errors.add(:quantity, "quantity is greater than amount in stock")
+    end
   end
 end
