@@ -34,7 +34,7 @@
       </ul>
       <ul>
         <% if session[:user_id] %>
-        <li><%= link_to "Logged in as #{@current_user.username}", dashboard_path, method: "get" %></li>
+        <li><%= link_to "Logged in as #{@current_merchant.username}", dashboard_path, method: "get" %></li>
         <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
         <% else %>
         <li><%= link_to "Login with Github", github_login_path %></li>
@@ -49,13 +49,13 @@
  
   <%if flash[:status]%>
     <section>
-      <% if flash[:status] == "success" %>
+      <% if flash[:status] == "success" || flash[:status] == :success%>
         <div class="alert alert-success">
         
           <p> <%= flash[:message] %></p> 
         </div>
       <%end%>
-        <% if flash[:status] == :error%>
+        <% if flash[:status] == :error || flash[:status] == "error"%>
           <div class="alert alert-warning">
             <span><%= flash[:message] %></span>
 

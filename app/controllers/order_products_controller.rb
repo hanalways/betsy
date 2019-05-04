@@ -9,7 +9,7 @@ class OrderProductsController < ApplicationController
       flash[:message] = "Successfully added product to order"
       redirect_back(fallback_location: root_path)
     else
-      flash[:status] = :warning
+      flash[:status] = :error
       flash[:message] = "Could not add product to order"
       flash[:errors] = @order_product.errors
       redirect_back(fallback_location: root_path)
