@@ -3,7 +3,7 @@
 one:
   name: dog
   price: 1.5
-  quantity: 1
+  quantity: 4
   merchant: ada
 
 two:
