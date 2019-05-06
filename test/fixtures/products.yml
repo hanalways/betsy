@@ -1,13 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+dog:
   name: dog
-  price: 1.5
+  price: 1.50
   quantity: 4
   merchant: ada
+  categories: canine, mammal
 
-two:
+cat:
   name: cat
-  price: 1.5
+  price: 11.50
   quantity: 1
   merchant: grace
+  categories: feline, mammal

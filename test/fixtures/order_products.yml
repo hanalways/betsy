@@ -6,14 +6,20 @@
 #
 op_one: {
   order: one,
-  product: one,
+  product: dog,
   quantity: 3
 }
 # column: value
 #
 op_two: {
   order: two,
-  product: two,
+  product: cat,
   quantity: 5
 }
 # column: value
+
+op_three: {
+  order: three,
+  product: cat,
+  quantity: 2
+}
