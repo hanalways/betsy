@@ -11,9 +11,9 @@
 
   <body>
   <header>
-    <h1>HaCKSy</h1>
-    <sub>Cute tagline here</sub>
+    
 
+<<<<<<< HEAD
     <nav>
       <ul>
         <li><%= link_to "Browse All Products", products_path %></li>
@@ -43,6 +43,47 @@
       <ul>
         <li><%= link_to "Cart (#{@current_order.products.count})", current_order_path(session[:order_id]) %></li>
       </ul>
+=======
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a href="#"  class="navbar-brand">
+        <h1>HaCKSy</h1>
+        <sub>Cute tagline here</sub>
+      </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse", id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><%= link_to "Browse All Products", products_path, class:"nav-link"%></li>
+          <li class="nav-item dropdown">
+          <%= link_to "Browse By Merchant", "#", class: "nav-link dropdown-toggle", id:"navbarDropdown", role: "button"%>
+              <div class="dropdown-menu", aria-labelledby="navbarDropdown">
+              <%Merchant.all.each do |merchant|%>
+                <%= link_to merchant.username, merchant_products_path(merchant.id), class:"dropdown-item"%>
+              <%end%>
+              </div>
+          </li>
+          <li class="nav-item dropdown"><%= link_to "Browse By Category", "#", class:"nav-link dropdown-toggle", id:"navbarDropdown", role:"button" %>
+            <div class="dropdown-menu", aria-labelledby="navbarDropdown">
+              <%Category.all.each do |category|%>
+                <%= link_to category.name, category_products_path(category.id), class:"dropdown-item"%>
+              <%end%>
+            <div>
+          </li>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+          <% if session[:user_id] %>
+          <li class="nav-item"><%= link_to "Logged in as #{@current_merchant.username}", dashboard_path, method: "get", class:"btn btn-secondary"%></li>
+          <li class="nav-item"><%= link_to "Log Out", logout_path, method: "delete" , class:"btn btn-secondary"%></li>
+          <% else %>
+          <li class="nav-item"><%= link_to "Login with Github", github_login_path, class:"btn btn-secondary" %></li>
+          <% end %>
+        </ul>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><%= link_to "Cart (#{@current_order.products.count})", current_order_path, class:"btn btn-secondary" %></li>
+        </ul>
+      </div>
+>>>>>>> master
   </header>
 
   <section>

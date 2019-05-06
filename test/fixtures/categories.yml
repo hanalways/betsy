@@ -1,5 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+<<<<<<< HEAD
 red:
   name: red
   products: one, two
@@ -7,3 +8,13 @@ red:
 green:
   name: green
   products: one, two
+=======
+feline:
+  name: Feline
+
+canine:
+  name: Canine
+
+mammal:
+  name: Mammal
+>>>>>>> master

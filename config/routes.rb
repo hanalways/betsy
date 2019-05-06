@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post "/cart/:id", to: "orders#checkout", as: "checkout"
   get "/order-confirmation/:id", to: "orders#confirmation", as: "order_confirmation"
 
-  resources :products, only: [:index, :show] do
+  resources :products, except: [:destroy] do
     resources :reviews, only: [:create]
   end
   post "product/:id/toggle_retire", to: "products#toggle_retire", as: "toggle_retire_product"
@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   resources :merchants, only: [:index, :show] do
     resources :products
   end
-  get "/merchant_dashboard", to: "merchants#current", as: "dashboard"
-  get "/merchant_orders", to: "merchants#orders", as: "merchant_orders"
+  get "/dashboard", to: "merchants#dashboard", as: "dashboard"
+  get "/orders", to: "merchants#orders", as: "merchant_orders"
 
   get "/auth/:provider/callback", to: "merchants#create", as: "auth_callback"
   get "/auth/github", as: "github_login"

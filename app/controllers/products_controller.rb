@@ -8,6 +8,8 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new product_params
+    @product.merchant_id = @current_merchant.id
+
     if @product.save
       flash[:status] = :success
       flash[:message] = "You sucessfully created a new product"
@@ -75,7 +77,6 @@ class ProductsController < ApplicationController
              :price,
              :quantity,
              :description,
-             :merchant_id
            )
   end
 
