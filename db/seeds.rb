@@ -38,12 +38,44 @@ puts "#{category_failures.length} categories failed to save"
 
 product_failures = []
 
+Product.create!(name: 0.1% diversity statistic,
+  price: 100,000,
+  quantity: 3,
+  description: Add a whopping 01.% diversity statistic! looks great on presentations,
+  image_url: "https://imgur.com/OMHSBtZ",
+  merchant_id: rand(1..6),
+  category_id: diversity)
+
+Product.create!(name: 0.2% diversity statistic,
+  price: 150,000,
+  quantity: 2,
+  description: Add a whopping 02.% diversity statistic! looks great on presentations,
+  image_url: "https://imgur.com/nS07PzS",
+  merchant_id: rand(1..6),
+  category_id: diversity)
+
+Product.create!(name: 0.3% diversity statistic,
+  price: 250,000,
+  quantity: 1,
+  description: the deluxe and highly coveted 0.3% diversity statistic!,
+  image_url: "https://imgur.com/3ZOqS2n",
+  merchant_id: rand(1..6),
+  category_id: diversity)
+
+Product.create!(name: Code Cloud Pillow,
+  price: 500,
+  quantity: 15,
+  description: Enjoy sweet dreams on the cloud,
+  image_url: "https://imgur.com/OFkih6c",
+  merchant_id: rand(1..6),
+  category_id: (1..10).to_a.sample(3))
+
 25.times do
   product = Product.new(
     name: "#{Faker::Games::ElderScrolls.race} #{Faker::Games::ElderScrolls.creature}",
     price: rand(10000).to_f / 100,
     quantity: rand(10),
-    description: Faker::Movies::VForVendetta.quote,
+    description: Faker::Hacker.say_something_smart,
     image_url: "https://placekitten.com/200/140",
     merchant_id: rand(1..6),
     category_ids: (1..10).to_a.sample(3),
