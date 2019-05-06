@@ -6,25 +6,15 @@
 #
 op_one: {
   order: one,
-<<<<<<< HEAD
-  product: one,
-  quantity: 1
-=======
   product: dog,
   quantity: 3
->>>>>>> master
 }
 # column: value
 #
 op_two: {
   order: two,
-<<<<<<< HEAD
-  product: two,
-  quantity: 1
-=======
   product: cat,
   quantity: 5
->>>>>>> master
 }
 # column: value
 
