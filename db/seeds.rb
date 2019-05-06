@@ -38,12 +38,44 @@ puts "#{category_failures.length} categories failed to save"
 
 product_failures = []
 
+Product.create!(name: "0.1% diversity statistic",
+                price: 100000,
+                quantity: 150,
+                description: "Add a whopping 01.% diversity statistic! looks great on presentations",
+                image_url: "https://i.imgur.com/OMHSBtZt.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
+Product.create!(name: "0.2% diversity statistic",
+                price: 150000,
+                quantity: 150,
+                description: "Add a whopping 02.% diversity statistic! looks great on presentations",
+                image_url: "https://i.imgur.com/nS07PzSt.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
+Product.create!(name: "0.3% diversity statistic",
+                price: 250000,
+                quantity: 150,
+                description: "the deluxe and highly coveted 0.3% diversity statistic!",
+                image_url: "https://i.imgur.com/3ZOqS2nt.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
+Product.create!(name: "Code Cloud Pillow",
+                price: 500,
+                quantity: 150,
+                description: "Enjoy sweet dreams on the cloud",
+                image_url: "https://i.imgur.com/OFkih6ct.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
 25.times do
   product = Product.new(
     name: "#{Faker::Games::ElderScrolls.race} #{Faker::Games::ElderScrolls.creature}",
     price: rand(10000).to_f / 100,
-    quantity: rand(10),
-    description: Faker::Movies::VForVendetta.quote,
+    quantity: 150,
+    description: Faker::Hacker.say_something_smart,
     image_url: "https://placekitten.com/200/140",
     merchant_id: rand(1..6),
     category_ids: (1..10).to_a.sample(3),
@@ -56,10 +88,9 @@ product_failures = []
   else
     puts "Created product #{product.inspect}"
   end
-
-  puts "Added #{Product.count} product records"
-  puts "#{product_failures.length} products failed to save"
 end
+puts "Added #{Product.count} product records"
+puts "#{product_failures.length} products failed to save"
 Order.create!(status: "shipped",
               email: "a@aol.com",
               address1: "123 Main St",
