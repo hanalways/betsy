@@ -42,6 +42,14 @@ class OrdersController < ApplicationController
     end
   end
 
+  def checkout
+    @current_order.order_products.each do |op|
+      product = Product.find_by(id: op.product_id)
+      if op.quantity > product.quantity
+      end
+    end
+  end
+
   def destroy
     @order.destroy
 
