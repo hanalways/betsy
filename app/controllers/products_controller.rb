@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :toggle_retire, :destroy]
+  before_action :require_login, except: [:index, :show, :homepage]
 
   def new
     @product = Product.new
@@ -59,6 +60,12 @@ class ProductsController < ApplicationController
     @product.retired = !@product.retired
     @product.save
   end
+
+  def homepage
+    @products = Product.all.first(10)
+  end
+
+  private
 
   def product_params
     return params.require(:product).permit(

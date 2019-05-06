@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Betsy</title>
+    <title>HaCKSy</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -16,25 +16,46 @@
 
     <nav>
       <ul>
+        <li><%= link_to "Browse All Products", products_path %></li>
+        <li><%= link_to "Browse By Merchant", merchants_path %>
+            <ul>
+            <%Merchant.all.each do |merchant|%>
+              <li><%= link_to merchant.username, merchant_products_path(merchant.id) %></li>
+            <%end%>
+            </ul>
+        </li>
+        <li><%= link_to "Browse By Category", categories_path %>
+          <ul>
+            <%Category.all.each do |category|%>
+              <li><%= link_to category.name, category_products_path(category.id) %></li>
+            <%end%>
+          </ul>
+        </li>
+      </ul>
+      <ul>
         <% if session[:user_id] %>
-        <li><%= link_to "Log Out", logout_path, method: "delete" %>
+        <li><%= link_to "Logged in as #{@current_merchant.username}", dashboard_path, method: "get" %></li>
+        <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
         <% else %>
-        <li><%= link_to "Login with Github", github_login_path %>
+        <li><%= link_to "Login with Github", github_login_path %></li>
         <% end %>
+      </ul>
+      <ul>
+        <li><%= link_to "Cart (#{@current_order.products.count})", current_order_path %></li>
+      </ul>
   </header>
 
   <section>
  
   <%if flash[:status]%>
-
     <section>
-      <% if flash[:status] == "success" %>
+      <% if flash[:status] == "success" || flash[:status] == :success%>
         <div class="alert alert-success">
         
           <p> <%= flash[:message] %></p> 
         </div>
       <%end%>
-        <% if flash[:status] == :error%>
+        <% if flash[:status] == :error || flash[:status] == "error"%>
           <div class="alert alert-warning">
             <span><%= flash[:message] %></span>
 

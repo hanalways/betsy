@@ -26,14 +26,19 @@ describe OrdersController do
   end
 
   describe "show" do
-    it "loads the page" do
-      get order_path(Order.first.id)
-      must_respond_with :success
-    end
+    describe "logged-in merchant" do
+      before do
+        perform_login(merchants(:grace))
+      end
+      it "loads the page" do
+        get order_path(id: Order.first.id)
+        must_respond_with :success
+      end
 
-    it "404 with invalid order id" do
-      get order_path(Order.last.id + 1)
-      must_respond_with :not_found
+      it "404 with invalid order id" do
+        get order_path(id: Order.last.id + 1)
+        must_respond_with :not_found
+      end
     end
   end
 

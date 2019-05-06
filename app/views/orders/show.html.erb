@@ -1,5 +1,14 @@
 <h2> Order <%= @order.id %> </h2>
 
+<%# a merchant can only see this page if one of their products is in the order %>
+<%# psuedocode logic %>
+<%# check session id for merchant %>
+<%# check if order.product.map { merch_id } %>
+<%# includes session[id] %>
+<%# else not auth %>
+<%# order.product.where { merch_id == session[:user_id] %>
+
+
 <table class="table">
   <thead>
     <tr>

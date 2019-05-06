@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :set_cart
+  before_action :set_cart, :set_merchant
 
   private
 
@@ -10,5 +10,18 @@ class ApplicationController < ActionController::Base
       @current_order.save
       session[:order_id] = @current_order.id
     end
+  end
+
+  def require_login
+    set_merchant
+    unless @current_merchant
+      flash[:status] = :error
+      flash[:message] = "You must be logged in to access this section"
+      redirect_to root_path
+    end
+  end
+
+  def set_merchant
+    @current_merchant = Merchant.find_by(id: session[:user_id])
   end
 end

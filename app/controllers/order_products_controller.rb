@@ -3,14 +3,16 @@ class OrderProductsController < ApplicationController
 
   def create
     @order_product = OrderProduct.new(order_product_params)
+
     if @order_product.save
       flash[:status] = :success
       flash[:message] = "Successfully added product to order"
-      redirect_to root_path
+      redirect_back(fallback_location: root_path)
     else
-      flash[:status] = :warning
+      flash[:status] = :error
       flash[:message] = "Could not add product to order"
       flash[:errors] = @order_product.errors
+      redirect_back(fallback_location: root_path)
     end
   end
 

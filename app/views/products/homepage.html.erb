@@ -1,0 +1,14 @@
+<h2>Welcome to hacksy!</h2>
+
+<h3>Featured products:</h3>
+
+<ul>
+<% @products.each do |product| %>
+
+<li>
+<img src=<%=product.image_url%> alt="image of <%=product.name%>">
+
+    <%= product.name %> <%= product.description %>
+</li>
+<% end %>
+</ul>
