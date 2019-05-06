@@ -1,0 +1,40 @@
+<section>
+  <h2><%= @merchant.username %> Dashboard</h2>
+</section>
+
+<section>
+  <ul>
+    <li><%= link_to "Add Product", new_product_path %></li>
+    <li><%= link_to "Add Category", new_category_path %></li>
+    <li><%= link_to "Account Orders", merchant_orders_path %></li>
+  </ul>
+</section>
+
+<section>
+  <table>
+    <tr>
+      <th>Product</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Inventory</th>
+      <th>Edit</th>
+      <th>Status</th>
+    </tr>
+    <% @merchant.products.each do |product| %>
+    <tr>
+      <td><img src="<%= product.image_url %>" alt="<%= product.name %> image", height="100", width="100"></td>
+      <td><%= product.name %></td>
+      <td><%= produce.price %></td>
+      <td><%= product.inventory %></td>
+      <td><%= link_to "Edit", edit_product_path(product.id) %></td>
+      <% if product.retired %>
+        <td><%= link_to "Back to work with you!", toggle_retire_product(product.id) %></td>
+      <% else %>
+        <td><%= link_to "Retire", toggle_retire_product_path(product.id) %></td>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+</section>
+
+    

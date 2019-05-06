@@ -75,7 +75,6 @@ class ProductsController < ApplicationController
              :price,
              :quantity,
              :description,
-             :merchant_id
            )
   end
 
