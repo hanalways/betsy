@@ -24,8 +24,8 @@
     <tr>
       <td><img src="<%= product.image_url %>" alt="<%= product.name %> image", height="100", width="100"></td>
       <td><%= product.name %></td>
-      <td><%= produce.price %></td>
-      <td><%= product.inventory %></td>
+      <td><%= product.price %></td>
+      <td><%= product.quantity %></td>
       <td><%= link_to "Edit", edit_product_path(product.id) %></td>
       <% if product.retired %>
         <td><%= link_to "Back to work with you!", toggle_retire_product(product.id) %></td>
