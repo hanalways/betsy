@@ -41,7 +41,7 @@
         <% end %>
       </ul>
       <ul>
-        <li><%= link_to "Cart (#{@current_order.products.count})", current_order_path %></li>
+        <li><%= link_to "Cart (#{@current_order.products.count})", current_order_path(session[:order_id]) %></li>
       </ul>
   </header>
 

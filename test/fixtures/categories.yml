@@ -2,6 +2,8 @@
 
 red:
   name: red
+  products: one, two
 
 green:
   name: green
+  products: one, two

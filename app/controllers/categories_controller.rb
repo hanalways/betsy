@@ -21,5 +21,5 @@ end
 private
 
 def category_params
-  params.require(:category).permit(:name)
+  return params.require(:category).permit(:name)
 end

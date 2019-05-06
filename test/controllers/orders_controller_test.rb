@@ -51,7 +51,7 @@ describe OrdersController do
     end
 
     it "404 if order is invalid" do
-      get edit_order_path(Order.last.id + 4)
+      get edit_order_path(Order.last.id + 100)
       must_respond_with :not_found
     end
   end
@@ -93,19 +93,23 @@ describe OrdersController do
   describe "cart" do
     before do
       @order = Order.first
-      @order.order_products << order_products("op_one")
+      @order.status = "pending"
+      @order.save
     end
     describe "current" do
       it "loads the page" do
-        get current_order_path
+        get current_order_path(@order)
         must_respond_with :success
       end
     end
 
     describe "checkout" do
       it "updates the order status" do
-        post checkout_path
+        post checkout_path(@order)
+        @order.reload
         expect(@order.status).must_equal "paid"
+
+        must_redirect_to order_confirmation_path(@order)
       end
     end
   end

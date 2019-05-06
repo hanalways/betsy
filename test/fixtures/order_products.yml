@@ -7,13 +7,13 @@
 op_one: {
   order: one,
   product: one,
-  quantity: 3
+  quantity: 1
 }
 # column: value
 #
 op_two: {
   order: two,
   product: two,
-  quantity: 5
+  quantity: 1
 }
 # column: value

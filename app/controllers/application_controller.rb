@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
     @current_order = Order.find_by(id: session[:order_id])
     if !@current_order
       @current_order = Order.new
+      @current_order.status = "pending"
       @current_order.save
       session[:order_id] = @current_order.id
     end
