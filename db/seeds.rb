@@ -42,7 +42,7 @@ Product.create!(name: "0.1% diversity statistic",
                 price: 100000,
                 quantity: 150,
                 description: "Add a whopping 01.% diversity statistic! looks great on presentations",
-                image_url: "https://imgur.com/OMHSBtZ",
+                image_url: "https://i.imgur.com/OMHSBtZt.jpg",
                 merchant_id: rand(1..6),
                 category_ids: (1..10).to_a.sample(3))
 
@@ -50,7 +50,7 @@ Product.create!(name: "0.2% diversity statistic",
                 price: 150000,
                 quantity: 150,
                 description: "Add a whopping 02.% diversity statistic! looks great on presentations",
-                image_url: "https://imgur.com/nS07PzS",
+                image_url: "https://i.imgur.com/nS07PzSt.jpg",
                 merchant_id: rand(1..6),
                 category_ids: (1..10).to_a.sample(3))
 
@@ -58,7 +58,7 @@ Product.create!(name: "0.3% diversity statistic",
                 price: 250000,
                 quantity: 150,
                 description: "the deluxe and highly coveted 0.3% diversity statistic!",
-                image_url: "https://imgur.com/3ZOqS2n",
+                image_url: "https://i.imgur.com/3ZOqS2nt.jpg",
                 merchant_id: rand(1..6),
                 category_ids: (1..10).to_a.sample(3))
 
@@ -66,7 +66,7 @@ Product.create!(name: "Code Cloud Pillow",
                 price: 500,
                 quantity: 150,
                 description: "Enjoy sweet dreams on the cloud",
-                image_url: "https://imgur.com/OFkih6c",
+                image_url: "https://i.imgur.com/OFkih6ct.jpg",
                 merchant_id: rand(1..6),
                 category_ids: (1..10).to_a.sample(3))
 
