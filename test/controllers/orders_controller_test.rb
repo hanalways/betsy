@@ -89,4 +89,24 @@ describe OrdersController do
       check_flash
     end
   end
+
+  describe "cart" do
+    before do
+      @order = Order.first
+      @order.order_products << order_products("op_one")
+    end
+    describe "current" do
+      it "loads the page" do
+        get current_order_path
+        must_respond_with :success
+      end
+    end
+
+    describe "checkout" do
+      it "updates the order status" do
+        post checkout_path
+        expect(@order.status).must_equal "paid"
+      end
+    end
+  end
 end

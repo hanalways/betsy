@@ -42,11 +42,32 @@ class OrdersController < ApplicationController
     end
   end
 
+  def current
+  end
+
   def checkout
-    @current_order.order_products.each do |op|
-      product = Product.find_by(id: op.product_id)
-      if op.quantity > product.quantity
+    @current_order.status = "paid"
+    if @current_order.save(context: :checkout)
+      @current_order.order_products.each do |op|
+        product = Product.find_by(id: op.product_id)
+        if op.quantity > product.quantity
+          flash.now[:status] = :error
+          flash.now[:message] = "only #{product.quantity} units of #{product.name} are available; please adjust quantity"
+          render :checkout
+          return
+        else
+          product.quantity -= op.quantity
+          product.save
+        end
+      else
+        flash.now[:status] = :error
+        flash.now[:message] = "Order must contain at least one product"
+        render :checkout
+        return
       end
+
+      session[:order_id] = nil
+      redirect_to confirmation_path(order.id)
     end
   end
 

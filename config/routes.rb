@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :orders, except: [:new]
   get "/cart", to: "orders#current", as: "current_order"
   post "/cart", to: "orders#checkout", as: "checkout"
-  get "/order-confirmation", to: "orders#confirmation", as: "order_confirmation"
+  get "/order-confirmation/:id", to: "orders#confirmation", as: "order_confirmation"
 
   resources :products, only: [:index, :show] do
     resources :reviews, only: [:create]
