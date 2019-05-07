@@ -6,8 +6,10 @@ class ReviewsController < ApplicationController
       redirect_to product_path(params[:product_id])
       return
     end
+
     @review = Review.new review_params
     @review.product_id = params[:product_id]
+
     if @review.save
       flash[:status] = :success
       flash[:message] = "You sucessfully reviewed #{Product.find(params[:product_id]).name}"
@@ -16,7 +18,7 @@ class ReviewsController < ApplicationController
       flash[:status] = :error
       flash[:message] = "Failed to add your review"
       flash[:errors] = @review.errors.messages
-      redirect_to product_path(params[:product_id])
+      redirect_back fallback_location: root_path
     end
   end
 
