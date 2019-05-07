@@ -33,9 +33,48 @@
             <td colspan=3></td>
             <td>Total Price: <%= format("$%.2f", @order.checkout_amount) %></td>
         </tr>
-        <tr>
-            <td colspan=3></td>
-            <td><%= link_to "Check Out", checkout_path(@order), method: :post %></td>
-        </tr>
     </tbody>
 </table>
+
+<%= form_with model: @order, method: :post, url: checkout_path, class: 'form' do |f| %>
+
+<section class="field">
+    <%= f.label "Name", :name%>
+    <%= f.text_field :name%>
+</section>
+
+<section class="field">
+    <%= f.label "Street Address", :address1 %>
+    <%= f.text_field :address1 %>
+</section>
+
+<section class="field">
+    <%= f.label "City", :city %>
+    <%= f.text_field :city %>
+</section>
+
+<section class="field">
+    <%= f.label "State", :state %>
+    <%= f.text_field :state %>
+</section>
+
+<section class="field">
+    <%= f.label "ZIP Code", :zip %>
+    <%= f.text_field :zip %>
+</section>
+
+<section class="field">
+    <%= f.label "Credit Card Number", :last_four_cc %>
+    <%= f.text_field :last_four_cc %>
+</section>
+
+<section class="field">
+    <%= f.label "Expiration", :expiration %>
+    <%= f.text_field :expiration %>
+</section>
+
+<div class = "action">
+    <%= f.submit "Check Out" %>
+</div>
+
+<%end%>

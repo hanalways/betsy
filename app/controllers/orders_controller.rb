@@ -47,6 +47,7 @@ class OrdersController < ApplicationController
 
   def checkout
     @order.status = "paid"
+    @order.update(order_params)
     if @order.save(context: :checkout)
       @order.order_products.each do |op|
         product = Product.find_by(id: op.product_id)
@@ -87,7 +88,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:email, :address1, :city, :state, :zip, :expiration)
+    params.require(:order).permit(:name, :email, :address1, :city, :state, :zip, :expiration)
   end
 
   def find_order
