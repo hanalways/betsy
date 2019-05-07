@@ -1,15 +1,6 @@
 require "test_helper"
 
 describe ProductsController do
-  let(:merchant) {
-    Merchant.create(
-      username: "reliant merchant for product",
-      email: "merchant@yahoo.com",
-      uid: 1,
-      provider: "me",
-    )
-  }
-
   let (:product) {
     Product.create(
       name: "sample product",
@@ -36,30 +27,6 @@ describe ProductsController do
       },
     }
   }
-
-  describe "index" do
-    it "can get the index path" do
-      get products_path
-      must_respond_with :success
-    end
-
-    it "can get the root path" do
-      get root_path
-      must_respond_with :success
-    end
-  end
-
-  describe "show" do
-    it "can get a valid product" do
-      get product_path(product.id)
-      must_respond_with :success
-    end
-
-    it "will redirect for an invalid product" do
-      get product_path(-1)
-      must_respond_with :not_found
-    end
-  end
 
   describe "Logged in merchants" do
     before do
@@ -103,7 +70,7 @@ describe ProductsController do
           expect(new_product.retired).must_equal product_hash[:product][:retired]
           expect(new_product.image_url).must_equal product_hash[:product][:image_url]
 
-          must_respond_with :redirect
+          check_flash
           must_redirect_to product_path(new_product.id)
         end
       end
@@ -124,29 +91,13 @@ describe ProductsController do
         it "can update an existing product" do
           product_hash[:product][:name] = "updated product"
           patch merchant_product_path(merchant_id: session[:user_id], id: product.id), params: product_hash
-          must_respond_with :redirect
+          check_flash
+          must_redirect_to product_path(product.id)
         end
 
         it "will redirect to the root page if given an invalid id" do
           product_hash[:id] = -1
           patch merchant_product_path(merchant_id: session[:user_id], id: product_hash[:id]), params: product_hash
-          must_respond_with :not_found
-        end
-      end
-
-      describe "destroy" do
-        it "deletes the product from the database" do
-          test_id = product.id
-          expect {
-            delete merchant_product_path(merchant_id: session[:user_id], id: product.id)
-          }.must_change "Product.count", -1
-          must_respond_with :success
-
-          expect Product.find_by(id: test_id).must_be_nil
-        end
-
-        it "will redirect to the root page if given an invalid id" do
-          delete merchant_product_path(merchant_id: session[:user_id], id: -1)
           must_respond_with :not_found
         end
       end
@@ -171,5 +122,32 @@ describe ProductsController do
   end
 
   describe "Guest users" do
+    let(:products) {
+      Product.all
+    }
+
+    describe "access for guest users" do 
+      it "can access the homepage" do 
+        get root_path 
+        must_respond_with :success
+      end 
+
+      it "can access the products index page" do 
+        get products_path
+        must_respond_with :success
+      end
+
+      it "cannot access invalid product show page" do 
+        get product_path(Product.last.id + 1)
+
+        must_respond_with :not_found
+      end 
+
+      it "cannot access the new product form" do 
+        get new_product_path
+        must_redirect_to root_path 
+        check_flash(:error)
+      end 
+    end
   end
 end
