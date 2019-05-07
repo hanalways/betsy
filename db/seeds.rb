@@ -72,7 +72,7 @@ Product.create!(name: "Code Cloud Pillow",
 
 25.times do
   product = Product.new(
-    name: "#{Faker::Games::ElderScrolls.race} #{Faker::Games::ElderScrolls.creature}",
+    name: "#{Faker::Hacker.adjective} #{Faker::Hacker.noun}",
     price: rand(10000).to_f / 100,
     quantity: 150,
     description: Faker::Hacker.say_something_smart,
@@ -140,7 +140,7 @@ OrderProduct.create!(order_id: 1,
 
 25.times do
   category = Category.new(
-    name: "#{Faker::Company.buzzword}",
+    name: "#{Faker::Company.unique.buzzword}",
 
   )
   success = category.save

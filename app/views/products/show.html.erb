@@ -1,12 +1,12 @@
+<div class="container">
 <h1><%= @product.name%></h1>
-
 <img src=<%=@product.image_url%> alt="image of <%=@product.name%>">
 
 <section class = "product-details">
-    <h3>Description</h3>
+    <h3>description</h3>
     <p> <%=@product.description%> </p>
     <p> <%=@product.quantity%> in stock</p>
-    <h3><%=@product.price%>
+    <h3>$<%= number_with_precision(@product.price, :precision => 2, :delimiter => ',')%></h3>
 </section>
 
 <%= form_with model: @order_product, url: order_products_path, method: :post do |f|%>
@@ -16,3 +16,4 @@
     <%= f.hidden_field :order_id, value: @current_order.id%>
     <%= f.submit "Add to cart"%>
 <% end %>
+</div>

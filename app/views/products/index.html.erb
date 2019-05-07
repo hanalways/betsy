@@ -1,8 +1,18 @@
 
 <div class="container products">
-<h2>All Products</h2>
 
-  <% @products.each do |product| %>
+<%if params[:merchant_id]%>
+  <%product_list = @products.where(merchant_id: params[:merchant_id])%>
+  <%heading = "#{Merchant.find(params[:merchant_id]).username}'s Products:"%>
+<%elsif params[:category_id] %>
+  <%product_list = @products.select{|product| product.categories.include?(Category.find(params[:category_id]))}%>
+  <%heading = "Products in category '#{Category.find(params[:category_id]).name}':"%>
+<%else%>
+  <%product_list = @products%>
+  <%heading = "All Products:"%>
+<%end%>
+<h1><%= heading%></h1>
+  <% product_list.each do |product| %>
   <div class="product-thumbnail">
     <%= image_tag product.image_url, class:"thumbnail-image"%>
     <p><%= link_to product.name, product_path(product.id) %></p>
