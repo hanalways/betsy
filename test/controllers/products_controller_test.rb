@@ -1,15 +1,6 @@
 require "test_helper"
 
 describe ProductsController do
-  let(:merchant) {
-    Merchant.create(
-      username: "reliant merchant for product",
-      email: "merchant@yahoo.com",
-      uid: 1,
-      provider: "me",
-    )
-  }
-
   let (:product) {
     Product.create(
       name: "sample product",
@@ -79,7 +70,7 @@ describe ProductsController do
           expect(new_product.retired).must_equal product_hash[:product][:retired]
           expect(new_product.image_url).must_equal product_hash[:product][:image_url]
 
-          must_respond_with :redirect
+          check_flash
           must_redirect_to product_path(new_product.id)
         end
       end
@@ -100,7 +91,8 @@ describe ProductsController do
         it "can update an existing product" do
           product_hash[:product][:name] = "updated product"
           patch merchant_product_path(merchant_id: session[:user_id], id: product.id), params: product_hash
-          must_respond_with :redirect
+          check_flash
+          must_redirect_to product_path(product.id)
         end
 
         it "will redirect to the root page if given an invalid id" do
@@ -130,17 +122,32 @@ describe ProductsController do
   end
 
   describe "Guest users" do
+    let(:products) {
+      Product.all
+    }
+
     describe "access for guest users" do 
       it "can access the homepage" do 
         get root_path 
-        must_respond_with :success 
+        must_respond_with :success
       end 
 
       it "can access the products index page" do 
-        products = Product.all
         get products_path
         must_respond_with :success
       end
+
+      it "cannot access invalid product show page" do 
+        get product_path(Product.last.id + 1)
+
+        must_respond_with :not_found
+      end 
+
+      it "cannot access the new product form" do 
+        get new_product_path
+        must_redirect_to root_path 
+        check_flash(:error)
+      end 
     end
   end
 end

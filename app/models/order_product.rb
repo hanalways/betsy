@@ -12,7 +12,7 @@ class OrderProduct < ApplicationRecord
   def total_price
     total = self.product.price * self.quantity
 
-    return format("$%.2f", total)
+    return total
   end
 
   private
