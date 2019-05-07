@@ -15,3 +15,65 @@
 @import "bootstrap";
 /* Import scss content */
 @import "**/*";
+@import url('https://fonts.googleapis.com/css?family=Gugi|Roboto|Space+Mono');
+
+body {
+    font-family: "Roboto", sans-serif;
+}
+
+nav {
+    font-family:"Space Mono", monospace;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    width:100%;
+}
+
+main {
+    margin-top: 10rem;
+}
+
+.btn {
+    margin: 0 10px;
+}
+.see-all {
+    font-weight: bold;
+    color:green;
+}
+
+nav {
+    h1, h2, h3, h4, sub, {
+        color:lime;
+        font-family: 'Gugi', cursive;
+    }
+    z-index: 1000;
+}
+
+h1.typewriter  {
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid lime; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .1em; /* Adjust as needed */
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end 7;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: lime; }
+  }
+
+  .alert {
+      z-index: -1;
+  }

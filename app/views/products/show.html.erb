@@ -1,18 +1,84 @@
+<div class="container">
 <h1><%= @product.name%></h1>
 
-<img src=<%=@product.image_url%> alt="image of <%=@product.name%>">
+<img src=<%=@product.image_url%>  alt="image of <%=@product.name%> " class="show-image">
 
 <section class = "product-details">
-    <h3>Description</h3>
+    <h3>description</h3>
     <p> <%=@product.description%> </p>
     <p> <%=@product.quantity%> in stock</p>
-    <h3><%=@product.price%>
+    <h3>$<%= number_with_precision(@product.price, :precision => 2, :delimiter => ',')%></h3>
+
+    <div class = "add-to-cart">
+        <%= form_with model: @order_product, url: order_products_path, method: :post do |f|%>
+            <%= f.label :quantity%>
+            <%= f.number_field :quantity, in: 1..20, step: 1 %>
+            <%= f.hidden_field :product_id, value: @product.id%>
+            <%= f.hidden_field :order_id, value: @current_order.id%>
+            <%= f.submit "Add to cart"%>
+        <% end %>
+    </div>
 </section>
 
-<%= form_with model: @order_product, url: order_products_path, method: :post do |f|%>
-    <%= f.label :quantity%>
-    <%= f.number_field :quantity, in: 1..20, step: 1 %>
-    <%= f.hidden_field :product_id, value: @product.id%>
-    <%= f.hidden_field :order_id, value: @current_order.id%>
-    <%= f.submit "Add to cart"%>
-<% end %>
+<section class="review">
+    <div class="review-form">
+        <%= form_with model: @review, url: product_reviews_path(product_id:@product.id), method: :post do |f|%>
+            <div class=field>
+                <h4>Rate this product: </h4>
+                <%= f.radio_button(:rating, 1) %>
+                <%=f.label :rating, value:1 do %>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                <%end%>
+                <%= f.radio_button(:rating, 2) %>
+                <%=f.label :rating, value:2 do %>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                <%end%>
+                <%= f.radio_button(:rating, 3, checked:true) %>
+                <%=f.label :rating, value:3 do %>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                <%end%>
+                <%= f.radio_button(:rating, 4) %>
+                <%=f.label :rating, value:4 do %>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                <%end%>
+                <%= f.radio_button(:rating, 5) %>
+                <%=f.label :rating, value:5 do %>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                <%end%>
+            </div>
+
+            <div class="field">
+                <%=f.label :title, "Review Title"%>
+                <%=f.text_field :title%>
+            </div>
+
+            <div class="field">
+                <%=f.label :text, "Review:"%>
+                <%=f.text_area :text%>
+            </div>
+
+            <div class="action">
+                <%=f.submit "Review this product!"%>
+            </div>
+        <%end%>
+
+        <h2> All Reviews </h2>
+        <%unless @product.reviews.any?%>
+            <p>This product has yet to be reviewed!</p>
+        <%else%>
+            <% @product.reviews.each do |review|%>
+                <h3><%=review.title ? review.title : "(untitled)"%></h3>
+                <p><%=time_ago_in_words(review.created_at)%> ago</p>
+                <% review.rating.times do%>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                <%end%>
+                <p><%=review.text%></p>
+            <%end%>
+        <%end%>
+    </div>
+    
+</section>
+
+
+
+</div>

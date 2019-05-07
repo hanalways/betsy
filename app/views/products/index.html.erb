@@ -1,16 +1,24 @@
-<h2>Products List</h2>
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Price</th>
-    <th>Quantity</th>
-  </tr>
-  <% @products.each do |product| %>
-  <tr>
-    <td><%= link_to product.name, product_path(product.id) %></td>
-    <td><%= link_to product.price, product_path(product.id) %></td>
-    <td><%= link_to product.quantity, product_path(product.id) %></td>
-  </tr>
-  <% end %>
 
+<div class="container products">
+
+<%if params[:merchant_id]%>
+  <%product_list = @products.where(merchant_id: params[:merchant_id])%>
+  <%heading = "#{Merchant.find(params[:merchant_id]).username}'s Products:"%>
+<%elsif params[:category_id] %>
+  <%product_list = @products.select{|product| product.categories.include?(Category.find(params[:category_id]))}%>
+  <%heading = "Products in category '#{Category.find(params[:category_id]).name}':"%>
+<%else%>
+  <%product_list = @products%>
+  <%heading = "All Products:"%>
+<%end%>
+<h1><%= heading%></h1>
+  <% product_list.each do |product| %>
+  <div class="product-thumbnail">
+    <img src=<%=product.image_url%>  alt="image of <%=product.name%>" class= "thumbnail-image">
+    <p><%= link_to product.name, product_path(product.id) %></p>
+    <p>$<%= number_with_precision(product.price, :precision => 2, :delimiter => ',') %></p>
+    </p><%= "#{product.quantity} in stock"  %></p>
+  </div>
+  <% end %>
+</div>
 </table>
