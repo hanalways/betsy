@@ -48,17 +48,17 @@ class MerchantsController < ApplicationController
     @merchant = @current_merchant
 
     if @merchant.nil?
-      head :not_found 
+      head :not_found
     end
   end
 
   def orders
-    @merchant = @current_merchant 
+    @merchant = @current_merchant
 
     if @merchant.nil?
-      return head :not_found 
+      return head :not_found
     end
 
-    @products = @merchant.products 
+    @products = @merchant.products
   end
 end
