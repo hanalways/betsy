@@ -1,10 +1,11 @@
 <h2>Order Confirmation</h2>
 <p><%= @order.name %></p>
+<p><%= @order.email %></p>
 <p><%= @order.address1 %></p>
 <p><%= @order.city %>,
   <%= @order.state %>
   <%= @order.zip %></p>
-<p> <%= @order.last_four %></p>
+<p> Credit card: XXXX-XXXX-XXXX-<%= @order.last_four %></p>
 <table class="table">
   <thead>
     <tr>
@@ -15,6 +16,30 @@
     </tr>
   </thead>
   <tbody>
-  
+    <tr>
+        <td><%= @order.id %></td>
+        <td><%= (@order.created_at).strftime("%m/%d/%Y") %></td>
+        <td><%= @order.status %></td>
+        <td><%= @order.checkout_amount %></td>
+    </tr>
   </tbody>
+</table>
+
+<table class="table">
+<thead>
+<tr>
+<th>Product</th>
+<th>Quantity</th>
+<th>Subtotal</th>
+</tr>
+</thead>
+<tbody>
+<% @order.order_products.each do |op| %>
+<tr>
+<td><%= Product.find_by(id: op.product_id).name %></td>
+<td><%= op.quantity %></td>
+<td><%= op.total_price %></td>
+</tr>
+<%end%>
+</tbody>
 </table>
