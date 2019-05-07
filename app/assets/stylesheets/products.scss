@@ -21,4 +21,11 @@ img {
     height:140px;
     object-fit:cover;
     object-position: 0 0;
+    vertical-align:top;
+    margin: 0 10px;
+}
+
+.product-details {
+    display:inline-block;
+    margin: 0 10px;
 }
