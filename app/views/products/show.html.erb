@@ -27,23 +27,23 @@
                 <h4>Rate this product: </h4>
                 <%= f.radio_button(:rating, 1) %>
                 <%=f.label :rating, value:1 do %>
-                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png" %>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
                 <%end%>
                 <%= f.radio_button(:rating, 2) %>
                 <%=f.label :rating, value:2 do %>
-                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png" %>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
                 <%end%>
-                <%= f.radio_button(:rating, 3) %>
+                <%= f.radio_button(:rating, 3, checked:true) %>
                 <%=f.label :rating, value:3 do %>
-                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png" %>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
                 <%end%>
                 <%= f.radio_button(:rating, 4) %>
                 <%=f.label :rating, value:4 do %>
-                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png" %>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
                 <%end%>
                 <%= f.radio_button(:rating, 5) %>
                 <%=f.label :rating, value:5 do %>
-                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png" %>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
                 <%end%>
             </div>
 
@@ -60,6 +60,20 @@
             <div class="action">
                 <%=f.submit "Review this product!"%>
             </div>
+        <%end%>
+
+        <h2> All Reviews </h2>
+        <%unless @product.reviews.any?%>
+            <p>This product has yet to be reviewed!</p>
+        <%else%>
+            <% @product.reviews.each do |review|%>
+                <h3><%=review.title ? review.title : "(untitled)"%></h3>
+                <p><%=time_ago_in_words(review.created_at)%> ago</p>
+                <% review.rating.times do%>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                <%end%>
+                <p><%=review.text%></p>
+            <%end%>
         <%end%>
     </div>
     

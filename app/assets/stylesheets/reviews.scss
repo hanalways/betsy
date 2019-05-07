@@ -11,7 +11,9 @@
     display: block;
     
   }
-  
+ .duck-rating{
+    height:30px;
+}
   form {
   
     [type="submit"] {
@@ -22,9 +24,7 @@
         display: block;
     }
     
-    img {
-        height:30px;
-    }
+    
   
     /* HIDE RADIO */
     [type=radio] { 
