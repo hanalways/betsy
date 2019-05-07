@@ -1,6 +1,6 @@
 <h2>Shopping Cart</h2>
 
-<h3>Order <%= @order.id %></h3>
+<h3>Order <%= @current_order.id %></h3>
 
 
 <table class="table">
@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-        <% @order.order_products.each do |op| %>
+        <% @current_order.order_products.each do |op| %>
         <%@order_product = op%>
         <% product = Product.find_by(id: op.product_id)%>
             <tr>
@@ -35,3 +35,46 @@
         </tr>
     </tbody>
 </table>
+
+<%= form_with model: @order, method: :post, url: checkout_path, class: 'form' do |f| %>
+
+<section class="field">
+    <%= f.label "Name", :name%>
+    <%= f.text_field :name%>
+</section>
+
+<section class="field">
+    <%= f.label "Street Address", :address1 %>
+    <%= f.text_field :address1 %>
+</section>
+
+<section class="field">
+    <%= f.label "City", :city %>
+    <%= f.text_field :city %>
+</section>
+
+<section class="field">
+    <%= f.label "State", :state %>
+    <%= f.text_field :state %>
+</section>
+
+<section class="field">
+    <%= f.label "ZIP Code", :zip %>
+    <%= f.text_field :zip %>
+</section>
+
+<section class="field">
+    <%= f.label "Credit Card Number", :last_four_cc %>
+    <%= f.text_field :last_four_cc %>
+</section>
+
+<section class="field">
+    <%= f.label "Expiration", :expiration %>
+    <%= f.text_field :expiration %>
+</section>
+
+<div class = "action">
+    <%= f.submit "Check Out" %>
+</div>
+
+<%end%>

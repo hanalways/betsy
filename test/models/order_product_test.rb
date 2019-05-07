@@ -26,7 +26,23 @@ describe OrderProduct do
     end
 
     it "calculates the total price per item" do
-      expect(@order_product.total_price).must_equal "$4.50"
+      expect(@order_product.total_price).must_equal 4.5
+    end
+  end
+
+  describe "availability" do
+    before do
+      @order_product = order_products(:op_one)
+    end
+
+    it "is invalid if not available" do
+      @order_product.quantity = 2500
+      value(@order_product).wont_be :valid?
+    end
+
+    it "is valid if available" do
+      @order_product.quantity = 1
+      value(@order_product).must_be :valid?
     end
   end
 end
