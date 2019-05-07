@@ -126,6 +126,22 @@ Product.create!(name: "Exclusive Invite To Google Hackathon ",
                 merchant_id: rand(1..6),
                 category_ids: (1..10).to_a.sample(3))
 
+Product.create!(name: "Soylent ",
+                price: 25,
+                quantity: 150,
+                description: "The only food/drink you will ever need",
+                image_url: "https://i.imgur.com/9BQFeSDt.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
+Product.create!(name: "Soylent Coosie ",
+                price: 50,
+                quantity: 150,
+                description: "Coosie...to be used with soylent only",
+                image_url: "https://i.imgur.com/75OWCVCt.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
 25.times do
   product = Product.new(
     name: "#{Faker::Games::ElderScrolls.race} #{Faker::Games::ElderScrolls.creature}",
