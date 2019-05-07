@@ -72,7 +72,7 @@ Product.create!(name: "Code Cloud Pillow",
 
 25.times do
   product = Product.new(
-    name: "#{Faker::Hacker.adjective} #{Faker::Hacker.noun}",
+    name: "#{Faker::Games::ElderScrolls.race} #{Faker::Games::ElderScrolls.creature}",
     price: rand(10000).to_f / 100,
     quantity: 150,
     description: Faker::Hacker.say_something_smart,
@@ -140,7 +140,7 @@ OrderProduct.create!(order_id: 1,
 
 25.times do
   category = Category.new(
-    name: "#{Faker::Company.unique.buzzword}",
+    name: "#{Faker::Company.buzzword}",
 
   )
   success = category.save
@@ -154,3 +154,8 @@ OrderProduct.create!(order_id: 1,
   puts "Added #{Category.count} category records"
   puts "#{category_failures.length} categories failed to save"
 end
+
+Review.create!([
+  { text: "this was just what our company needed", title: "wow cool so much diversity", rating: 3, product_id: 2 },
+  { text: "Working at TechBro Inc. it is such a big relief to know that our company is the cutting edge of diversity with this product. Before, we were nervous about interacting with our diverse candidates in fear of what could happen (y'know, amirite?). But now, we can rely on our new diversity hire to bring up morale! They are such a good listener, and we can really tell that she is absorbing and fitting into our culture. Thanks HaCKSy!", title: "Diversity made easy!", rating: 3, product_id: 3 },
+])

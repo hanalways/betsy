@@ -48,7 +48,7 @@ class MerchantsController < ApplicationController
     @merchant = @current_merchant
 
     if @merchant.nil?
-      head :not_found 
+      head :not_found
     end
   end
 end
