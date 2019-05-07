@@ -1,9 +1,19 @@
 <h2>Order Confirmation</h2>
-
-<h3><%= @order.id %></h3>
-
 <p><%= @order.name %></p>
 <p><%= @order.address1 %></p>
 <p><%= @order.city %>,
-<%= @order.state %>
-<%= @order.zip %></p>
+  <%= @order.state %>
+  <%= @order.zip %></p>
+<p> <%= @order.last_four %></p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>

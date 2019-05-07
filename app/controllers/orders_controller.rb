@@ -70,7 +70,8 @@ class OrdersController < ApplicationController
       return
     else
       flash.now[:status] = :error
-      flash.now[:message] = "Order must contain at least one product"
+      flash.now[:message] = "Could not complete check out"
+      flash.now[:errors] = @order.errors
       render :current
       return
     end
@@ -89,7 +90,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :email, :address1, :city, :state, :zip, :expiration)
+    params.require(:order).permit(:name, :email, :address1, :city, :state, :zip, :expiration, :last_four_cc, :cvv)
   end
 
   def find_order
