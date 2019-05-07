@@ -37,30 +37,6 @@ describe ProductsController do
     }
   }
 
-  describe "index" do
-    it "can get the index path" do
-      get products_path
-      must_respond_with :success
-    end
-
-    it "can get the root path" do
-      get root_path
-      must_respond_with :success
-    end
-  end
-
-  describe "show" do
-    it "can get a valid product" do
-      get product_path(product.id)
-      must_respond_with :success
-    end
-
-    it "will redirect for an invalid product" do
-      get product_path(-1)
-      must_respond_with :not_found
-    end
-  end
-
   describe "Logged in merchants" do
     before do
       perform_login(merchants(:grace))
@@ -134,23 +110,6 @@ describe ProductsController do
         end
       end
 
-      describe "destroy" do
-        it "deletes the product from the database" do
-          test_id = product.id
-          expect {
-            delete merchant_product_path(merchant_id: session[:user_id], id: product.id)
-          }.must_change "Product.count", -1
-          must_respond_with :success
-
-          expect Product.find_by(id: test_id).must_be_nil
-        end
-
-        it "will redirect to the root page if given an invalid id" do
-          delete merchant_product_path(merchant_id: session[:user_id], id: -1)
-          must_respond_with :not_found
-        end
-      end
-
       describe "toggle_retire" do
         it "will retire an unretired product" do
           post toggle_retire_product_path(product.id)
@@ -171,5 +130,17 @@ describe ProductsController do
   end
 
   describe "Guest users" do
+    describe "access for guest users" do 
+      it "can access the homepage" do 
+        get root_path 
+        must_respond_with :success 
+      end 
+
+      it "can access the products index page" do 
+        products = Product.all
+        get products_path
+        must_respond_with :success
+      end
+    end
   end
 end
