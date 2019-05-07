@@ -33,5 +33,9 @@
             <td colspan=3></td>
             <td>Total Price: <%= format("$%.2f", @order.checkout_amount) %></td>
         </tr>
+        <tr>
+            <td colspan=3></td>
+            <td><%= link_to "Check Out", checkout_path(@order), method: :post %></td>
+        </tr>
     </tbody>
 </table>

@@ -74,6 +74,9 @@ class OrdersController < ApplicationController
     end
   end
 
+  def confirmation
+  end
+
   def destroy
     @order.destroy
 
