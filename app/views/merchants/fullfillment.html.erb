@@ -1,0 +1,23 @@
+<section>
+  <h2><%= @merchant.username %> Order Fullfillment</h2>
+</section>
+
+<section>
+  <table class="table table-dark table-striped">
+    <thead class="thead-dark">
+      <th scope="col">Order ID</th>
+      <th scope="col">Date</th>
+      <th scope="col">Products</th>
+      <th scope="col">Order Revenue</th>
+    </thead>
+    <% @products.each do |product| %>
+    <tr scope="row">
+      <td><img src="<%= product.image_url %>" alt="<%= product.name %> image", height="100", width="100"></td>
+      <td class="name"><%= product.orders %></td>
+      <td><%= product.name %></td>
+      <td>$<%= number_with_precision(product.price, :precision => 2, :delimiter => ',') %></td>
+    </tr>
+    <% end %>
+  </table>
+</section>
+

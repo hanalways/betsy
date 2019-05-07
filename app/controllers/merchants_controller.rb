@@ -51,14 +51,4 @@ class MerchantsController < ApplicationController
       head :not_found 
     end
   end
-
-  def orders
-    @merchant = @current_merchant 
-
-    if @merchant.nil?
-      return head :not_found 
-    end
-
-    @products = @merchant.products 
-  end
 end

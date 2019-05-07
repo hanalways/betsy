@@ -25,7 +25,6 @@ Rails.application.routes.draw do
     resources :products
   end
   get "/dashboard", to: "merchants#dashboard", as: "dashboard"
-  get "/orders", to: "merchants#orders", as: "merchant_orders"
 
   get "/auth/:provider/callback", to: "merchants#create", as: "auth_callback"
   get "/auth/github", as: "github_login"
