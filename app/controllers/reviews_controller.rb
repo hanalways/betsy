@@ -1,5 +1,11 @@
 class ReviewsController < ApplicationController
   def create
+    if session[:user_id] == Product.find(params[:product_id]).merchant_id
+      flash[:status] = :error
+      flash[:message] = "Merchants can't review their own products!"
+      redirect_to product_path(params[:product_id])
+      return
+    end
     @review = Review.new review_params
     @review.product_id = params[:product_id]
     if @review.save
