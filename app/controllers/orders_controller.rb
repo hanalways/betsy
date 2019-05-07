@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_action :find_order, except: [:create]
 
   def create
+    binding.pry
     @order = Order.new(order_params)
     if @order.save
       flash[:status] = :success
