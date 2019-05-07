@@ -46,17 +46,17 @@ class ProductsController < ApplicationController
   def edit
   end
 
-  def destroy
-    if @product.destroy
-      flash[:status] = :success
-      flash[:message] = "sucessfully removed product from database"
-    else
-      flash[:status] = :error
-      flash[:message] = "Failed to remove product from database"
-      flash[:errors] = @product.errors.messages
-      redirect_to(product_path(@product.id))
-    end
-  end
+  # def destroy
+  #   if @product.destroy
+  #     flash[:status] = :success
+  #     flash[:message] = "sucessfully removed product from database"
+  #   else
+  #     flash[:status] = :error
+  #     flash[:message] = "Failed to remove product from database"
+  #     flash[:errors] = @product.errors.messages
+  #     redirect_to(product_path(@product.id))
+  #   end
+  # end
 
   def toggle_retire
     @product.retired = !@product.retired
