@@ -12,11 +12,11 @@
   <body>
   <header>
     
-
+  
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a href="#"  class="navbar-brand">
-        <h1>HaCKSy</h1>
-        <sub>Cute tagline here</sub>
+        <h1 class="typewriter">./HaCKSy</h1>
+        <sub>Disrupting innovation and innovating disruption</sub>
       </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -27,16 +27,30 @@
           <li class="nav-item dropdown">
           <%= link_to "Browse By Merchant", "#", class: "nav-link dropdown-toggle", id:"navbarDropdown", 'data-toggle' => 'dropdown' %>
               <div class="dropdown-menu", aria-labelledby="navbarDropdown">
-              <%Merchant.all.each do |merchant|%>
-                <%= link_to merchant.username, merchant_products_path(merchant.id), class:"dropdown-item"%>
+              <%if Merchant.all.length > 5 %>
+                <%Merchant.all.first(5).each do |merchant|%>
+                  <%= link_to merchant.username, merchant_products_path(merchant.id), class:"dropdown-item"%>
+                <%end%>
+                <%= link_to "See All Merchants", merchants_path, class:"dropdown-item see-all"%>
+              <%else%>
+                <%Merchant.all.each do |merchant|%>
+                  <%= link_to merchant.username, merchant_products_path(merchant.id), class:"dropdown-item"%>
+                <%end%>
               <%end%>
               </div>
           </li>
           <li class="nav-item dropdown"><%= link_to "Browse By Category", categories_path, class:"nav-link dropdown-toggle", id:"navbarDropdown", 'data-toggle' => 'dropdown' %>
             <div class="dropdown-menu", aria-labelledby="navbarDropdown">
+            <%if Category.all.length > 5 %>
+            <%Category.all.first(5).each do |category|%>
+                <%= link_to category.name, category_products_path(category.id), class:"dropdown-item"%>
+              <%end%>
+              <%= link_to "See All Categories", categories_path, class:"dropdown-item see-all"%>
+            <%else%>
               <%Category.all.each do |category|%>
                 <%= link_to category.name, category_products_path(category.id), class:"dropdown-item"%>
               <%end%>
+            <%end%>
             <div>
           </li>
         </ul>
@@ -53,7 +67,7 @@
         </ul>
       </div>
   </header>
-
+  <main>
   <section>
  
   <%if flash[:status]%>
@@ -75,6 +89,6 @@
     <%end%>
     <%= yield %>
   </section>
-  
+  </main>
   </body>
 </html>
