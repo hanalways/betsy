@@ -73,3 +73,7 @@ h1.typewriter  {
     from, to { border-color: transparent }
     50% { border-color: lime; }
   }
+
+  .alert {
+      z-index: -1;
+  }
