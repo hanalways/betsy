@@ -57,9 +57,11 @@ class Order < ApplicationRecord
   end
 
   def expiration_must_be_valid
-    my_date = Date.strptime(expiration, "%m/%y")
-    unless my_date > Date.today
-      errors.add("Expiration", "cannot be in the past")
+    if expiration
+      my_date = Date.strptime(expiration, "%m/%y")
+      unless my_date > Date.today
+        errors.add("Expiration", "cannot be in the past")
+      end
     end
   end
 end
