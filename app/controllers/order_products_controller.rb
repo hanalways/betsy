@@ -32,7 +32,7 @@ class OrderProductsController < ApplicationController
   def destroy
     if @order_product.destroy
       flash[:status] = :success
-      flash[:message] = "successfully removed product from order"
+      flash[:message] = "Successfully removed product from order"
       redirect_back(fallback_location: root_path)
     else
       flash[:status] = :error
