@@ -6,9 +6,8 @@ module ApplicationHelper
       error.each do |message|
         error_list += "<li>#{column}: #{message}</li>"
       end
-
-      error_list += "</ul>"
     end
+    error_list += "</ul>"
     return error_list.html_safe
   end
 end
