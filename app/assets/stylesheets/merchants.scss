@@ -2,17 +2,36 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+a {
+    color:green;
+}
+
+.nav-tabs a.nav-link {
+    background-color:#6C757D; 
+}
+
+.nav-tabs a.active.nav-link {
+    background-color:#2C3034; 
+}
+ 
 .dashboard-buttons {
-    list-style-type: none;
+    list-style-type:none;
     padding: 0;
     margin:30px 0;
+    z-index: -1;
+    display:flex;
+    flex-flow: row nowrap;
+    align-content:flex-start;
+    justify-content:flex-start;
 }
+
+ 
 
 .name {
     color:lime;
 }
 
-.table, h2, .btn {
+.table, .details, h2, .btn {
     font-family:"Space Mono", monospace;
 }
 
@@ -20,5 +39,12 @@
 .btn-success {
     background-color: lime;
     color:black;
-    
+}
+
+.dashboard-table {
+    h2{
+        color:white;
+        padding: 20px 15px;
+    }
+   background-color: #2C3034;
 }
