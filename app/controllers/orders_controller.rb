@@ -49,6 +49,7 @@ class OrdersController < ApplicationController
   def checkout
     @order.status = "paid"
     @order.update(order_params)
+    @order.total_price = @order.checkout_amount
     if @order.save(context: :checkout)
       @order.order_products.each do |op|
         product = Product.find_by(id: op.product_id)
