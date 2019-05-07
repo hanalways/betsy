@@ -29,3 +29,10 @@ img {
     display:inline-block;
     margin: 0 10px;
 }
+
+.featured_image {
+    height:50rem;
+    width:100%;
+    object-fit:cover;
+    object-position: 0 0;
+}
