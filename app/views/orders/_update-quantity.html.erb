@@ -1,7 +1,6 @@
 <%= form_with model: @order_product, class: 'form' do |f| %>
-  
-<%= f.label :quantity %>
-    <%= f.select :quantity, (1..Product.find_by(id: @order_product.product_id).quantity) %>
-    
+  <%= f.label :quantity %>
+  <%= f.select :quantity, (1..Product.find_by(id: @order_product.product_id).quantity) %>
+  <%= f.hidden_field :order_id, value: @current_order.id%>
   <%= f.submit "Update", class: 'save-button' %>
 <% end %>
