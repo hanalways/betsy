@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root "products#homepage"
 
+  resources :order_products, only: [:create, :update, :destroy]
+
   resources :orders, except: [:new]
   get "/cart/:id", to: "orders#current", as: "current_order"
   post "/cart/:id", to: "orders#checkout", as: "checkout"
@@ -18,8 +20,6 @@ Rails.application.routes.draw do
   end
 
   resources :categories, only: [:new, :create]
-
-  resources :order_products, only: [:create, :update, :destroy]
 
   resources :merchants, only: [:index, :show] do
     resources :products
