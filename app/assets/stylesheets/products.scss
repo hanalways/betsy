@@ -1,0 +1,38 @@
+.product-thumbnail {
+    display:inline-block;
+    margin:20px;
+    
+    
+}
+
+.thumbnail-image {
+    height:200px;
+    width:200px;
+    
+}
+
+img {
+    object-fit:cover;
+    object-position: 0 0;
+}
+
+.show-image {
+    width:200px;
+    height:140px;
+    object-fit:cover;
+    object-position: 0 0;
+    vertical-align:top;
+    margin: 0 10px;
+}
+
+.product-details {
+    display:inline-block;
+    margin: 0 10px;
+}
+
+.featured_image {
+    height:50rem;
+    width:100%;
+    object-fit:cover;
+    object-position: 0 0;
+}

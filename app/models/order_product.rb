@@ -18,7 +18,7 @@ class OrderProduct < ApplicationRecord
   private
 
   def availability
-    if product_id && quantity > Product.find(product_id).quantity
+    if product_id && quantity && (quantity > Product.find(product_id).quantity)
       errors.add(:quantity, "quantity is greater than amount in stock")
     end
   end

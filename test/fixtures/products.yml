@@ -3,13 +3,13 @@
 dog:
   name: dog
   price: 1.50
-  quantity: 4
+  quantity: 5
   merchant: ada
   categories: canine, mammal
 
 cat:
   name: cat
   price: 11.50
-  quantity: 1
+  quantity: 5
   merchant: grace
   categories: feline, mammal

@@ -1,0 +1,46 @@
+// Place all the styles related to the reviews controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.review {
+    display:inline-block;
+    width:60%;
+    padding:3em;
+    
+  }
+  textarea {
+    display: block;
+    
+  }
+ .duck-rating{
+    height:30px;
+}
+  form {
+  
+    [type="submit"] {
+        display:block;
+    }
+
+    [type="text"] {
+        display: block;
+    }
+    
+    
+  
+    /* HIDE RADIO */
+    [type=radio] { 
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    
+    [type=radio] + label {
+        cursor: pointer;
+    }
+    
+    [type=radio]:checked + label ~ label img {
+        
+        filter: brightness(0%);
+    }
+}
