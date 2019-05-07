@@ -70,6 +70,62 @@ Product.create!(name: "Code Cloud Pillow",
                 merchant_id: rand(1..6),
                 category_ids: (1..10).to_a.sample(3))
 
+Product.create!(name: "Batman Rubber Duckie",
+                price: 200,
+                quantity: 150,
+                description: "Have him talk you through your bugs! remember... The night is darkest just before the dawn.",
+                image_url: "https://i.imgur.com/G6hGf3yt.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
+Product.create!(name: "Angry Manager Rubber Duckie",
+                price: 200,
+                quantity: 150,
+                description: "Work through the bugs!",
+                image_url: "https://i.imgur.com/NECimf9t.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
+Product.create!(name: "Hopeful Intern Rubber Duckie",
+                price: 200,
+                quantity: 150,
+                description: "Explain to the intern how you fixed your bugs!",
+                image_url: "https://i.imgur.com/TdogQiwt.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
+Product.create!(name: "Viking Rubber Duckie",
+                price: 200,
+                quantity: 150,
+                description: "Conquor the bugs!",
+                image_url: "https://i.imgur.com/pVJNSrlt.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
+Product.create!(name: "Innovative Startup Idea ",
+                price: 2000000,
+                quantity: 150,
+                description: "Do you have what it takes to become one of the tech giants? you will with this idea!",
+                image_url: "https://i.imgur.com/PJDrEhht.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
+Product.create!(name: "Exclusive Invite To Lunch ",
+                price: 15000,
+                quantity: 150,
+                description: "Ever wonder what lunch is served on the other side...buy a pass to eat and network at Microsoft, Amazon or google! ",
+                image_url: "https://i.imgur.com/WqVwqgJt.png",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
+Product.create!(name: "Exclusive Invite To Google Hackathon ",
+                price: 100000,
+                quantity: 150,
+                description: "This could be you! Join a google hackathon ",
+                image_url: "https://i.imgur.com/dFumwgtt.jpg",
+                merchant_id: rand(1..6),
+                category_ids: (1..10).to_a.sample(3))
+
 25.times do
   product = Product.new(
     name: "#{Faker::Games::ElderScrolls.race} #{Faker::Games::ElderScrolls.creature}",
