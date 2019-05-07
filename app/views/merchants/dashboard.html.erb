@@ -22,7 +22,7 @@
 </nav>
 
 <section class="dashboard-table tab-pane fade show active" id="all-products" role="tabpanel" aria-labelledby="products-tab">
-  <h2 >All Products:</h2>
+  <h2>All Products:</h2>
   <table class="table table-dark table-striped">
     <thead class="thead-dark">
       <th scope="col">Product</th>
@@ -49,12 +49,40 @@
   </table>
 </section>
 
-<section class="dashboard-table tab-pane fade show active" id="fulfilled" role="tabpanel" aria-labelledby="fulfilled-tab">
-
-
 <section class="dashboard-table tab-pane fade" id="fulfilled" role="tabpanel" aria-labelledby="fulfilled-tab">
+  <h2>Orders Fulfilled</h2>
+<table class="table table-dark table-striped">
+    <thead class="thead-dark">
+      <th scope="col">Order ID</th>
+      <th scope="col">Date Purchased</th>
+      <th scope="col">Order Revenue</th>
+    </thead>
+    <% Merchant.orders_of_status(:shipped, @merchant.id).each do |order| %>
+    <tr scope="row">
+      <td class="name"><%= order.id %></td>
+      <td><%= order.created_at %></td>
+      <td>$<%= order.status %></td>
+    </tr>
+    <% end %>
+  </table>
 </section>
 
 <section class="dashboard-table tab-pane fade" id="unfulfilled" role="tabpanel" aria-labelledby="unfulfilled-tab">
+  <h2>Orders Fulfilled</h2>
+<table class="table table-dark table-striped">
+    <thead class="thead-dark">
+      <th scope="col">Order ID</th>
+      <th scope="col">Date Purchased</th>
+      <th scope="col">Order Revenue</th>
+      <th scope="col">Ship Order</th>
+    </thead>
+    <% Merchant.orders_of_status(:paid, @merchant.id).each do |order| %>
+    <tr scope="row">
+      <td class="name"><%= order.id %></td>
+      <td><%= order.created_at %></td>
+      <td>$<%= order.status %></td>
+      <td><%= link_to "Ship Order", root_path %></td>
+    </tr>
+    <% end %>
+  </table>
 </section>
-
