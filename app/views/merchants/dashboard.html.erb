@@ -1,16 +1,28 @@
 <section>
   <h2><%= @merchant.username %>'s Dashboard</h2>
+  <section class="details">
+    <p>Joined: <%=time_ago_in_words(@merchant.created_at)%> ago</p>
+    <p>Total Revenue: </p>
+    <p>Average Rating: </p>
+  </section>
 </section>
-
-<section>
-  <ul class="dashboard-buttons btn-group">
-    <li><%= link_to "Add Product", new_product_path, class:"btn btn-secondary"%></li>
-    <li><%= link_to "Add Category", new_category_path, class:"btn btn-secondary" %></li>
-    <li><%= link_to "Account Orders", merchant_orders_path, class:"btn btn-secondary"%></li>
+  <ul class= "dashboard-buttons btn-group">
+    <li><%= link_to "Add Product", new_product_path, class:"btn btn-secondary" %></li>
+    <li><%= link_to "Add Category", new_category_path, class:"btn btn-secondary"  %></li>
   </ul>
-</section>
 
-<section>
+<nav>
+  <ul class="nav nav-tabs bg-dark" id="dashboardTabs" role="tablist">
+    <li class="nav-item"><%= link_to "View All Products", "#all-products", class:"nav-link text-light active", 'data-toggle' => 'tab', "role"=>"tab", "aria-controls" =>"products", "aria-selected" => "true"%></li>
+    <li class="nav-item"><%= link_to "Fulfilled Orders", "#fulfilled", class:"nav-link text-light",  'data-toggle' => 'tab', "role"=>"tab", "aria-controls" =>"fulfilled", "aria-selected" => "false"%></li>
+
+    <li class="nav-item"><%= link_to "Unfulfilled Orders", "#unfulfilled", class:"nav-link text-light", 'data-toggle' => 'tab', "role"=>"tab", "aria-controls" =>"unfulfilled", "aria-selected" => "false" %></li>
+    
+  </ul>
+</nav>
+
+<section class="dashboard-table tab-pane fade show active" id="all-products" role="tabpanel" aria-labelledby="products-tab">
+  <h2 >All Products:</h2>
   <table class="table table-dark table-striped">
     <thead class="thead-dark">
       <th scope="col">Product</th>
@@ -37,4 +49,12 @@
   </table>
 </section>
 
-    
+<section class="dashboard-table tab-pane fade show active" id="fulfilled" role="tabpanel" aria-labelledby="fulfilled-tab">
+
+
+<section class="dashboard-table tab-pane fade" id="fulfilled" role="tabpanel" aria-labelledby="fulfilled-tab">
+</section>
+
+<section class="dashboard-table tab-pane fade" id="unfulfilled" role="tabpanel" aria-labelledby="unfulfilled-tab">
+</section>
+
