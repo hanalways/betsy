@@ -11,6 +11,7 @@ describe ReviewsController do
         },
       }
     end
+
     it "allows a guest user to create a review" do
       expect {
         post product_reviews_path(product_id: products(:dog)), params: @review_params
@@ -40,6 +41,18 @@ describe ReviewsController do
 
       expect(flash[:status]).must_equal :error
       must_redirect_to product_path(products(:dog).id)
+    end
+
+    it "fails to create a review for product that doesn't exist" do 
+      skip
+      dog = products(:dog)
+      dog.id = nil 
+
+      expect { 
+        post product_reviews_path(product_id: products(:dog)), params: @review_params
+      }
+
+      must_redirect_to root_path 
     end
   end
 end

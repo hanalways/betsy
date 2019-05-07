@@ -1,8 +1,14 @@
 .product-thumbnail {
     display:inline-block;
     margin:20px;
+    padding:10px;
+    z-index:-1;
     
-    
+}
+
+.carousel-item {
+    z-index: -1;
+    height:70vh;
 }
 
 .thumbnail-image {
@@ -31,8 +37,6 @@ img {
 }
 
 .featured_image {
-    height:50rem;
-    width:100%;
     object-fit:cover;
     object-position: 0 0;
 }
