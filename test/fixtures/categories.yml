@@ -2,11 +2,12 @@
 
 red:
   name: red
-  products: one, two
+  products: cat, dog
 
 green:
   name: green
-  products: one, two
+  products: cat, dog
+
 feline:
   name: Feline
 

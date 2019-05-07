@@ -53,7 +53,7 @@ class OrdersController < ApplicationController
         if op.quantity > product.quantity
           flash.now[:status] = :error
           flash.now[:message] = "only #{product.quantity} units of #{product.name} are available; please adjust quantity"
-          render :current
+          render :current, status: :bad_request
           return
         else
           product.quantity -= op.quantity
