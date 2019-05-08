@@ -70,7 +70,7 @@ describe Product do
     it "has many orders through order product" do
       cat = products(:cat)
       expect(cat.orders).must_include orders(:two)
-      expect(cat.orders).must_include orders(:three)
+      expect(cat.orders).must_include orders(:one)
     end
 
     it "has many categories" do
