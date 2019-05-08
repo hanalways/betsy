@@ -36,7 +36,7 @@
 <tbody>
 <% @order.order_products.each do |op| %>
 <tr>
-<td><%= Product.find_by(id: op.product_id).name %></td>
+<td><%= link_to Product.find_by(id: op.product_id).name, product_path(op.product_id) %></td>
 <td><%= op.quantity %></td>
 <td><%= op.total_price %></td>
 </tr>
