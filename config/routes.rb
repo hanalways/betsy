@@ -7,20 +7,20 @@ Rails.application.routes.draw do
   get "/cart/:id", to: "orders#current", as: "current_order"
   post "/cart/:id", to: "orders#checkout", as: "checkout"
   get "/order-confirmation/:id", to: "orders#confirmation", as: "order_confirmation"
-  patch "/order/:id/update_status", to: "orders#update_status", as: "update_status"
-
+  
   resources :products, except: [:destroy] do
     resources :reviews, only: [:create]
   end
   post "product/:id/toggle_retire", to: "products#toggle_retire", as: "toggle_retire_product"
-
+  
   resources :categories do
     resources :products, only: [:index]
   end
-
+  
   resources :categories, only: [:new, :create]
-
+  
   resources :order_products, only: [:create, :update, :destroy]
+  patch "/order_products/:id/update_status", to: "order_products#update_status", as: "update_status"
 
   resources :merchants, only: [:index, :show] do
     resources :products

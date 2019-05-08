@@ -6,11 +6,11 @@
       <li>$ Average Rating: </li>
       <li>$ Total Revenue: </li>
 
-      <li>$ Pending Revenue (paid orders): <%= Merchant.revenue_of_status(:paid, @current_merchant.id) %></li>
-      <li>$ Total Revenue (fulfilled orders): <%= Merchant.revenue_of_status(:shipped, @current_merchant.id) %></li>
+      <li>$ Pending Revenue (paid orders): <%= @merchant.revenue_of_status(:pending) %></li>
+      <li>$ Total Revenue (fulfilled orders): <%= @merchant.revenue_of_status(:shipped) %></li>
       
-      <li>$ Total Order Count (paid orders):</li>
-      <li>$ Total Order Count (fulfilled orders):</li>
+      <li>$ Total Order Count (paid orders): <%= @merchant.order_count(:pending) %></li>
+      <li>$ Total Order Count (fulfilled orders): <%= @merchant.order_count(:shipped) %></li>
     </ul>
   </section>
 </section>
@@ -67,7 +67,7 @@
         <th scope="col">Order Revenue</th>
         <th scope="col">Cancel Shipment</th>
       </thead>
-      <% Merchant.orders_of_status(:shipped, @merchant.id).each do |order| %>
+      <% @merchant.orders_of_status(:shipped).each do |order| %>
       <tr scope="row">
         <td class="name"><%= link_to order.id, root_path %></td>
         <td><%= order.created_at.strftime("%b %d, %Y") %></td>
@@ -87,11 +87,11 @@
         <th scope="col">Order Revenue</th>
         <th scope="col">Ship Order</th>
       </thead>
-      <% Merchant.orders_of_status(:paid, @merchant.id).each do |order| %>
+      <% @merchant.orders_of_status(:pending).each do |order| %>
       <tr scope="row">
         <td class="name"><%= order.id %></td>
-        <td><%= order.created_at %></td>
-        <td>$<%= order.status %></td>
+        <td><%= order.created_at.strftime("%b %d, %Y") %></td>
+        <td>$<%= order.total_price %></td>
         <td><%= link_to "Ship Order", update_status_path(order.id), remote: true, method: :patch, class: "btn btn-success" %></td>
       </tr>
       <% end %>

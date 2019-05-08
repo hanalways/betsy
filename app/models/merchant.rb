@@ -16,15 +16,26 @@ class Merchant < ApplicationRecord
     return merchant
   end
 
-  def self.orders_of_status(status, id)
-    Order.where(status: status).joins(:products).merge(Product.where(merchant_id: id))
+  def orders_of_status(status)
+    OrderProduct.where(status: status).joins(:product).merge(Product.where(merchant_id: id))
   end
 
-  def self.revenue_of_status(status, id)
-    orders = orders_of_status(status, id)
+  def revenue_of_status(status)
+    ops = orders_of_status(status)
     sum = 0
-    orders.each do |order|
+    ops.each do |order|
       sum += order.total_price
     end
+    return sum 
   end
+
+  def order_count(status)
+    ops = orders_of_status(status)
+    return ops.count
+  end
+
+  def total_revenue
+    return orders_of_status()
+  end
+
 end

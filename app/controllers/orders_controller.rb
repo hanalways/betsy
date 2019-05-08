@@ -87,25 +87,25 @@ class OrdersController < ApplicationController
     flash[:message] = "Successfully deleted order #{@order.id}"
   end
 
-  def update_status
-    @order = Order.find_by(id: params[:id])
-    if @order.status == "shipped"
-      @order.status = :paid      
-    else @order.status == "paid"
-      @order.status = :shipped
-    end
+  # def update_status
+  #   @order = Order.find_by(id: params[:id])
+  #   if @order.status == "shipped"
+  #     @order.status = :paid      
+  #   else @order.status == "paid"
+  #     @order.status = :shipped
+  #   end
 
-    if @order.save
-      flash[:status] = :success 
-      flash[:message] = "Order \##{@order.id} status updated."
-    else 
-      flash[:status] = :error
-      flash[:message] = "Failed to update Order \##{@order.id}"
-      flash[:errors] = @order.errors.messages 
-    end
+  #   if @order.save
+  #     flash[:status] = :success 
+  #     flash[:message] = "Order \##{@order.id} status updated."
+  #   else 
+  #     flash[:status] = :error
+  #     flash[:message] = "Failed to update Order \##{@order.id}"
+  #     flash[:errors] = @order.errors.messages 
+  #   end
 
-    redirect_to dashboard_path
-  end
+  #   redirect_to dashboard_path
+  # end
 
   private
 
