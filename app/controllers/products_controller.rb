@@ -32,6 +32,7 @@ class ProductsController < ApplicationController
   end
 
   def update
+    check_owner(@product)
     if @product.update product_params
       flash[:status] = :success
       flash[:message] = "Sucessfully updated product"
@@ -45,21 +46,11 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    check_owner(@product)
   end
 
-  # def destroy
-  #   if @product.destroy
-  #     flash[:status] = :success
-  #     flash[:message] = "sucessfully removed product from database"
-  #   else
-  #     flash[:status] = :error
-  #     flash[:message] = "Failed to remove product from database"
-  #     flash[:errors] = @product.errors.messages
-  #     redirect_to(product_path(@product.id))
-  #   end
-  # end
-
   def toggle_retire
+    check_owner(@product)
     @product.retired = !@product.retired
     @product.save
     redirect_back(fallback_location: root_path)
@@ -88,5 +79,14 @@ class ProductsController < ApplicationController
     if !@product
       head :not_found
     end
+  end
+end
+
+def check_owner(product)
+  unless product.merchant == @current_merchant
+    flash[:status] = :error
+    flash[:message] = "You are not authorized to perform this action"
+    redirect_to root_path
+    return
   end
 end

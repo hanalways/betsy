@@ -44,3 +44,11 @@ img {
     object-fit:cover;
     object-position: 0 0;
 }
+
+.products {
+    display: flex;
+    flex-flow: row nowrap;
+    width:80%;
+    overflow-x: scroll;
+    margin:auto;
+}
