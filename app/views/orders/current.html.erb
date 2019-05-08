@@ -38,53 +38,53 @@
 
 <%= form_with model: @order, method: :post, url: checkout_path, class: 'form' do |f| %>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :name, "Name" %>
-    <%= f.text_field :name, required: true %>
+    <%= f.text_field :name, required: true, class: 'form-control' %>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :email, "Email" %>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, class: 'form-control' %>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :address1, "Street Address" %>
-    <%= f.text_field :address1 %>
+    <%= f.text_field :address1, class: 'form-control' %>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :city, "City" %>
-    <%= f.text_field :city %>
+    <%= f.text_field :city, class: 'form-control' %>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :state, "State" %>
-    <%= f.text_field :state %>
+    <%= f.text_field :state, class: 'form-control' %>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :zip, "ZIP Code" %>
-    <%= f.text_field :zip %>
+    <%= f.text_field :zip, class: 'form-control' %>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :last_four_cc, "Credit Card Number" %>
-    <%= f.text_field :last_four_cc %>
+    <%= f.text_field :last_four_cc, class: 'form-control' %>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :expiration, "Expiration (MM/YY)" %>
-    <%= f.text_field :expiration %>
+    <%= f.text_field :expiration, class: 'form-control' %>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :cvv, "CVV" %>
-    <%= f.text_field :cvv %>
+    <%= f.text_field :cvv, class: 'form-control' %>
 </section>
 
 <div class = "action">
-    <%= f.submit "Check Out" %>
+    <%= f.submit "Check Out", class: "btn btn-primary"  %>
 </div>
 
 <%end%>
