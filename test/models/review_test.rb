@@ -22,6 +22,26 @@ describe Review do
       review.rating = nil
       value(review).wont_be :valid?
     end
+
+    it "won't be valid if rating is not a number" do
+      review.rating = "fish"
+      value(review).wont_be :valid?
+    end
+
+    it "won't be valid if rating is not an integer" do
+      review.rating = 1.7777
+      value(review).wont_be :valid?
+    end
+
+    it "won't be valid if rating is less than 1" do
+      review.rating = 0
+      value(review).wont_be :valid?
+    end
+
+    it "won't be valid if rating is greater than 5" do
+      review.rating = 6
+      value(review).wont_be :valid?
+    end
   end
 
   describe "relationships" do
