@@ -25,7 +25,9 @@ a {
     justify-content:flex-start;
 }
 
- 
+.details {
+    font-family:"Space Mono", monospace;
+}
 
 .name {
     color:lime;
@@ -52,4 +54,12 @@ a {
         padding: 20px 15px;
     }
    background-color: #2C3034;
+}
+
+ul {
+    list-style-type: square;
+}
+
+a:hover {
+    color: gray;
 }
