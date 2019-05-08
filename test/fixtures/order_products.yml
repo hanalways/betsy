@@ -19,7 +19,7 @@ op_two: {
 # column: value
 
 op_three: {
-  order: three,
+  order: one,
   product: cat,
   quantity: 2
 }

@@ -26,23 +26,6 @@ work = Category.create!(
   name: "Work",
 )
 
-# 25.times do
-#   category = Category.create(
-#     name: "#{Faker::Company.buzzword}",
-
-#   )
-#   success = category.save
-#   if !success
-#     category_failures << category
-#     puts "Failed to save category #{category.inspect}"
-#   else
-#     puts "Created category #{category.inspect}"
-#   end
-
-#   puts "Added #{Category.count} category records"
-#   puts "#{category_failures.length} categories failed to save"
-# end
-
 merchant_list = [
   ["Ada Lovelace", "adalovelace@codinggod.com"],
   ["Steve Jobs", "stevejobs@dead.com"],
@@ -58,22 +41,6 @@ merchant_list.each do |username, email|
     email: email,
   )
 end
-
-category_failures = []
-10.times do
-  category = Category.new(name: Faker::Hacker.unique.adjective)
-  success = category.save
-  if !success
-    category_failures << category
-    puts "Failed to save category #{category.inspect}"
-  else
-    puts "Created category #{category.inspect}"
-  end
-end
-puts "Added #{Category.count} category records"
-puts "#{category_failures.length} categories failed to save"
-
-product_failures = []
 
 Product.create!(name: "0.1% diversity statistic",
                 price: 100000,
@@ -195,27 +162,6 @@ Product.create!(name: "Canned Interview Response ",
                 merchant_id: rand(1..6),
                 category_ids: work.id)
 
-# 25.times do
-#   product = Product.new(
-#     name: "#{Faker::Games::ElderScrolls.race} #{Faker::Games::ElderScrolls.creature}",
-#     price: rand(10000).to_f / 100,
-#     quantity: 150,
-#     description: Faker::Hacker.say_something_smart,
-#     image_url: "https://placekitten.com/200/140",
-#     merchant_id: rand(1..6),
-#     category_ids: (1..10).to_a.sample(3),
-
-#   )
-#   success = product.save
-#   if !success
-#     product_failures << product
-#     puts "Failed to save product #{product.inspect}"
-#   else
-#     puts "Created product #{product.inspect}"
-#   end
-# end
-puts "Added #{Product.count} product records"
-puts "#{product_failures.length} products failed to save"
 Order.create!(status: "shipped",
               email: "a@aol.com",
               address1: "123 Main St",
@@ -252,7 +198,7 @@ OrderProduct.create!(order_id: 2,
                      quantity: 1)
 
 OrderProduct.create!(order_id: 2,
-                     product_id: 20,
+                     product_id: 5,
                      quantity: 3)
 
 OrderProduct.create!(order_id: 3,

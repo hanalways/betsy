@@ -1,5 +1,10 @@
 class ReviewsController < ApplicationController
   def create
+    unless Product.find_by(id: params[:product_id])
+      head :not_found
+      return
+    end
+
     if session[:user_id] == Product.find(params[:product_id]).merchant_id
       flash[:status] = :error
       flash[:message] = "Merchants can't review their own products!"

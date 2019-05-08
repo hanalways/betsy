@@ -10,8 +10,9 @@ describe OrdersController do
           state: "WA",
           zip: 90000,
           email: "ho@ho.com",
-          last_four_cc: 9999,
-          expiration: "7/09",
+          last_four_cc: 9999111122229999,
+          expiration: "07/29",
+          cvv: 676,
         },
       }
     }
@@ -104,12 +105,46 @@ describe OrdersController do
     end
 
     describe "checkout" do
+      let(:order_params) {
+        {
+          order: {
+            name: "K",
+            email: "giraffe@owl.com",
+            address1: "65 Main st",
+            city: "durham",
+            state: "MA",
+            zip: 98100,
+            last_four_cc: 7777888888886666,
+            expiration: "12/25",
+            cvv: 344,
+          },
+        }
+      }
       it "updates the order status" do
-        post checkout_path(@order)
+        post checkout_path(@order), params: order_params
         @order.reload
         expect(@order.status).must_equal "paid"
 
         must_redirect_to order_confirmation_path(@order)
+      end
+
+      it "won't check out if order_product quantity is higher than in-stock quantity" do
+        op = @order.order_products.first
+        op.quantity = 9000
+        op.save
+        product = Product.find_by(id: @order.order_products.first.product_id)
+        product.quantity = 1
+        product.save
+
+        post checkout_path(@order), params: order_params
+        check_flash(:error)
+      end
+
+      it "won't check out if order is invalid" do
+        order = Order.new
+        order.save
+        post checkout_path(order), params: order_params
+        check_flash(:error)
       end
     end
   end
