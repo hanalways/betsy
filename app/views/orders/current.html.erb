@@ -39,38 +39,48 @@
 <%= form_with model: @order, method: :post, url: checkout_path, class: 'form' do |f| %>
 
 <section class="field">
-    <%= f.label "Name", :name%>
-    <%= f.text_field :name%>
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name, required: true %>
 </section>
 
 <section class="field">
-    <%= f.label "Street Address", :address1 %>
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email %>
+</section>
+
+<section class="field">
+    <%= f.label :address1, "Street Address" %>
     <%= f.text_field :address1 %>
 </section>
 
 <section class="field">
-    <%= f.label "City", :city %>
+    <%= f.label :city, "City" %>
     <%= f.text_field :city %>
 </section>
 
 <section class="field">
-    <%= f.label "State", :state %>
+    <%= f.label :state, "State" %>
     <%= f.text_field :state %>
 </section>
 
 <section class="field">
-    <%= f.label "ZIP Code", :zip %>
+    <%= f.label :zip, "ZIP Code" %>
     <%= f.text_field :zip %>
 </section>
 
 <section class="field">
-    <%= f.label "Credit Card Number", :last_four_cc %>
+    <%= f.label :last_four_cc, "Credit Card Number" %>
     <%= f.text_field :last_four_cc %>
 </section>
 
 <section class="field">
-    <%= f.label "Expiration", :expiration %>
+    <%= f.label :expiration, "Expiration (MM/YY" %>
     <%= f.text_field :expiration %>
+</section>
+
+<section class="field">
+    <%= f.label :cvv, "CVV" %>
+    <%= f.text_field :cvv %>
 </section>
 
 <div class = "action">

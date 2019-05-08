@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   before_action :find_order, except: [:create]
 
   def create
-    binding.pry
+    # binding.pry
     @order = Order.new(order_params)
     if @order.save
       flash[:status] = :success
@@ -49,6 +49,7 @@ class OrdersController < ApplicationController
   def checkout
     @order.status = "paid"
     @order.update(order_params)
+    @order.total_price = @order.checkout_amount
     if @order.save(context: :checkout)
       @order.order_products.each do |op|
         product = Product.find_by(id: op.product_id)
@@ -70,7 +71,8 @@ class OrdersController < ApplicationController
       return
     else
       flash.now[:status] = :error
-      flash.now[:message] = "Order must contain at least one product"
+      flash.now[:message] = "Could not complete check out"
+      flash.now[:errors] = @order.errors
       render :current
       return
     end
@@ -89,7 +91,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :email, :address1, :city, :state, :zip, :expiration)
+    params.require(:order).permit(:name, :email, :address1, :city, :state, :zip, :expiration, :last_four_cc, :cvv)
   end
 
   def find_order
