@@ -1,16 +1,16 @@
 <section>
   <h2><%= @merchant.username %>'s Dashboard</h2>
-  <section class="details">
-    <p>$ Joined: <%=time_ago_in_words(@merchant.created_at)%> ago</p>
-    <p>$ Total Revenue: </p>
-    <p>$ Average Rating: </p>
+  <section>
+    <ul class="details">
+      <li>$ Joined: <%= time_ago_in_words(@merchant.created_at) %> ago</li>
+      <li>$ Total Revenue: $<%= number_with_precision(@merchant.total_revenue, :precision => 2, :delimiter => ',') %></li>
 
-    <p>$ Total Revenue (paid orders):</p>
-    <p>$ Total Revenue (fulfilled orders):</p>
-    
-    <p>$ Total Order Count (paid orders):</p>
-    <p>$ Total Order Count (fulfilled orders):</p>
-    
+      <li>$ Pending Revenue (paid orders): $<%= number_with_precision(@merchant.revenue_of_status(:pending), :precision => 2, :delimiter => ',') %></li>
+      <li>$ Total Revenue (fulfilled orders): $<%= number_with_precision(@merchant.revenue_of_status(:shipped), :precision => 2, :delimiter => ',') %></li>
+      
+      <li>$ Total Order Count (paid orders): <%= @merchant.order_count(:pending) %></li>
+      <li>$ Total Order Count (fulfilled orders): <%= @merchant.order_count(:shipped) %></li>
+    </ul>
   </section>
 </section>
   <ul class= "dashboard-buttons">
@@ -43,7 +43,7 @@
       <% @merchant.products.each do |product| %>
       <tr scope="row">
         <td><img src="<%= product.image_url %>" alt="<%= product.name %> image", height="100", width="100"></td>
-        <td class="name"><%= product.name%></td>
+        <td class="name"><%= link_to product.name, product_path(product.id) %></td>
         <td>$<%= number_with_precision(product.price, :precision => 2, :delimiter => ',') %></td>
         <td><%= product.quantity %></td>
         <td><%= link_to "Edit", edit_product_path(product.id), class:"btn btn-success" %></td>
@@ -64,12 +64,14 @@
         <th scope="col">Order ID</th>
         <th scope="col">Date Purchased</th>
         <th scope="col">Order Revenue</th>
+        <th scope="col">Cancel Shipment</th>
       </thead>
-      <% Merchant.orders_of_status(:shipped, @merchant.id).each do |order| %>
+      <% @merchant.orders_of_status(:shipped).each do |order| %>
       <tr scope="row">
-        <td class="name"><%= order.id %></td>
-        <td><%= order.created_at %></td>
-        <td>$<%= order.status %></td>
+        <td class="name"><%= link_to order.id, root_path %></td>
+        <td><%= order.created_at.strftime("%b %d, %Y") %></td>
+        <td>$<%= number_with_precision(order.total_price, :precision => 2, :delimiter => ',') %></td>
+        <td><%= link_to "Cancel", update_status_path(order.id), remote: true, method: :patch, class: "btn btn-success" %></td>
       </tr>
       <% end %>
     </table>
@@ -84,12 +86,12 @@
         <th scope="col">Order Revenue</th>
         <th scope="col">Ship Order</th>
       </thead>
-      <% Merchant.orders_of_status(:paid, @merchant.id).each do |order| %>
+      <% @merchant.orders_of_status(:pending).each do |order| %>
       <tr scope="row">
         <td class="name"><%= order.id %></td>
-        <td><%= order.created_at %></td>
-        <td>$<%= order.status %></td>
-        <td><%= link_to "Ship Order", root_path %></td>
+        <td><%= order.created_at.strftime("%b %d, %Y") %></td>
+        <td>$<%= number_with_precision(order.total_price, :precision => 2, :delimiter => ',') %></td>
+        <td><%= link_to "Ship Order", update_status_path(order.id), remote: true, method: :patch, class: "btn btn-success" %></td>
       </tr>
       <% end %>
     </table>

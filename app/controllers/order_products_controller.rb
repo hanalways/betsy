@@ -47,10 +47,30 @@ class OrderProductsController < ApplicationController
     end
   end
 
+  def update_status
+    @op = OrderProduct.find_by(id: params[:id])
+    if @op.status == "shipped"
+      @op.status = :pending      
+    else @op.status == "pending"
+      @op.status = :shipped
+    end
+
+    if @op.save
+      flash[:status] = :success 
+      flash[:message] = "Order \##{@op.id} status updated."
+    else 
+      flash[:status] = :error
+      flash[:message] = "Failed to update Order \##{@op.id}"
+      flash[:errors] = @op.errors.messages 
+    end
+
+    redirect_to dashboard_path
+  end
+
   private
 
   def order_product_params
-    params.require(:order_product).permit(:quantity, :product_id, :order_id)
+    params.require(:order_product).permit(:quantity, :product_id, :order_id, :status)
   end
 
   def find_order_product
