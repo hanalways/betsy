@@ -17,29 +17,28 @@
   </thead>
   <tbody>
     <tr>
-        <td><%= @order.id %></td>
-        <td><%= (@order.created_at).strftime("%m/%d/%Y") %></td>
-        <td><%= @order.status %></td>
-        <td><%= @order.checkout_amount %></td>
+      <td><%= @order.id %></td>
+      <td><%= (@order.created_at).strftime("%m/%d/%Y") %></td>
+      <td><%= @order.status %></td>
+      <td><%= @order.checkout_amount %></td>
     </tr>
   </tbody>
 </table>
-
 <table class="table">
-<thead>
-<tr>
-<th>Product</th>
-<th>Quantity</th>
-<th>Subtotal</th>
-</tr>
-</thead>
-<tbody>
-<% @order.order_products.each do |op| %>
-<tr>
-<td><%= link_to Product.find_by(id: op.product_id).name, product_path(op.product_id) %></td>
-<td><%= op.quantity %></td>
-<td><%= op.total_price %></td>
-</tr>
-<%end%>
-</tbody>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_products.each do |op| %>
+      <tr>
+        <td><%= link_to Product.find_by(id: op.product_id).name, product_path(op.product_id) %></td>
+        <td><%= op.quantity %></td>
+        <td><%= op.total_price %></td>
+      </tr>
+    <%end%>
+  </tbody>
 </table>
