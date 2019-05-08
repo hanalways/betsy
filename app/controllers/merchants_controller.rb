@@ -51,4 +51,12 @@ class MerchantsController < ApplicationController
       head :not_found
     end
   end
+
+  def confirmation
+    @merchant = @current_merchant
+    @order = Order.find_by(id: params[:id])
+    if @merchant.nil?
+      head :not_found
+    end
+  end
 end

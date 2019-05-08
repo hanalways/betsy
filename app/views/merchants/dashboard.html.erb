@@ -66,12 +66,12 @@
         <th scope="col">Order Revenue</th>
         <th scope="col">Cancel Shipment</th>
       </thead>
-      <% @merchant.orders_of_status(:shipped).each do |order| %>
+      <% @merchant.orders_of_status(:shipped).each do |op| %>
       <tr scope="row">
-        <td class="name"><%= link_to order.id, root_path %></td>
-        <td><%= order.created_at.strftime("%b %d, %Y") %></td>
-        <td>$<%= number_with_precision(order.total_price, :precision => 2, :delimiter => ',') %></td>
-        <td><%= link_to "Cancel", update_status_path(order.id), remote: true, method: :patch, class: "btn btn-success" %></td>
+        <td class="name"><%= link_to op.order_id, merchant_confirmation_path(op.order_id) %></td>
+        <td><%= op.created_at.strftime("%b %d, %Y") %></td>
+        <td>$<%= number_with_precision(op.total_price, :precision => 2, :delimiter => ',') %></td>
+        <td><%= link_to "Cancel", update_status_path(op.order_id), remote: true, method: :patch, class: "btn btn-success" %></td>
       </tr>
       <% end %>
     </table>
