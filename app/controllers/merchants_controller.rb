@@ -55,6 +55,7 @@ class MerchantsController < ApplicationController
   def confirmation
     @merchant = @current_merchant
     @order = Order.find_by(id: params[:id])
+
     if @merchant.nil?
       head :not_found
     end
