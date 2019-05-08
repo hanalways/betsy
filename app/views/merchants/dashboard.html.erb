@@ -4,30 +4,24 @@
     <ul class="details">
       <li>$ Joined: <%= time_ago_in_words(@merchant.created_at) %> ago</li>
       <li>$ Total Revenue: $<%= number_with_precision(@merchant.total_revenue, :precision => 2, :delimiter => ',') %></li>
-
       <li>$ Pending Revenue (paid orders): $<%= number_with_precision(@merchant.revenue_of_status(:pending), :precision => 2, :delimiter => ',') %></li>
       <li>$ Total Revenue (fulfilled orders): $<%= number_with_precision(@merchant.revenue_of_status(:shipped), :precision => 2, :delimiter => ',') %></li>
-      
       <li>$ Total Order Count (paid orders): <%= @merchant.order_count(:pending) %></li>
       <li>$ Total Order Count (fulfilled orders): <%= @merchant.order_count(:shipped) %></li>
     </ul>
   </section>
 </section>
-  <ul class= "dashboard-buttons">
-    <li><%= link_to "Add Product", new_product_path, class:"btn btn-secondary" %></li>
-    <li><%= link_to "Add Category", new_category_path, class:"btn btn-secondary"  %></li>
-  </ul>
-
+<ul class= "dashboard-buttons">
+  <li><%= link_to "Add Product", new_product_path, class:"btn btn-secondary" %></li>
+  <li><%= link_to "Add Category", new_category_path, class:"btn btn-secondary"  %></li>
+</ul>
 <nav>
   <ul class="nav nav-tabs bg-dark" id="dashboardTabs" role="tablist">
     <li class="nav-item"><%= link_to "View All Products", "#all-products", class:"nav-link text-light active", 'data-toggle' => 'tab', "role"=>"tab", "aria-controls" =>"products", "aria-selected" => "true"%></li>
     <li class="nav-item"><%= link_to "Fulfilled Orders", "#fulfilled", class:"nav-link text-light",  'data-toggle' => 'tab', "role"=>"tab", "aria-controls" =>"fulfilled", "aria-selected" => "false"%></li>
-
     <li class="nav-item"><%= link_to "Unfulfilled Orders", "#unfulfilled", class:"nav-link text-light", 'data-toggle' => 'tab', "role"=>"tab", "aria-controls" =>"unfulfilled", "aria-selected" => "false" %></li>
-    
   </ul>
 </nav>
-
 <div class="tab-content" id="nav-tabContent">
   <section class="dashboard-table tab-pane fade show active" id="all-products" role="tabpanel" aria-labelledby="products-tab">
     <h2>All Products:</h2>
@@ -41,25 +35,24 @@
         <th scope="col">Status</th>
       </thead>
       <% @merchant.products.each do |product| %>
-      <tr scope="row">
-        <td><img src="<%= product.image_url %>" alt="<%= product.name %> image", height="100", width="100"></td>
-        <td class="name"><%= link_to product.name, product_path(product.id) %></td>
-        <td>$<%= number_with_precision(product.price, :precision => 2, :delimiter => ',') %></td>
-        <td><%= product.quantity %></td>
-        <td><%= link_to "Edit", edit_product_path(product.id), class:"btn btn-success" %></td>
-        <% if product.retired %>
-          <td><%= link_to "Activate", toggle_retire_product_path(product.id), class:"btn btn-success", method: :post %></td>
-        <% else %>
-          <td><%= link_to "Retire", toggle_retire_product_path(product.id), class:"btn btn-success", method: :post %></td>
-        <% end %>
-      </tr>
+        <tr scope="row">
+          <td><img src="<%= product.image_url %>" alt="<%= product.name %> image", height="100", width="100"></td>
+          <td class="name"><%= link_to product.name, product_path(product.id) %></td>
+          <td>$<%= number_with_precision(product.price, :precision => 2, :delimiter => ',') %></td>
+          <td><%= product.quantity %></td>
+          <td><%= link_to "Edit", edit_product_path(product.id), class:"btn btn-success" %></td>
+          <% if product.retired %>
+            <td><%= link_to "Activate", toggle_retire_product_path(product.id), class:"btn btn-success", method: :post %></td>
+          <% else %>
+            <td><%= link_to "Retire", toggle_retire_product_path(product.id), class:"btn btn-success", method: :post %></td>
+          <% end %>
+        </tr>
       <% end %>
     </table>
   </section>
-
   <section class="dashboard-table tab-pane fade" id="fulfilled" role="tabpanel" aria-labelledby="fulfilled-tab">
     <h2>Fulfilled Orders</h2>
-  <table class="table table-dark table-striped">
+    <table class="table table-dark table-striped">
       <thead class="thead-dark">
         <th scope="col">Order ID</th>
         <th scope="col">Date Purchased</th>
@@ -67,19 +60,18 @@
         <th scope="col">Cancel Shipment</th>
       </thead>
       <% @merchant.orders_of_status(:shipped).each do |op| %>
-      <tr scope="row">
-        <td class="name"><%= link_to op.order_id, merchant_confirmation_path(op.order_id) %></td>
-        <td><%= op.created_at.strftime("%b %d, %Y") %></td>
-        <td>$<%= number_with_precision(op.total_price, :precision => 2, :delimiter => ',') %></td>
-        <td><%= link_to "Cancel", update_status_path(op.order_id), remote: true, method: :patch, class: "btn btn-success" %></td>
-      </tr>
+        <tr scope="row">
+          <td class="name"><%= link_to op.order_id, merchant_confirmation_path(op.order_id) %></td>
+          <td><%= op.created_at.strftime("%b %d, %Y") %></td>
+          <td>$<%= number_with_precision(op.total_price, :precision => 2, :delimiter => ',') %></td>
+          <td><%= link_to "Cancel", update_status_path(op.order_id), remote: true, method: :patch, class: "btn btn-success" %></td>
+        </tr>
       <% end %>
     </table>
   </section>
-
   <section class="dashboard-table tab-pane fade" id="unfulfilled" role="tabpanel" aria-labelledby="unfulfilled-tab">
     <h2>Unfulfilled Orders</h2>
-  <table class="table table-dark table-striped">
+    <table class="table table-dark table-striped">
       <thead class="thead-dark">
         <th scope="col">Order ID</th>
         <th scope="col">Date Purchased</th>
@@ -87,12 +79,12 @@
         <th scope="col">Ship Order</th>
       </thead>
       <% @merchant.orders_of_status(:pending).each do |order| %>
-      <tr scope="row">
-        <td class="name"><%= order.order_id %></td>
-        <td><%= order.created_at.strftime("%b %d, %Y") %></td>
-        <td>$<%= number_with_precision(order.total_price, :precision => 2, :delimiter => ',') %></td>
-        <td><%= link_to "Ship Order", update_status_path(order.id), remote: true, method: :patch, class: "btn btn-success" %></td>
-      </tr>
+        <tr scope="row">
+          <td class="name"><%= order.order_id %></td>
+          <td><%= order.created_at.strftime("%b %d, %Y") %></td>
+          <td>$<%= number_with_precision(order.total_price, :precision => 2, :delimiter => ',') %></td>
+          <td><%= link_to "Ship Order", update_status_path(order.id), remote: true, method: :patch, class: "btn btn-success" %></td>
+        </tr>
       <% end %>
     </table>
   </section>
