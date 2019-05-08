@@ -6,10 +6,6 @@
     <p>Average Rating: </p>
   </section>
 </section>
-<<<<<<< HEAD
-=======
-
->>>>>>> bac91b599420dcd4ca6fbc40b6919fb05a2d397b
   <ul class= "dashboard-buttons">
     <li><%= link_to "Add Product", new_product_path, class:"btn btn-secondary" %></li>
     <li><%= link_to "Add Category", new_category_path, class:"btn btn-secondary"  %></li>
@@ -45,9 +41,9 @@
         <td><%= product.quantity %></td>
         <td><%= link_to "Edit", edit_product_path(product.id), class:"btn btn-success" %></td>
         <% if product.retired %>
-          <td><%= link_to "Activate", toggle_retire_product_path(product.id), class:"btn btn-success" %></td>
+          <td><%= link_to "Activate", toggle_retire_product_path(product.id), class:"btn btn-success", method: :post %></td>
         <% else %>
-          <td><%= link_to "Retire", toggle_retire_product_path(product.id), class:"btn btn-success" %></td>
+          <td><%= link_to "Retire", toggle_retire_product_path(product.id), class:"btn btn-success", method: :post %></td>
         <% end %>
       </tr>
       <% end %>
