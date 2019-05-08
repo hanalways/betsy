@@ -1,5 +1,4 @@
-
-<div class="container products">
+<div class="container">
 
 <%if params[:merchant_id]%>
   <%product_list = @products.where(merchant_id: params[:merchant_id], retired: false)%>

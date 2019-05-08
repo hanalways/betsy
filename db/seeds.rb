@@ -150,7 +150,7 @@ Product.create!(name: "Dan Can ",
                 price: 1500,
                 quantity: 150,
                 description: "Tired of wasting your breath? look no further than the dan can! comes with many options such as Hello!, Keep up the good work!, You have a strong start!, See my inline comments, I see you have met all the learning requirements",
-                image_url: "https://i.imgur.com/qsBxp96t.jpg",
+                image_url: "https://i.imgur.com/ANHCtMrt.jpg",
                 merchant_id: rand(1..6),
                 category_ids: work.id)
 
