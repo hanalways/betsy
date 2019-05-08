@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 2019_05_07_233553) do
     t.string "email"
     t.integer "uid"
     t.string "provider"
+    t.string "image_url"
   end
 
   create_table "order_products", force: :cascade do |t|

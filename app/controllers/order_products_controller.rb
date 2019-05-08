@@ -2,7 +2,12 @@ class OrderProductsController < ApplicationController
   before_action :find_order_product, only: [:destroy, :update]
 
   def create
-    @order_product = OrderProduct.new(order_product_params)
+    @order_product = OrderProduct.find_by(order_id: order_product_params[:order_id], product_id: order_product_params[:product_id])
+    if @order_product
+      @order_product.quantity += order_product_params[:quantity].to_i
+    else
+      @order_product = OrderProduct.new(order_product_params)
+    end
 
     if @order_product.save
       flash[:status] = :success

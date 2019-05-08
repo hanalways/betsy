@@ -62,6 +62,7 @@ class ProductsController < ApplicationController
   def toggle_retire
     @product.retired = !@product.retired
     @product.save
+    redirect_back(fallback_location: root_path)
   end
 
   def homepage

@@ -95,7 +95,7 @@ describe ProductsController do
           must_redirect_to product_path(product.id)
         end
 
-        it "will redirect to the root page if given an invalid id" do
+        it "will return a 404 if given an invalid id" do
           product_hash[:id] = -1
           patch merchant_product_path(merchant_id: session[:user_id], id: product_hash[:id]), params: product_hash
           must_respond_with :not_found
@@ -126,28 +126,28 @@ describe ProductsController do
       Product.all
     }
 
-    describe "access for guest users" do 
-      it "can access the homepage" do 
-        get root_path 
+    describe "access for guest users" do
+      it "can access the homepage" do
+        get root_path
         must_respond_with :success
-      end 
+      end
 
-      it "can access the products index page" do 
+      it "can access the products index page" do
         get products_path
         must_respond_with :success
       end
 
-      it "cannot access invalid product show page" do 
+      it "cannot access invalid product show page" do
         get product_path(Product.last.id + 1)
 
         must_respond_with :not_found
-      end 
+      end
 
-      it "cannot access the new product form" do 
+      it "cannot access the new product form" do
         get new_product_path
-        must_redirect_to root_path 
+        must_redirect_to root_path
         check_flash(:error)
-      end 
+      end
     end
   end
 end
