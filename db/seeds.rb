@@ -46,7 +46,7 @@ Product.create!(name: "0.1% diversity statistic",
                 price: 100000,
                 quantity: 150,
                 description: "Add a whopping 01.% diversity statistic! looks great on presentations",
-                image_url: "https://i.imgur.com/OMHSBtZ.jpg", 
+                image_url: "https://i.imgur.com/OMHSBtZ.jpg",
                 merchant_id: rand(1..6),
                 category_ids: diversity.id)
 
@@ -54,7 +54,7 @@ Product.create!(name: "0.2% diversity statistic",
                 price: 150000,
                 quantity: 150,
                 description: "Add a whopping 02.% diversity statistic! looks great on presentations",
-                image_url: "https://i.imgur.com/nS07PzS.jpg", 
+                image_url: "https://i.imgur.com/nS07PzS.jpg",
                 merchant_id: rand(1..6),
                 category_ids: diversity.id)
 
@@ -62,7 +62,7 @@ Product.create!(name: "0.3% diversity statistic",
                 price: 250000,
                 quantity: 150,
                 description: "the deluxe and highly coveted 0.3% diversity statistic!",
-                image_url: "https://i.imgur.com/3ZOqS2n.jpg", 
+                image_url: "https://i.imgur.com/3ZOqS2n.jpg",
                 merchant_id: rand(1..6),
                 category_ids: diversity.id)
 
@@ -70,7 +70,7 @@ Product.create!(name: "Code Cloud Pillow",
                 price: 500,
                 quantity: 150,
                 description: "Enjoy sweet dreams on the cloud",
-                image_url: "https://i.imgur.com/OFkih6c.jpg", 
+                image_url: "https://i.imgur.com/OFkih6c.jpg",
                 merchant_id: rand(1..6),
                 category_ids: lifestyle.id)
 
@@ -78,7 +78,7 @@ Product.create!(name: "Batman Rubber Duckie",
                 price: 200,
                 quantity: 150,
                 description: "Have him talk you through your bugs! remember... The night is darkest just before the dawn.",
-                image_url: "https://i.imgur.com/G6hGf3yt.jpg", 
+                image_url: "https://i.imgur.com/G6hGf3yt.jpg",
                 merchant_id: rand(1..6),
                 category_ids: rubber_ducky.id)
 
@@ -86,7 +86,7 @@ Product.create!(name: "Angry Manager Rubber Duckie",
                 price: 200,
                 quantity: 150,
                 description: "Work through the bugs!",
-                image_url: "https://i.imgur.com/NECimf9t.jpg", 
+                image_url: "https://i.imgur.com/NECimf9t.jpg",
                 merchant_id: rand(1..6),
                 category_ids: rubber_ducky.id)
 
@@ -102,14 +102,14 @@ Product.create!(name: "Viking Rubber Duckie",
                 price: 200,
                 quantity: 150,
                 description: "Conquer the bugs!",
-                image_url: "https://i.imgur.com/pVJNSrlt.jpg", 
+                image_url: "https://i.imgur.com/pVJNSrlt.jpg",
                 merchant_id: rand(1..6),
                 category_ids: rubber_ducky.id)
 
 Product.create!(name: "Innovative Startup Idea ",
                 price: 2000000,
                 quantity: 150,
-                description: "Do you have what it takes to become one of the tech giants? you will with this idea!", alt="collage of facebook, microsoft, amazon, google symbols"
+                description: "Do you have what it takes to become one of the tech giants? you will with this idea!",
                 image_url: "https://i.imgur.com/PJDrEhht.jpg",
                 merchant_id: rand(1..6),
                 category_ids: networking.id)
@@ -117,7 +117,7 @@ Product.create!(name: "Innovative Startup Idea ",
 Product.create!(name: "Exclusive Invite To Lunch ",
                 price: 15000,
                 quantity: 150,
-                description: "Ever wonder what lunch is served on the other side...buy a pass to eat and network at Microsoft, Amazon or google! ", alt=" collage of microsoft, amazon, google"
+                description: "Ever wonder what lunch is served on the other side...buy a pass to eat and network at Microsoft, Amazon or google! ",
                 image_url: "https://i.imgur.com/WqVwqgJt.png",
                 merchant_id: rand(1..6),
                 category_ids: networking.id)
