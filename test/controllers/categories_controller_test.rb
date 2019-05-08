@@ -15,4 +15,18 @@ describe CategoriesController do
       }.must_change "Category.count", 1
     end
   end
+
+  describe "index" do
+    it "shows the page" do
+      get categories_path
+      must_respond_with :success
+    end
+  end
+
+  describe "new" do
+    it "shows the page" do
+      get new_category_path
+      must_respond_with :success
+    end
+  end
 end

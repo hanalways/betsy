@@ -14,9 +14,9 @@ class CategoriesController < ApplicationController
       flash[:message] = "Successfully created category #{@category.name}"
       redirect_to dashboard_path
     else
-      flash.now[:status] = :warning
+      flash.now[:status] = :error
       flash.now[:message] = "Could not create category"
-      flash.now[:errors] = @order.errors
+      flash.now[:errors] = @category.errors
       render :new
     end
   end
