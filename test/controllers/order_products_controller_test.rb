@@ -21,6 +21,14 @@ describe OrderProductsController do
       }.must_change "OrderProduct.count", 1
       check_flash
     end
+
+    it "adds to the existing op's quantity if that item already exists in the cart" do
+      post order_products_path(order_product_data)
+
+      expect {
+        post order_products_path(order_product_data)
+      }.wont_change "OrderProduct.count"
+    end
   end
 
   describe "update" do

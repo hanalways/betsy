@@ -1,4 +1,8 @@
 <div class="container">
+
+<%@product.categories.each do |category|%>
+    <%= link_to category.name, category_products_path(category_id:category.id), class: "btn btn-dark btn-sm" %>
+<%end%>
 <h1><%= @product.name%></h1>
 
 <img src=<%=@product.image_url%>  alt="image of <%=@product.name%> " class="show-image">

@@ -1,32 +1,40 @@
-<%= form_with model: @product do |f| %>
+<%= form_with model: @product, class: "form" do |f| %>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :name%>
     <%= f.text_field :name%>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :price%>
     <%= f.number_field :price,  step: 0.05 %>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :quantity%>
     <%= f.number_field :quantity,  step: 1%>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label :description %>
     <%= f.text_area :description%>
 </section>
 
-<section class="field">
+<section class="form-group">
     <%= f.label "Link to image", :image_url%>
     <%= f.text_field :image_url%>
 </section>
 
-<div class = "action">
-    <%= f.submit locals[:button_text]%>
+<section class="form-check form-check-inline">
+    <%= f.label :category_ids, "Categories:", class: "form-check-label" %>
+    <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) do |b| %>
+ <%= b.label class: "form-check-label" %>
+ <%= b.check_box class: "form-check-input" %>
+ <% end %>
+</section>
+
+<div class="action">
+    <%= f.submit locals[:button_text] %>
 </div>
 
 <%end%>
