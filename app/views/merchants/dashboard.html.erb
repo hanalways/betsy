@@ -41,9 +41,9 @@
         <td><%= product.quantity %></td>
         <td><%= link_to "Edit", edit_product_path(product.id), class:"btn btn-success" %></td>
         <% if product.retired %>
-          <td><%= link_to "Activate", toggle_retire_product_path(product.id), class:"btn btn-success" %></td>
+          <td><%= link_to "Activate", toggle_retire_product_path(product.id), class:"btn btn-success", method: :post %></td>
         <% else %>
-          <td><%= link_to "Retire", toggle_retire_product_path(product.id), class:"btn btn-success" %></td>
+          <td><%= link_to "Retire", toggle_retire_product_path(product.id), class:"btn btn-success", method: :post %></td>
         <% end %>
       </tr>
       <% end %>
