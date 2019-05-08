@@ -26,6 +26,7 @@
 </section>
 
 <section class="checkboxes">
+    <%= f.label :category_ids, "Categories:" %>
     <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
 </section>
 
