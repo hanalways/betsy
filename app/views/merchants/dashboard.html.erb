@@ -2,12 +2,11 @@
   <h2><%= @merchant.username %>'s Dashboard</h2>
   <section>
     <ul class="details">
-      <li>$ Joined: <%=time_ago_in_words(@merchant.created_at)%> ago</li>
-      <li>$ Average Rating: </li>
-      <li>$ Total Revenue: </li>
+      <li>$ Joined: <%= time_ago_in_words(@merchant.created_at) %> ago</li>
+      <li>$ Total Revenue: $<%= number_with_precision(@merchant.total_revenue, :precision => 2, :delimiter => ',') %></li>
 
-      <li>$ Pending Revenue (paid orders): <%= @merchant.revenue_of_status(:pending) %></li>
-      <li>$ Total Revenue (fulfilled orders): <%= @merchant.revenue_of_status(:shipped) %></li>
+      <li>$ Pending Revenue (paid orders): $<%= number_with_precision(@merchant.revenue_of_status(:pending), :precision => 2, :delimiter => ',') %></li>
+      <li>$ Total Revenue (fulfilled orders): $<%= number_with_precision(@merchant.revenue_of_status(:shipped), :precision => 2, :delimiter => ',') %></li>
       
       <li>$ Total Order Count (paid orders): <%= @merchant.order_count(:pending) %></li>
       <li>$ Total Order Count (fulfilled orders): <%= @merchant.order_count(:shipped) %></li>
@@ -71,7 +70,7 @@
       <tr scope="row">
         <td class="name"><%= link_to order.id, root_path %></td>
         <td><%= order.created_at.strftime("%b %d, %Y") %></td>
-        <td>$<%= order.total_price %></td>
+        <td>$<%= number_with_precision(order.total_price, :precision => 2, :delimiter => ',') %></td>
         <td><%= link_to "Cancel", update_status_path(order.id), remote: true, method: :patch, class: "btn btn-success" %></td>
       </tr>
       <% end %>
@@ -91,7 +90,7 @@
       <tr scope="row">
         <td class="name"><%= order.id %></td>
         <td><%= order.created_at.strftime("%b %d, %Y") %></td>
-        <td>$<%= order.total_price %></td>
+        <td>$<%= number_with_precision(order.total_price, :precision => 2, :delimiter => ',') %></td>
         <td><%= link_to "Ship Order", update_status_path(order.id), remote: true, method: :patch, class: "btn btn-success" %></td>
       </tr>
       <% end %>

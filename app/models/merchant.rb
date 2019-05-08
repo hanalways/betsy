@@ -35,7 +35,6 @@ class Merchant < ApplicationRecord
   end
 
   def total_revenue
-    return orders_of_status()
+    return revenue_of_status(:pending) + revenue_of_status(:shipped)
   end
-
 end
