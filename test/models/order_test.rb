@@ -18,7 +18,7 @@ describe Order do
 
   describe "checkout_amount" do
     it "calculates the order total" do
-      expect(@order.checkout_amount).must_equal 4.5
+      expect(@order.checkout_amount).must_equal 27.5
     end
   end
 

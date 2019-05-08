@@ -6,7 +6,6 @@
     <p>Average Rating: </p>
   </section>
 </section>
-
   <ul class= "dashboard-buttons">
     <li><%= link_to "Add Product", new_product_path, class:"btn btn-secondary" %></li>
     <li><%= link_to "Add Category", new_category_path, class:"btn btn-secondary"  %></li>
@@ -22,40 +21,70 @@
   </ul>
 </nav>
 
-<section class="dashboard-table tab-pane fade show active" id="all-products" role="tabpanel" aria-labelledby="products-tab">
-  <h2 >All Products:</h2>
-  <table class="table table-dark table-striped">
-    <thead class="thead-dark">
-      <th scope="col">Product</th>
-      <th scope="col">Name</th>
-      <th scope="col">Price</th>
-      <th scope="col">Inventory</th>
-      <th scope="col">Edit</th>
-      <th scope="col">Status</th>
-    </thead>
-    <% @merchant.products.each do |product| %>
-    <tr scope="row">
-      <td><img src="<%= product.image_url %>" alt="<%= product.name %> image", height="100", width="100"></td>
-      <td class="name"><%= product.name%></td>
-      <td>$<%= number_with_precision(product.price, :precision => 2, :delimiter => ',') %></td>
-      <td><%= product.quantity %></td>
-      <td><%= link_to "Edit", edit_product_path(product.id), class:"btn btn-success" %></td>
-      <% if product.retired %>
-        <td><%= link_to "Activate", toggle_retire_product(product.id), class:"btn btn-success" %></td>
-      <% else %>
-        <td><%= link_to "Retire", toggle_retire_product_path(product.id), class:"btn btn-success" %></td>
+<div class="tab-content" id="nav-tabContent">
+  <section class="dashboard-table tab-pane fade show active" id="all-products" role="tabpanel" aria-labelledby="products-tab">
+    <h2>All Products:</h2>
+    <table class="table table-dark table-striped">
+      <thead class="thead-dark">
+        <th scope="col">Product</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Inventory</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Status</th>
+      </thead>
+      <% @merchant.products.each do |product| %>
+      <tr scope="row">
+        <td><img src="<%= product.image_url %>" alt="<%= product.name %> image", height="100", width="100"></td>
+        <td class="name"><%= product.name%></td>
+        <td>$<%= number_with_precision(product.price, :precision => 2, :delimiter => ',') %></td>
+        <td><%= product.quantity %></td>
+        <td><%= link_to "Edit", edit_product_path(product.id), class:"btn btn-success" %></td>
+        <% if product.retired %>
+          <td><%= link_to "Activate", toggle_retire_product_path(product.id), class:"btn btn-success", method: :post %></td>
+        <% else %>
+          <td><%= link_to "Retire", toggle_retire_product_path(product.id), class:"btn btn-success", method: :post %></td>
+        <% end %>
+      </tr>
       <% end %>
-    </tr>
-    <% end %>
-  </table>
-</section>
+    </table>
+  </section>
 
-<section class="dashboard-table tab-pane fade show active" id="fulfilled" role="tabpanel" aria-labelledby="fulfilled-tab">
+  <section class="dashboard-table tab-pane fade" id="fulfilled" role="tabpanel" aria-labelledby="fulfilled-tab">
+    <h2>Orders Fulfilled</h2>
+  <table class="table table-dark table-striped">
+      <thead class="thead-dark">
+        <th scope="col">Order ID</th>
+        <th scope="col">Date Purchased</th>
+        <th scope="col">Order Revenue</th>
+      </thead>
+      <% Merchant.orders_of_status(:shipped, @merchant.id).each do |order| %>
+      <tr scope="row">
+        <td class="name"><%= order.id %></td>
+        <td><%= order.created_at %></td>
+        <td>$<%= order.status %></td>
+      </tr>
+      <% end %>
+    </table>
+  </section>
 
-
-<section class="dashboard-table tab-pane fade" id="fulfilled" role="tabpanel" aria-labelledby="fulfilled-tab">
-</section>
-
-<section class="dashboard-table tab-pane fade" id="unfulfilled" role="tabpanel" aria-labelledby="unfulfilled-tab">
-</section>
-
+  <section class="dashboard-table tab-pane fade" id="unfulfilled" role="tabpanel" aria-labelledby="unfulfilled-tab">
+    <h2>Orders Fulfilled</h2>
+  <table class="table table-dark table-striped">
+      <thead class="thead-dark">
+        <th scope="col">Order ID</th>
+        <th scope="col">Date Purchased</th>
+        <th scope="col">Order Revenue</th>
+        <th scope="col">Ship Order</th>
+      </thead>
+      <% Merchant.orders_of_status(:paid, @merchant.id).each do |order| %>
+      <tr scope="row">
+        <td class="name"><%= order.id %></td>
+        <td><%= order.created_at %></td>
+        <td>$<%= order.status %></td>
+        <td><%= link_to "Ship Order", root_path %></td>
+      </tr>
+      <% end %>
+    </table>
+  </section>
+</div>
