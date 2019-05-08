@@ -23,4 +23,13 @@ class ApplicationController < ActionController::Base
   def set_merchant
     @current_merchant = Merchant.find_by(id: session[:user_id])
   end
+
+  def check_owner(product)
+    unless product.merchant == @current_merchant
+      flash[:status] = :error
+      flash[:message] = "You are not authorized to perform this action"
+      redirect_to root_path
+      return
+    end
+  end
 end
