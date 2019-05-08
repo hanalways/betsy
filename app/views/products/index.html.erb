@@ -2,13 +2,13 @@
 <div class="container products">
 
 <%if params[:merchant_id]%>
-  <%product_list = @products.where(merchant_id: params[:merchant_id])%>
+  <%product_list = @products.where(merchant_id: params[:merchant_id], retired: false)%>
   <%heading = "#{Merchant.find(params[:merchant_id]).username}'s Products:"%>
 <%elsif params[:category_id] %>
-  <%product_list = @products.select{|product| product.categories.include?(Category.find(params[:category_id]))}%>
+  <%product_list = @products.select{|product| !product.retired && product.categories.include?(Category.find(params[:category_id]))}%>
   <%heading = "Products in category '#{Category.find(params[:category_id]).name}':"%>
 <%else%>
-  <%product_list = @products%>
+  <%product_list = @products.where(retired: false)%>
   <%heading = "All Products:"%>
 <%end%>
 <h1><%= heading%></h1>
