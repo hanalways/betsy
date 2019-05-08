@@ -25,6 +25,10 @@
     <%= f.text_field :image_url%>
 </section>
 
+<section class="checkboxes">
+    <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) %>
+</section>
+
 <div class = "action">
     <%= f.submit locals[:button_text]%>
 </div>

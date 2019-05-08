@@ -79,6 +79,7 @@ class ProductsController < ApplicationController
              :price,
              :quantity,
              :description,
+             :category_ids => [],
            )
   end
 
