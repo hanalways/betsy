@@ -20,9 +20,15 @@ a {
     margin:30px 0;
     z-index: -1;
     display:flex;
+<<<<<<< HEAD
     flex-flow:row wrap;
     justify-content: flex-start;
     align-content: flex-start;
+=======
+    flex-flow: row nowrap;
+    align-content:flex-start;
+    justify-content:flex-start;
+>>>>>>> bac91b599420dcd4ca6fbc40b6919fb05a2d397b
 }
 
  

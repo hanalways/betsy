@@ -4,11 +4,33 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
+one: {
+  name: "Kirsten",
+  email: "k@tree.com",
+  address1: "4 Main St",
+  city: "Seattle",
+  state: "WA",
+  zip: "98105",
+  last_four_cc: 8888999900001111,
+  expiration: 10/23,
+  cvv: 545,
+
+
+}
 # column: value
 #
-two: {}
+two: {
+  name: "Dora",
+  email: "yo@tree.com",
+  address1: "14 Spring St",
+  city: "Seattle",
+  state: "WA",
+  zip: "98100",
+  last_four_cc: 7777666655551234,
+  expiration: 09/25,
+  cvv: 666,
+  
+
+}
 # column: value
 
-three: {}
-# column: value
