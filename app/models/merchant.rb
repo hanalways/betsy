@@ -20,11 +20,11 @@ class Merchant < ApplicationRecord
     Order.where(status: status).joins(:products).merge(Product.where(merchant_id: id))
   end
 
-  def revenue_of_status(status)
-    order = orders_of_status(status)
+  def self.revenue_of_status(status, id)
+    orders = orders_of_status(status, id)
     sum = 0
     orders.each do |order|
-      sum += checkout_amount
+      sum += order.total_price
     end
   end
 end
