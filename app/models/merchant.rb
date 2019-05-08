@@ -6,7 +6,6 @@ class Merchant < ApplicationRecord
   validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
 
   def self.build_from_github(auth_hash)
-    # binding.pry
     merchant = Merchant.new
     merchant.uid = auth_hash[:uid]
     merchant.image_url = auth_hash["extra"]["raw_info"]["avatar_url"] if auth_hash["extra"]

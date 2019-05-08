@@ -2,7 +2,6 @@ class OrdersController < ApplicationController
   before_action :find_order, except: [:create]
 
   def create
-    # binding.pry
     @order = Order.new(order_params)
     if @order.save
       flash[:status] = :success
@@ -88,10 +87,30 @@ class OrdersController < ApplicationController
     flash[:message] = "Successfully deleted order #{@order.id}"
   end
 
+  def update_status
+    @order = Order.find_by(id: params[:id])
+    if @order.status == "shipped"
+      @order.status = :paid      
+    else @order.status == "paid"
+      @order.status = :shipped
+    end
+
+    if @order.save
+      flash[:status] = :success 
+      flash[:message] = "Order \##{@order.id} status updated."
+    else 
+      flash[:status] = :error
+      flash[:message] = "Failed to update Order \##{@order.id}"
+      flash[:errors] = @order.errors.messages 
+    end
+
+    redirect_to dashboard_path
+  end
+
   private
 
   def order_params
-    params.require(:order).permit(:name, :email, :address1, :city, :state, :zip, :expiration, :last_four_cc, :cvv)
+    params.require(:order).permit(:name, :email, :address1, :city, :state, :zip, :expiration, :last_four_cc, :cvv, :status)
   end
 
   def find_order

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get "/cart/:id", to: "orders#current", as: "current_order"
   post "/cart/:id", to: "orders#checkout", as: "checkout"
   get "/order-confirmation/:id", to: "orders#confirmation", as: "order_confirmation"
+  patch "/order/:id/update_status", to: "orders#update_status", as: "update_status"
 
   resources :products, except: [:destroy] do
     resources :reviews, only: [:create]
