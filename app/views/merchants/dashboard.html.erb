@@ -88,7 +88,7 @@
       </thead>
       <% @merchant.orders_of_status(:pending).each do |order| %>
       <tr scope="row">
-        <td class="name"><%= order.id %></td>
+        <td class="name"><%= order.order_id %></td>
         <td><%= order.created_at.strftime("%b %d, %Y") %></td>
         <td>$<%= number_with_precision(order.total_price, :precision => 2, :delimiter => ',') %></td>
         <td><%= link_to "Ship Order", update_status_path(order.id), remote: true, method: :patch, class: "btn btn-success" %></td>

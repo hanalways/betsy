@@ -35,11 +35,13 @@
 </thead>
 <tbody>
 <% @order.order_products.each do |op| %>
+<% if op.product.merchant_id == @merchant.id %>
 <tr>
 <td><%= link_to Product.find_by(id: op.product_id).name, product_path(op.product_id) %></td>
 <td><%= op.quantity %></td>
 <td><%= op.total_price %></td>
 </tr>
+<% end %>
 <%end%>
 </tbody>
 </table>
