@@ -1,0 +1,12 @@
+<h2>Add New Category</h2>
+
+<%= form_with model: @category, class: 'form' do |f| %>
+  <section class="field">
+    <%= f.label :name, "Category name" %>
+    <%= f.text_field :name %>
+</section>
+
+<div class = "action">
+    <%= f.submit "Add Category" %>
+</div>
+<% end %>
