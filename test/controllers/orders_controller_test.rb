@@ -120,8 +120,19 @@ describe OrdersController do
           },
         }
       }
+      before do
+        # accessing the site will call the private controller filter set_cart
+        get root_path
+        # add something to cart
+        @op = OrderProduct.create!(
+          order_id: session[:order_id],
+          product_id: products(:dog).id,
+          quantity: 4,
+        )
+        @order = Order.find(session[:order_id])
+      end
       it "updates the order status" do
-        post checkout_path(@order), params: order_params
+        post checkout_path, params: order_params
         @order.reload
         expect(@order.status).must_equal "paid"
 
@@ -129,21 +140,16 @@ describe OrdersController do
       end
 
       it "won't check out if order_product quantity is higher than in-stock quantity" do
-        op = @order.order_products.first
-        op.quantity = 9000
-        op.save
-        product = Product.find_by(id: @order.order_products.first.product_id)
+        product = Product.find_by(id: @op.product_id)
         product.quantity = 1
         product.save
-
-        post checkout_path(@order), params: order_params
+        post checkout_path, params: order_params
         check_flash(:error)
       end
 
       it "won't check out if order is invalid" do
-        order = Order.new
-        order.save
-        post checkout_path(order), params: order_params
+        @op.destroy
+        post checkout_path, params: order_params
         check_flash(:error)
       end
     end

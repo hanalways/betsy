@@ -31,7 +31,7 @@
         <% end %>
         <tr>
             <td colspan=3></td>
-            <td>Total Price: <%= format("$%.2f", @order.checkout_amount) %></td>
+            <td>Total Price: <%= format("$%.2f", @current_order.checkout_amount) %></td>
         </tr>
     </tbody>
 </table>

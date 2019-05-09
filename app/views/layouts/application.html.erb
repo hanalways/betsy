@@ -63,7 +63,7 @@
           <% end %>
         </ul>
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><%= link_to "Cart (#{@current_order.products.count})", current_order_path(@current_order), class:"btn btn-secondary" %></li>
+          <li class="nav-item"><%= link_to "Cart (#{@current_order.products.count})", current_order_path, class:"btn btn-secondary" %></li>
         </ul>
       </div>
   </header>

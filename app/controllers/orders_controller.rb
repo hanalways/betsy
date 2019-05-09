@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_order, except: [:create]
+  before_action :find_order, except: [:create, :checkout]
 
   def create
     @order = Order.new(order_params)
@@ -46,6 +46,7 @@ class OrdersController < ApplicationController
   end
 
   def checkout
+    @order = @current_order
     @order.status = "paid"
     @order.update(order_params)
     @order.total_price = @order.checkout_amount
@@ -86,26 +87,6 @@ class OrdersController < ApplicationController
     flash[:status] = :success
     flash[:message] = "Successfully deleted order #{@order.id}"
   end
-
-  # def update_status
-  #   @order = Order.find_by(id: params[:id])
-  #   if @order.status == "shipped"
-  #     @order.status = :paid      
-  #   else @order.status == "paid"
-  #     @order.status = :shipped
-  #   end
-
-  #   if @order.save
-  #     flash[:status] = :success 
-  #     flash[:message] = "Order \##{@order.id} status updated."
-  #   else 
-  #     flash[:status] = :error
-  #     flash[:message] = "Failed to update Order \##{@order.id}"
-  #     flash[:errors] = @order.errors.messages 
-  #   end
-
-  #   redirect_to dashboard_path
-  # end
 
   private
 

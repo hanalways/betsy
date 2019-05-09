@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root "products#homepage"
 
   resources :orders, except: [:new]
-  get "/cart/:id", to: "orders#current", as: "current_order"
-  post "/cart/:id", to: "orders#checkout", as: "checkout"
+  get "/cart/", to: "orders#current", as: "current_order"
+  post "/cart/", to: "orders#checkout", as: "checkout"
   get "/order-confirmation/:id", to: "orders#confirmation", as: "order_confirmation"
 
   resources :products, except: [:destroy] do
