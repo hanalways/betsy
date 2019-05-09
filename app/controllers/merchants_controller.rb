@@ -5,10 +5,7 @@ class MerchantsController < ApplicationController
 
   def show
     @merchant = Merchant.find_by(id: params[:id])
-    unless @merchant
-      head :not_found
-      return
-    end
+    check_merchant
   end
 
   def create
@@ -47,16 +44,20 @@ class MerchantsController < ApplicationController
   def dashboard
     @merchant = @current_merchant
 
-    if @merchant.nil?
-      head :not_found
-    end
+    check_merchant
   end
 
   def confirmation
     @merchant = @current_merchant
     @order = Order.find_by(id: params[:id])
 
-    if @merchant.nil?
+    check_merchant
+  end
+
+  private
+
+  def check_merchant
+    unless @merchant
       head :not_found
     end
   end
