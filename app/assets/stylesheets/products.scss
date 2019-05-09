@@ -1,3 +1,7 @@
+
+section{
+    margin:30px 0;
+}
 .product-thumbnail {
     display:inline-block;
     margin:20px;
@@ -10,9 +14,13 @@
     height:2em;
 }
 
+.carousel {
+    margin:auto;
+}
 .carousel-item {
     z-index: -1;
-    height:70vh;
+    height:80vh;
+    
 }
 
 .thumbnail-image {
@@ -57,3 +65,43 @@ a {
     font-family:"Space Mono", monospace;
     color:black,
 }
+
+.parallax { 
+    /* The image used */
+    background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5) ), url("https://images.pexels.com/photos/1089438/pexels-photo-1089438.jpeg");
+  
+    /* Set a specific height */
+    height: 70vh; 
+    margin-top:-2em;
+    padding-top:2em;
+    /* Create the parallax scrolling effect */
+    
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    h1 {
+        color:white;
+        font-family: 'Gugi', cursive;
+        display:block;
+        margin:auto;
+        .hacksy {
+            font-size: 2em;
+        }
+    }
+    h2{
+        
+        font-family:"Space Mono", monospace;
+        text-align: right; 
+    }
+    .splash-text {
+        width:50%;
+    }
+    h2{
+        color: white;
+    }
+    a {
+        display: block;
+        margin:auto;
+    }
+  }
