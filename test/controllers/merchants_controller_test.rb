@@ -18,6 +18,40 @@ describe MerchantsController do
     end
   end
 
+  describe "dashboard" do 
+    it "can get the dashboard page" do 
+      merchant = merchants(:ada)
+      perform_login(merchant)
+      get dashboard_path
+
+      must_respond_with :success
+    end
+
+    it "can't get to the dashboard page if not logged in" do 
+      get dashboard_path 
+
+      must_respond_with :not_found
+    end
+  end
+
+  describe "confirmation" do 
+    it "can get to a confirmation page" do 
+      merchant = merchants(:ada)
+      op = OrderProduct.first
+      perform_login(merchant)
+      
+      get merchant_confirmation_path(op.order_id)
+      must_respond_with :success
+    end
+
+    it "can't get into a confirmation page if not logged in" do 
+      op = OrderProduct.first 
+
+      get merchant_confirmation_path(op.order_id)
+      must_respond_with :not_found 
+    end
+  end
+
   describe "auth callback" do
     it "can log in an existing user" do
       start_count = Merchant.count

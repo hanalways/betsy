@@ -1,12 +1,14 @@
 <h2>Add New Category</h2>
 
-<%= form_with model: @category, class: 'form' do |f| %>
-  <section class="field">
+<section class="form-parent">
+<%= form_with model: @category do |f| %>
+  <section class="form-group">
     <%= f.label :name, "Category name" %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: "form-control" %>
 </section>
 
 <div class = "action">
-    <%= f.submit "Add Category" %>
+    <%= f.submit "Add Category", class: "btn btn-primary"  %>
 </div>
 <% end %>
+</section>
