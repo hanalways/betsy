@@ -36,6 +36,7 @@
     </tbody>
 </table>
 
+<section class="form-parent">
 <%= form_with model: @order, method: :post, url: checkout_path, class: 'form' do |f| %>
 
 <section class="form-group">
@@ -88,3 +89,4 @@
 </div>
 
 <%end%>
+</section>
