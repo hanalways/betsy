@@ -52,8 +52,6 @@ class OrderProductsController < ApplicationController
     else
       flash_error("Failed to update Order \##{@op.id}")
     end
-
-    h
   end
 
   private
