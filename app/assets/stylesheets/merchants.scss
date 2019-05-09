@@ -27,6 +27,8 @@ a {
 
 .details {
     font-family:"Space Mono", monospace;
+    list-style-type: none;
+    padding:0;
 }
 
 .name a {
@@ -63,3 +65,4 @@ ul {
 a:hover {
     color: gray;
 }
+
