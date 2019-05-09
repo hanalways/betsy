@@ -43,14 +43,15 @@ class OrderProductsController < ApplicationController
     if @order_product.status == "shipped"
       @order_product.status = :pending
     else @order_product.status == "pending"
-      @order_product.status = :shipped     end
+      @order_product.status = :shipped     
+    end
 
     if @order_product.save
       flash[:status] = :success
-      flash[:message] = "Order \##{@op.id} status updated."
+      flash[:message] = "Order \##{@order_product.id} status updated."
       redirect_to dashboard_path
     else
-      flash_error("Failed to update Order \##{@op.id}")
+      flash_error("Failed to update Order \##{@order_productp.id}")
     end
   end
 

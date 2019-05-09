@@ -76,15 +76,16 @@ describe OrderProductsController do
   describe "update status" do 
     it "changes status from shipped to pending" do 
       op = OrderProduct.first
-      patch update_status_path(op.id)
+
+      patch update_status_path(op)
       op.reload
+
       
       expect(op.status).must_equal "pending"
     end
 
     it "changes status from pending to shipped" do 
       op = OrderProduct.last
-      op.status = "pending"
 
       patch update_status_path(op.id)
       op.reload
