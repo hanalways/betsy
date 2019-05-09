@@ -13,7 +13,7 @@
 <h1><%= heading%></h1>
   <% product_list.each do |product| %>
   <div class="product-thumbnail">
-    <img src=<%=product.image_url%>  alt="image of <%=product.name%>" class= "thumbnail-image">
+    <img src="<%=product.image_url%>""  alt="image of <%=product.name%>" class= "thumbnail-image">
     <p class="product-name"><%= link_to product.name, product_path(product.id) %></p>
     <p>$<%= number_with_precision(product.price, :precision => 2, :delimiter => ',') %></p>
     </p><%= "#{product.quantity} in stock"  %></p>
