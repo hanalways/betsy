@@ -16,11 +16,11 @@
         </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-        <img src=<%=@products.first.image_url%> alt=<%=@products.last.name%> class="featured-image d-block w-100 img-fluid">
+        <img src="<%=@products.first.image_url%>" alt="<%=@products.last.name%>" class="featured-image d-block w-100 img-fluid">
         </div>
         <% @products[1..2].each do |product| %>
         <div class="carousel-item">
-        <img src=<%=product.image_url%> alt=<%=product.name%> class="featured-image d-block w-100 img-fluid">
+        <img src="<%=product.image_url%>" alt="<%=product.name%>" class="featured-image d-block w-100 img-fluid">
         </div>
         <%end%>
     </div>
