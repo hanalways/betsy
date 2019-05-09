@@ -8,14 +8,26 @@ section{
     padding:10px;
     z-index:-1;
     width:220px;
+    h3 {
+        color:black;
+        font-family: "Roboto", sans-serif;
+        margin:0
+    }
 }
 
+h3 {
+    color:green;
+    font-weight:bold;
+    font-family:"Space Mono", monospace;
+    margin:2em;
+}
 .product-name{
     height:2em;
 }
 
 .carousel {
     margin:auto;
+    z-index:-0.5; 
 }
 .carousel-item {
     z-index: -1;
