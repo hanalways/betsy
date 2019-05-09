@@ -14,10 +14,7 @@ class OrderProductsController < ApplicationController
       flash[:message] = "Successfully added product to order"
       redirect_back(fallback_location: root_path)
     else
-      flash[:status] = :error
-      flash[:message] = "Could not add product to order"
-      flash[:errors] = @order_product.errors
-      redirect_back(fallback_location: root_path)
+      flash_error("Could not add product to order")
     end
   end
 
@@ -27,10 +24,7 @@ class OrderProductsController < ApplicationController
       flash[:message] = "Sucessfully updated quantity"
       redirect_back(fallback_location: root_path)
     else
-      flash[:status] = :error
-      flash[:message] = "Failed to update quantity"
-      flash[:errors] = @product.errors.messages
-      redirect_back(fallback_location: root_path)
+      flash_error("Failed to update quantity")
     end
   end
 
@@ -40,31 +34,26 @@ class OrderProductsController < ApplicationController
       flash[:message] = "Successfully removed product from order"
       redirect_back(fallback_location: root_path)
     else
-      flash[:status] = :error
-      flash[:message] = "Failed to remove product from order"
-      flash[:errors] = @order_product.errors
-      redirect_back(fallback_location: root_path)
+      flash_error("Failed to remove product from order")
     end
   end
 
   def update_status
-    @op = OrderProduct.find_by(id: params[:id])
-    if @op.status == "shipped"
-      @op.status = :pending      
-    else @op.status == "pending"
-      @op.status = :shipped
-    end
+    @order_product = OrderProduct.find_by(id: params[:id])
+    if @order_product.status == "shipped"
+      @order_product.status = :pending
+    else @order_product.status == "pending"
+      @order_product.status = :shipped     end
 
-    if @op.save
-      flash[:status] = :success 
+    if @order_product.save
+      flash[:status] = :success
       flash[:message] = "Order \##{@op.id} status updated."
-    else 
-      flash[:status] = :error
-      flash[:message] = "Failed to update Order \##{@op.id}"
-      flash[:errors] = @op.errors.messages 
+      redirect_to dashboard_path
+    else
+      flash_error("Failed to update Order \##{@op.id}")
     end
 
-    redirect_to dashboard_path
+    h
   end
 
   private
@@ -75,5 +64,12 @@ class OrderProductsController < ApplicationController
 
   def find_order_product
     @order_product = OrderProduct.find_by(id: params[:id])
+  end
+
+  def flash_error(message)
+    flash[:status] = :error
+    flash[:message] = message
+    flash[:errors] = @order_product.errors.messages
+    redirect_back(fallback_location: root_path)
   end
 end
