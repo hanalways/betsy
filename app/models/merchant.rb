@@ -26,7 +26,7 @@ class Merchant < ApplicationRecord
     ops.each do |order|
       sum += order.total_price
     end
-    return sum 
+    return sum
   end
 
   def order_count(status)
