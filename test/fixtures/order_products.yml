@@ -7,14 +7,16 @@
 op_one: {
   order: one,
   product: dog,
-  quantity: 3
+  quantity: 3,
+  status: "pending"
 }
 # column: value
 #
 op_two: {
   order: two,
   product: cat,
-  quantity: 5
+  quantity: 5,
+  status: "shipped"
 }
 # column: value
 
