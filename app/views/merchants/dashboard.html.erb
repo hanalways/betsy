@@ -55,6 +55,7 @@
     <table class="table table-dark table-striped">
       <thead class="thead-dark">
         <th scope="col">Order ID</th>
+        <th scope="col">Item Purchased</th>
         <th scope="col">Date Purchased</th>
         <th scope="col">Order Revenue</th>
         <th scope="col">Cancel Shipment</th>
@@ -62,6 +63,7 @@
       <% @merchant.orders_of_status(:shipped).each do |op| %>
         <tr scope="row">
           <td class="name"><%= link_to op.order_id, merchant_confirmation_path(op.order_id) %></td>
+          <td class="name"><%= link_to Product.find_by(id: op.product_id).name, product_path(op.product_id) %></td>
           <td><%= op.created_at.strftime("%b %d, %Y") %></td>
           <td>$<%= number_with_precision(op.total_price, :precision => 2, :delimiter => ',') %></td>
           <td><%= link_to "Cancel", update_status_path(op.order_id), remote: true, method: :patch, class: "btn btn-success" %></td>
@@ -74,16 +76,18 @@
     <table class="table table-dark table-striped">
       <thead class="thead-dark">
         <th scope="col">Order ID</th>
+        <th scope="col">Item Purchased</th>
         <th scope="col">Date Purchased</th>
         <th scope="col">Order Revenue</th>
-        <th scope="col">Ship Order</th>
+        <th scope="col">Ship Item</th>
       </thead>
-      <% @merchant.orders_of_status(:pending).each do |order| %>
+      <% @merchant.orders_of_status(:pending).each do |op| %>
         <tr scope="row">
-          <td class="name"><%= order.order_id %></td>
-          <td><%= order.created_at.strftime("%b %d, %Y") %></td>
-          <td>$<%= number_with_precision(order.total_price, :precision => 2, :delimiter => ',') %></td>
-          <td><%= link_to "Ship Order", update_status_path(order.id), remote: true, method: :patch, class: "btn btn-success" %></td>
+          <td class="name"><%= link_to op.order_id, merchant_confirmation_path(op.order_id) %></td>
+          <td class="name"><%= link_to Product.find_by(id: op.product_id).name, product_path(op.product_id) %></td>
+          <td><%= op.created_at.strftime("%b %d, %Y") %></td>
+          <td>$<%= number_with_precision(op.total_price, :precision => 2, :delimiter => ',') %></td>
+          <td><%= link_to "Ship Item", update_status_path(op.id), remote: true, method: :patch, class: "btn btn-success" %></td>
         </tr>
       <% end %>
     </table>
