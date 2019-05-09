@@ -39,6 +39,11 @@ describe ProductsController do
         must_respond_with :success
       end
 
+      it "can access new product page" do 
+        get new_product_path 
+        must_respond_with :success 
+      end
+
       it "can access all products index page" do
         products = Product.all
         get products_path
@@ -135,6 +140,11 @@ describe ProductsController do
       it "can access the products index page" do
         get products_path
         must_respond_with :success
+      end
+
+      it "cannot access new product page" do 
+        get new_product_path 
+        must_respond_with :redirect
       end
 
       it "cannot access invalid product show page" do
