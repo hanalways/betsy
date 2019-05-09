@@ -7,6 +7,7 @@ SimpleCov.start "rails" do
   add_filter "/test/" # for minitest
   add_filter "/channels/"
   add_filter "/mailers/"
+  add_fliter "/jobs/"
 end
 require File.expand_path("../../config/environment", __FILE__)
 require "rails/test_help"
