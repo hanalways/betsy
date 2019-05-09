@@ -43,6 +43,7 @@ class OrdersController < ApplicationController
   end
 
   def current
+    @order = @current_order
   end
 
   def checkout
