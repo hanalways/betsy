@@ -29,4 +29,28 @@ describe CategoriesController do
       must_respond_with :success
     end
   end
+
+  describe "create" do
+    let(:category_params) {
+      {
+        category: {
+          name: "New category",
+        },
+      }
+    }
+    it "allows a logged in user to create a category" do
+      perform_login(merchants(:grace))
+      expect {
+        post categories_path, params: category_params
+      }.must_change "Category.count", +1
+    end
+
+    it "will flash errors if category fails to save" do
+      perform_login(merchants(:grace))
+      post categories_path, params: category_params
+      # try to make another with the same name
+      post categories_path, params: category_params
+      check_flash(:error)
+    end
+  end
 end
