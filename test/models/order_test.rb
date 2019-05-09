@@ -12,8 +12,13 @@ describe Order do
 
   it "won't be valid without data" do
     invalid_order = Order.new
-    # invalid_order.save(context: :checkout)
     expect(invalid_order.valid?(:checkout)).must_equal false
+  end
+
+  it "will be invalid with a past expiration date" do
+    @order.expiration = "12/12"
+
+    expect(@order.valid?(:checkout)).must_equal false
   end
 
   describe "checkout_amount" do

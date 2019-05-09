@@ -38,9 +38,22 @@ describe OrderProductsController do
           product_id: Product.first.id,
           order_id: Order.first.id,
           quantity: 3,
+          status: "shipped"
         },
       }
     }
+
+    let(:order_product_second) {
+      {
+        order_product: {
+          product_id: Product.last.id,
+          order_id: Order.last.id,
+          quantity: 4,
+          status: "pending"
+        }
+      }
+    }
+
     it "changes the data in the db" do
       patch order_product_path(OrderProduct.first), params: order_product_data
 
@@ -57,6 +70,27 @@ describe OrderProductsController do
         delete order_product_path(OrderProduct.first)
       }.must_change "OrderProduct.count", -1
       check_flash
+    end
+  end
+
+  describe "update status" do 
+    it "changes status from shipped to pending" do 
+      op = OrderProduct.first
+
+      patch update_status_path(op)
+      op.reload
+
+      
+      expect(op.status).must_equal "pending"
+    end
+
+    it "changes status from pending to shipped" do 
+      op = OrderProduct.last
+
+      patch update_status_path(op.id)
+      op.reload
+      
+      expect(op.status).must_equal "shipped"
     end
   end
 end
