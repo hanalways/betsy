@@ -26,7 +26,7 @@
           <li class="nav-item"><%= link_to "Browse All Products", products_path, class:"nav-link"%></li>
           <li class="nav-item dropdown">
           <%= link_to "Browse By Merchant", "#", class: "nav-link dropdown-toggle", id:"navbarDropdown1", 'data-toggle' => 'dropdown' %>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown1">
               <%if Merchant.all.length > 5 %>
                 <%Merchant.all.first(5).each do |merchant|%>
                   <%= link_to merchant.username, merchant_products_path(merchant.id), class:"dropdown-item"%>
@@ -40,7 +40,7 @@
               </div>
           </li>
           <li class="nav-item dropdown"><%= link_to "Browse By Category", categories_path, class:"nav-link dropdown-toggle", id:"navbarDropdown2", 'data-toggle' => 'dropdown' %>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
             <%if Category.all.length > 5 %>
             <%Category.all.first(5).each do |category|%>
                 <%= link_to category.name, category_products_path(category.id), class:"dropdown-item"%>
