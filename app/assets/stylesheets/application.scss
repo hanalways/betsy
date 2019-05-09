@@ -26,11 +26,7 @@ nav {
     font-family:"Space Mono", monospace;
 }
 
-header {
-    position: fixed;
-    top: 0;
-    width:100%;
-}
+
 
 main {
     margin-top: 8rem;
@@ -44,12 +40,12 @@ main {
     color:green;
 }
 
-nav {
+nav{
     h1, h2, h3, h4, sub, {
         color:lime;
         font-family: 'Gugi', cursive;
     }
-    z-index: 1000;
+    z-index: -1.5;
 }
 
 h1.typewriter  {
