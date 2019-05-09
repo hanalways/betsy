@@ -4,6 +4,7 @@ describe OrderProductsController do
   before do
     @order_product = order_products(:op_one)
   end
+
   describe "create" do
     let(:order_product_data) {
       {
@@ -14,6 +15,7 @@ describe OrderProductsController do
         },
       }
     }
+
     it "adds an order_product to the db" do
       op = OrderProduct.new
       expect {
@@ -30,7 +32,7 @@ describe OrderProductsController do
       }.wont_change "OrderProduct.count"
     end
   end
-
+  
   describe "update" do
     let(:order_product_data) {
       {
