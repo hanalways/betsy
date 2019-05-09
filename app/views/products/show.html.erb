@@ -5,7 +5,7 @@
 <%end%>
 <h1><%= @product.name%></h1>
 
-<img src=<%=@product.image_url%>  alt="image of <%=@product.name%> " class="show-image">
+<img src="<%=@product.image_url%>" alt="image of <%=@product.name%> " class="show-image">
 
 <section class = "product-details">
     <h3>description</h3>
@@ -31,23 +31,23 @@
                 <h4>Rate this product: </h4>
                 <%= f.radio_button(:rating, 1) %>
                 <%=f.label :rating, value:1 do %>
-                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating", alt:"icon of rubber duck"%>
                 <%end%>
                 <%= f.radio_button(:rating, 2) %>
                 <%=f.label :rating, value:2 do %>
-                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating", alt:"icon of rubber duck"%>
                 <%end%>
                 <%= f.radio_button(:rating, 3, checked:true) %>
                 <%=f.label :rating, value:3 do %>
-                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating", alt:"icon of rubber duck"%>
                 <%end%>
                 <%= f.radio_button(:rating, 4) %>
                 <%=f.label :rating, value:4 do %>
-                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating", alt:"icon of rubber duck"%>
                 <%end%>
                 <%= f.radio_button(:rating, 5) %>
                 <%=f.label :rating, value:5 do %>
-                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating"%>
+                    <%= image_tag "https://i.dlpng.com/static/png/28313_thumb.png", class:"duck-rating", alt:"icon of rubber duck"%>
                 <%end%>
             </div>
 
