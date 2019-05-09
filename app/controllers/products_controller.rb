@@ -32,7 +32,10 @@ class ProductsController < ApplicationController
   end
 
   def update
-    check_owner(@product)
+    if !check_owner(@product)
+      redirect_to root_path
+      return
+    end
     if @product.update product_params
       flash[:status] = :success
       flash[:message] = "Sucessfully updated product"
@@ -46,11 +49,17 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    check_owner(@product)
+    if !check_owner(@product)
+      redirect_to root_path
+      return
+    end
   end
 
   def toggle_retire
-    check_owner(@product)
+    if !check_owner(@product)
+      redirect_to root_path
+      return
+    end
     @product.retired = !@product.retired
     @product.save
     redirect_back(fallback_location: root_path)
@@ -83,10 +92,10 @@ class ProductsController < ApplicationController
 end
 
 def check_owner(product)
-  unless product.merchant == @current_merchant
+  unless @product.merchant.id == session[:user_id]
     flash[:status] = :error
     flash[:message] = "You are not authorized to perform this action"
-    redirect_to root_path
-    return
+    return false
   end
+  return true
 end

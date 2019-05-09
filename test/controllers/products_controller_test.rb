@@ -150,4 +150,40 @@ describe ProductsController do
       end
     end
   end
+
+  describe "ownership" do
+    before do
+      perform_login(merchants(:grace))
+    end
+    let (:product_hash) {
+      {
+        product: {
+          name: "another sample product",
+          price: 200.0,
+          quantity: 50,
+          image_url: "http://www.fake.com/haksy2.png",
+          retired: true,
+          description: "everything",
+          merchant_id: merchants(:grace).id,
+        },
+      }
+    }
+    it "logged in user can't view edit page for product that isn't theirs" do
+      get edit_merchant_product_path(merchant_id: session[:user_id], id: products(:dog).id)
+      check_flash(:error)
+      must_respond_with :redirect
+    end
+
+    it "logged in user can't update product that isn't theirs" do
+      patch merchant_product_path(merchant_id: session[:user_id], id: products(:dog).id), params: product_hash
+      check_flash(:error)
+      must_respond_with :redirect
+    end
+
+    it "logged in user can't retire product that isn't theirs" do
+      post toggle_retire_product_path(products(:dog).id)
+      check_flash(:error)
+      must_respond_with :redirect
+    end
+  end
 end
