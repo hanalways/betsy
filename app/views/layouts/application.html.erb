@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>HaCKSy</title>
     <%= csrf_meta_tags %>
@@ -21,12 +21,12 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse", id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><%= link_to "Browse All Products", products_path, class:"nav-link"%></li>
           <li class="nav-item dropdown">
-          <%= link_to "Browse By Merchant", "#", class: "nav-link dropdown-toggle", id:"navbarDropdown", 'data-toggle' => 'dropdown' %>
-              <div class="dropdown-menu", aria-labelledby="navbarDropdown">
+          <%= link_to "Browse By Merchant", "#", class: "nav-link dropdown-toggle", id:"navbarDropdown1", 'data-toggle' => 'dropdown' %>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%if Merchant.all.length > 5 %>
                 <%Merchant.all.first(5).each do |merchant|%>
                   <%= link_to merchant.username, merchant_products_path(merchant.id), class:"dropdown-item"%>
@@ -39,8 +39,8 @@
               <%end%>
               </div>
           </li>
-          <li class="nav-item dropdown"><%= link_to "Browse By Category", categories_path, class:"nav-link dropdown-toggle", id:"navbarDropdown", 'data-toggle' => 'dropdown' %>
-            <div class="dropdown-menu", aria-labelledby="navbarDropdown">
+          <li class="nav-item dropdown"><%= link_to "Browse By Category", categories_path, class:"nav-link dropdown-toggle", id:"navbarDropdown2", 'data-toggle' => 'dropdown' %>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%if Category.all.length > 5 %>
             <%Category.all.first(5).each do |category|%>
                 <%= link_to category.name, category_products_path(category.id), class:"dropdown-item"%>
@@ -51,7 +51,7 @@
                 <%= link_to category.name, category_products_path(category.id), class:"dropdown-item"%>
               <%end%>
             <%end%>
-            <div>
+            </div>
           </li>
         </ul>
         <ul class="navbar-nav mr-auto">
