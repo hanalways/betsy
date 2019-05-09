@@ -15,10 +15,7 @@ class ProductsController < ApplicationController
       flash[:message] = "You sucessfully created a new product"
       redirect_to product_path(@product.id)
     else
-      flash.now[:status] = :error
-      flash.now[:message] = "Failed to add product to database"
-      flash.now[:errors] = @product.errors.messages
-      render :new
+      flash_error("Failed to add product to database", :new)
     end
   end
 
@@ -41,10 +38,7 @@ class ProductsController < ApplicationController
       flash[:message] = "Sucessfully updated product"
       redirect_to product_path(@product.id)
     else
-      flash.now[:status] = :error
-      flash.now[:message] = "Failed to update product"
-      flash.now[:errors] = @product.errors.messages
-      render :edit
+      flash_error("Failed to update product", :edit)
     end
   end
 
@@ -89,13 +83,20 @@ class ProductsController < ApplicationController
       head :not_found
     end
   end
-end
 
-def check_owner(product)
-  unless @product.merchant.id == session[:user_id]
-    flash[:status] = :error
-    flash[:message] = "You are not authorized to perform this action"
-    return false
+  def flash_error(message, template)
+    flash.now[:status] = :error
+    flash.now[:message] = message
+    flash.now[:errors] = @product.errors.messages
+    render template
   end
-  return true
+
+  def check_owner(product)
+    unless @product.merchant.id == session[:user_id]
+      flash[:status] = :error
+      flash[:message] = "You are not authorized to perform this action"
+      return false
+    end
+    return true
+  end
 end
