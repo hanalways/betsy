@@ -32,58 +32,64 @@
         </tr>
     </tbody>
 </table>
+<%= link_to "Check Out", "#checkoutForm", class: "btn btn-dark", id:"check-out-button" ,"data-toggle" => "collapse", "role"=>"button", "aria-expanded"=>"false", "aria-controls"=>"checkoutForm" %>
+<div class="collapse" id="checkoutForm">
+    <section class="alert alert-danger">
+        <strong>STOP. DO NOT ENTER YOUR REAL INFO</strong>
+        This is a satirical website created by students for a class assignment. Our databases are definitely not secure enough to store your personal information and we don't want it anyway, so please use fake data!
+    </section>
+    <section class="form-parent">
+    <%= form_with model: @order, method: :post, url: checkout_path, class: 'form' do |f| %>
 
-<section class="form-parent">
-<%= form_with model: @order, method: :post, url: checkout_path, class: 'form' do |f| %>
+    <section class="form-group">
+        <%= f.label :name, "Name" %>
+        <%= f.text_field :name, required: true, class: 'form-control' %>
+    </section>
 
-<section class="form-group">
-    <%= f.label :name, "Name" %>
-    <%= f.text_field :name, required: true, class: 'form-control' %>
-</section>
+    <section class="form-group">
+        <%= f.label :email, "Email" %>
+        <%= f.text_field :email, class: 'form-control' %>
+    </section>
 
-<section class="form-group">
-    <%= f.label :email, "Email" %>
-    <%= f.text_field :email, class: 'form-control' %>
-</section>
+    <section class="form-group">
+        <%= f.label :address1, "Street Address" %>
+        <%= f.text_field :address1, class: 'form-control' %>
+    </section>
 
-<section class="form-group">
-    <%= f.label :address1, "Street Address" %>
-    <%= f.text_field :address1, class: 'form-control' %>
-</section>
+    <section class="form-group">
+        <%= f.label :city, "City" %>
+        <%= f.text_field :city, class: 'form-control' %>
+    </section>
 
-<section class="form-group">
-    <%= f.label :city, "City" %>
-    <%= f.text_field :city, class: 'form-control' %>
-</section>
+    <section class="form-group">
+        <%= f.label :state, "State" %>
+        <%= f.text_field :state, class: 'form-control' %>
+    </section>
 
-<section class="form-group">
-    <%= f.label :state, "State" %>
-    <%= f.text_field :state, class: 'form-control' %>
-</section>
+    <section class="form-group">
+        <%= f.label :zip, "ZIP Code" %>
+        <%= f.text_field :zip, class: 'form-control' %>
+    </section>
 
-<section class="form-group">
-    <%= f.label :zip, "ZIP Code" %>
-    <%= f.text_field :zip, class: 'form-control' %>
-</section>
+    <section class="form-group">
+        <%= f.label :last_four_cc, "Credit Card Number" %>
+        <%= f.text_field :last_four_cc, class: 'form-control' %>
+    </section>
 
-<section class="form-group">
-    <%= f.label :last_four_cc, "Credit Card Number" %>
-    <%= f.text_field :last_four_cc, class: 'form-control' %>
-</section>
+    <section class="form-group">
+        <%= f.label :expiration, "Expiration (MM/YY)" %>
+        <%= f.text_field :expiration, class: 'form-control' %>
+    </section>
 
-<section class="form-group">
-    <%= f.label :expiration, "Expiration (MM/YY)" %>
-    <%= f.text_field :expiration, class: 'form-control' %>
-</section>
+    <section class="form-group">
+        <%= f.label :cvv, "CVV" %>
+        <%= f.text_field :cvv, class: 'form-control' %>
+    </section>
 
-<section class="form-group">
-    <%= f.label :cvv, "CVV" %>
-    <%= f.text_field :cvv, class: 'form-control' %>
-</section>
+    <div class = "action">
+        <%= f.submit "Check Out", class: "btn btn-dark"  %>
+    </div>
 
-<div class = "action">
-    <%= f.submit "Check Out", class: "btn btn-primary"  %>
+    <%end%>
+    </section>
 </div>
-
-<%end%>
-</section>
