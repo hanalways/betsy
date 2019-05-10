@@ -1,12 +1,14 @@
-<h2>Order Confirmation</h2>
-<p><%= @order.name %></p>
-<p><%= @order.email %></p>
-<p><%= @order.address1 %></p>
-<p><%= @order.city %>,
-  <%= @order.state %>
-  <%= @order.zip %></p>
-<p> Credit card: XXXX-XXXX-XXXX-<%= @order.last_four %></p>
-<p>Expiration: <%= @order.expiration %></p>
+<section class="order-info">
+  <h2>Order Confirmation</h2>
+  <p><%= @order.name %></p>
+  <p><%= @order.email %></p>
+  <p><%= @order.address1 %></p>
+  <p><%= @order.city %>,
+    <%= @order.state %>
+    <%= @order.zip %></p>
+  <p> Credit card: XXXX-XXXX-XXXX-<%= @order.last_four %></p>
+  <p>Expiration: <%= @order.expiration %></p>
+</section>
 <table class="table">
   <thead>
     <tr>
