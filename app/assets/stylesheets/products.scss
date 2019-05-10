@@ -48,7 +48,7 @@ img {
 
 .show-image {
     width:200px;
-    height:140px;
+    
     object-fit:cover;
     object-position: 0 0;
     vertical-align:top;
@@ -117,3 +117,52 @@ a {
         margin:auto;
     }
   }
+
+.product-grid {
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows:  1fr 3fr;
+    .product-title {
+        grid-column: 1/4;
+        grid-row: 1/2;
+        h2 {
+            margin: 4px 8px;
+        }
+    }
+    img {
+        margin:auto;
+    }
+    .product-details{
+        h3{
+            margin:0 0 1em;
+            font-weight:bold;
+        }
+    }
+
+    .add-to-cart {
+        margin-top:1em;
+    }
+
+}
+.review {
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+
+    .all-reviews {
+        grid-column: 2/4;
+        margin:0;
+        h2 {
+            margin: 0em 0 1em;
+        }
+    }
+    h3 {
+        margin:0;
+        font-weight:bold;
+    }
+    p {
+        margin:0;
+    }
+    .rating-display {
+        margin: 1em 0;
+    }
+}
