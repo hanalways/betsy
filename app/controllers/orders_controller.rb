@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :find_order, except: [:create, :checkout]
+  before_action :find_order, except: [:create, :checkout, :confirmation]
 
   def create
     @order = Order.new(order_params)
@@ -67,7 +67,7 @@ class OrdersController < ApplicationController
 
       session[:order_id] = nil
 
-      redirect_to order_confirmation_path(@order.id)
+      redirect_to order_confirmation_path(@order.uid)
 
       return
     else
@@ -80,6 +80,11 @@ class OrdersController < ApplicationController
   end
 
   def confirmation
+    @order = Order.find_by(uid: params[:uid])
+
+    unless @order
+      head :not_found
+    end
   end
 
   def destroy
@@ -92,7 +97,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :email, :address1, :city, :state, :zip, :expiration, :last_four_cc, :cvv, :status)
+    params.require(:order).permit(:name, :email, :address1, :city, :state, :zip, :expiration, :last_four_cc, :cvv, :status, :uid)
   end
 
   def find_order
