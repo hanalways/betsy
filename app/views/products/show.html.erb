@@ -2,13 +2,13 @@
 
 <div class="product-grid">
     <div class="product-title">
-    <div class="category-tabs">
-        <%@product.categories.each do |category|%>
-            <%= link_to category.name, category_products_path(category_id:category.id), class: "btn btn-dark btn-sm" %>
-        <%end%>
-    </div>
+        <div class="category-tabs">
+            <%@product.categories.each do |category|%>
+                <%= link_to category.name, category_products_path(category_id:category.id), class: "btn btn-dark btn-sm" %>
+            <%end%>
+        </div>
 
-    <h2><%= @product.name%></h2>
+        <h2><%= @product.name%></h2>
     </div>
 
     <img src="<%=@product.image_url%>" alt="image of <%=@product.name%> " class="show-image">
@@ -22,11 +22,15 @@
         </div>
         <div class = "add-to-cart">
             <%= form_with model: @order_product, url: order_products_path, method: :post do |f|%>
-                <%= f.label :quantity%>
-                <%= f.number_field :quantity, in: 1..20, step: 1 %>
+                <div class="field">
+                    <%= f.label :quantity%>
+                    <%= f.number_field :quantity, in: 1..20, step: 1 %>
+                </div>
                 <%= f.hidden_field :product_id, value: @product.id%>
                 <%= f.hidden_field :order_id, value: @current_order.id%>
-                <%= f.submit "Add to cart"%>
+                <div class="action">
+                    <%= f.submit "Add to cart", class:"btn btn-dark"%>
+                </div>
             <% end %>
         </div>
     </section>
@@ -70,7 +74,7 @@
             </div>
 
             <div class="action">
-                <%=f.submit "Review this product!"%>
+                <%=f.submit "Review this product!",class:"btn btn-dark"%>
             </div>
         <%end%>
     </aside>

@@ -144,6 +144,10 @@ a {
     }
 
 }
+
+.field {
+    margin:6px 12px;
+}
 .review {
     display:grid;
     grid-template-columns: 1fr 2fr;
@@ -155,6 +159,12 @@ a {
             margin: 0em 0 1em;
         }
     }
+
+    .action {
+            margin-top:1em;
+        }
+    
+    
     h3 {
         margin:0;
         font-weight:bold;
