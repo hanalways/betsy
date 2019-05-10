@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
     if !@current_order
       @current_order = Order.new
       @current_order.status = "pending"
-      @current_order.uid = (0...8).map { ('a'..'z').to_a[rand(26)] }.join
+      @current_order.uid = SecureRandom.uuid
       @current_order.save
       session[:order_id] = @current_order.id
     end
