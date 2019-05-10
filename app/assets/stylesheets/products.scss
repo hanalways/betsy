@@ -176,3 +176,9 @@ a {
         margin: 1em 0;
     }
 }
+
+.checkboxes {
+    display:flex;
+    flex-flow: column wrap;
+    height:200px;
+}

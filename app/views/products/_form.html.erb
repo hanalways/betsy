@@ -25,12 +25,16 @@
     <%= f.text_field :image_url, class: "form-control"%>
 </section>
 
-<section class="form-check form-check-inline">
-    <%= f.label :category_ids, "Categories:", class: "form-check-label" %>
+<section  >
+    <%= f.label :category_ids, "Categories:"  %>
+    <div class="checkboxes">
     <%= collection_check_boxes(:product, :category_ids, Category.all, :id, :name) do |b| %>
- <%= b.label class: "form-check-label" %>
- <%= b.check_box class: "form-check-input" %>
- <% end %>
+        <div class="checkbox-field">
+            <%=b.check_box%>
+            <%=b.label%>
+        </div>
+    <% end %>
+    </div>
 </section>
 
 <div class="action">
