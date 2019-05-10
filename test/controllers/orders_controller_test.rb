@@ -136,7 +136,7 @@ describe OrdersController do
         @order.reload
         expect(@order.status).must_equal "paid"
 
-        must_redirect_to order_confirmation_path(@order)
+        must_redirect_to order_confirmation_path(uid: @order.uid)
       end
 
       it "won't check out if order_product quantity is higher than in-stock quantity" do

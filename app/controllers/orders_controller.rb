@@ -17,14 +17,14 @@ class OrdersController < ApplicationController
 
   def show
     unless @order
-      head :not_found
+      render_404
       return
     end
   end
 
   def edit
     unless @order
-      head :not_found
+      render_404
       return
     end
   end
@@ -83,7 +83,7 @@ class OrdersController < ApplicationController
     @order = Order.find_by(uid: params[:uid])
 
     unless @order
-      head :not_found
+      render_404
     end
   end
 

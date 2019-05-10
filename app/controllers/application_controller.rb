@@ -24,4 +24,12 @@ class ApplicationController < ActionController::Base
   def set_merchant
     @current_merchant = Merchant.find_by(id: session[:user_id])
   end
+
+  def render_404
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+      format.xml { head :not_found }
+      format.any { head :not_found }
+    end
+  end
 end

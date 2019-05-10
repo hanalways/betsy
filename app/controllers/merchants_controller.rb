@@ -58,7 +58,7 @@ class MerchantsController < ApplicationController
 
   def check_merchant
     unless @merchant
-      head :not_found
+      render_404
     end
   end
 end

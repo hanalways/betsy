@@ -80,7 +80,7 @@ class ProductsController < ApplicationController
   def find_product
     @product = Product.find_by(id: params[:id])
     if !@product
-      head :not_found
+      render_404
     end
   end
 

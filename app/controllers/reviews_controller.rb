@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
   def create
     unless Product.find_by(id: params[:product_id])
-      head :not_found
+      render_404
       return
     end
 
