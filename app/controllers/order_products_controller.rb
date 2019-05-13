@@ -40,13 +40,12 @@ class OrderProductsController < ApplicationController
 
   def update_status
     @order_product = OrderProduct.find_by(id: params[:id])
+    binding.pry
     if @order_product.status == "shipped"
       @order_product.status = :pending
     else @order_product.status == "pending"
-      @order_product.status = :shipped     
-    end
-
-    if @order_product.save
+      @order_product.status = :shipped     end
+    if @order_product.save(validate: false)
       flash[:status] = :success
       flash[:message] = "Order \##{@order_product.id} status updated."
       redirect_to dashboard_path

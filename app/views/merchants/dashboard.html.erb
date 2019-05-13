@@ -66,7 +66,7 @@
           <td class="name"><%= link_to Product.find_by(id: op.product_id).name, product_path(op.product_id) %></td>
           <td><%= op.created_at.strftime("%b %d, %Y") %></td>
           <td>$<%= number_with_precision(op.total_price, :precision => 2, :delimiter => ',') %></td>
-          <td><%= link_to "Cancel", update_status_path(op.order_id), remote: true, method: :patch, class: "btn btn-success" %></td>
+          <td><%= link_to "Cancel", update_status_path(op.id), remote: true, method: :patch, class: "btn btn-success" %></td>
         </tr>
       <% end %>
     </table>
