@@ -40,7 +40,6 @@ class OrderProductsController < ApplicationController
 
   def update_status
     @order_product = OrderProduct.find_by(id: params[:id])
-    binding.pry
     if @order_product.status == "shipped"
       @order_product.status = :pending
     else @order_product.status == "pending"
