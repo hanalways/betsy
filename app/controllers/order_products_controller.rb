@@ -44,12 +44,12 @@ class OrderProductsController < ApplicationController
       @order_product.status = :pending
     else @order_product.status == "pending"
       @order_product.status = :shipped     end
-    if @order_product.save(validate: false)
+    if @order_product.save(validate: false) #don't need to validate quantity after checkout
       flash[:status] = :success
       flash[:message] = "Order \##{@order_product.id} status updated."
       redirect_to dashboard_path
     else
-      flash_error("Failed to update Order \##{@order_productp.id}")
+      flash_error("Failed to update Order \##{@order_product.id}")
     end
   end
 
